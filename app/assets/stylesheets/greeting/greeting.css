@@ -1,0 +1,59 @@
+.splash-page {
+
+}
+
+.splash-page .navbar {
+  display: flex;
+  justify-content: space-between;
+  height: 130px;
+}
+
+.splash-page .navbar h2{
+  font-family: "Soleil", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 16px;
+}
+
+.splash-page .content {
+  background: #00A82D;
+  color: #fff;
+  height: 540px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.splash-page .content .content-left {
+  width: 390px;
+}
+
+.splash-page .content .content-left p {
+  font-family: "Soleil_Light", Helvetica, Arial, sans-serif;
+  font-size: 24px;
+  line-height: 40px;
+  margin-bottom: 35px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.splash-page .content h2 {
+  font-family: "Soleil_Medium", Helvetica, Arial, sans-serif;
+  font-size: 56px;
+  line-height: 72px;
+  margin-bottom: 20px;
+}
+
+
+.splash-page .content button {
+  background: white;
+  color: #00A82D;
+  padding: 20px;
+  border-radius: 5px;
+  font-family: "Soleil_Bold", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  width: 240px;
+  text-transform: uppercase;
+  box-sizing: border-box;
+  text-align: center;
+}

@@ -8,6 +8,10 @@ class SessionForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillUnmount() {
+    this.props.clearSessionErrors();
+  }
+
   handleSubmit(e){
     e.preventDefault();
     const user = Object.assign({}, this.state);
@@ -36,6 +40,18 @@ class SessionForm extends React.Component {
     }
   }
 
+  renderErrors() {
+    return(
+      <ul>
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
   render(){
 
     const formTitle = () => (<h2>{this.props.formType}</h2>)
@@ -44,7 +60,7 @@ class SessionForm extends React.Component {
     return(
       <>
         {formTitle}
-        <ul>{errorsList}</ul>
+        {this.renderErrors()}
         <form onSubmit={this.handleSubmit}>
           <label>Email:
               <input type="text" value={this.state.email} onChange={this.update('email')}/>
