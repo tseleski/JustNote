@@ -28,7 +28,7 @@ class Api::NotesController < ApplicationController
   def update
     @note = current_user.notes.find(params[:id])
     if @note.update(note_params)
-      render "api/notes/index"
+      render "api/notes/show"
     else
       render json: @note.errors.full_messages, status: 422
     end

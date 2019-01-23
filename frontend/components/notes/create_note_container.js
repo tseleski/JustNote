@@ -5,6 +5,7 @@ import NoteForm from './note_form';
 const mapStateToProps = state => {
   return {
     note: { title: '', content: ''},
+    formType: 'Create'
   };
 };
 
