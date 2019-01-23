@@ -32,7 +32,7 @@ export const clearSessionErrors = () => {
 };
 
 export const demoLogin = () => dispatch => {
-  return SessionAPIUtil.login({email: 'demo', password: 'demo'}).then(
+  return SessionAPIUtil.login({email: 'demouser@gmail.com', password: 'demouser'}).then(
     user => dispatch(receiveCurrentUser(user)),
     err => dispatch(receiveErrors(err.responseJSON))
   );

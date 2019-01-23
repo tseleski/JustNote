@@ -31,7 +31,8 @@
 
 .splash-page .content {
   background: #00A82D;
-  /* background-image: ; */
+  /* background: image-url('green.jpg');
+  background-size: cover; */
   color: #fff;
   height: 780px;
   display: flex;

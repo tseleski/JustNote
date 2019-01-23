@@ -9,4 +9,4 @@
 
 User.destroy_all
 
-u1 = User.create({email: 'demo', password: 'demo'});
+u1 = User.create({email: 'demouser@gmail.com', password: 'demouser'});
