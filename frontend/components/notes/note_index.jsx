@@ -14,7 +14,6 @@ class NoteIndex extends React.Component {
     });
     return (
       <div>
-        <Link to={'/notes/new'}><button>New Note</button></Link>
         <h2>All Notes</h2>
         <ul>{noteList}</ul>
       </div>

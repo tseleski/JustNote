@@ -22,7 +22,7 @@ class Api::NotesController < ApplicationController
   def destroy
     @note = current_user.notes.find(params[:id])
     @note.destroy
-    render json: @note
+    render "api/notes/show"
   end
 
   def update

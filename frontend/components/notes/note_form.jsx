@@ -1,10 +1,12 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class NoteForm extends React.Component{
   constructor(props){
     super(props);
     this.state = this.props.note;
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -24,11 +26,32 @@ class NoteForm extends React.Component{
   }
 
   handleSubmit(e){
-    this.props.action(this.state);
+    e.preventDefault();
+    if (this.props.formType === 'Create'){
+      this.props.action(this.state).then(this.props.history.push(`/`));
+    } else {
+      this.props.action(this.state);
+    }
   }
 
   update(field){
     return e => this.setState({[field]: e.target.value});
+  }
+
+  handleDelete(e){
+    e.preventDefault();
+    const that = this;
+    this.props.deleteNote(this.props.id).then(() =>
+      that.props.history.push('/')
+    );
+  }
+
+  renderDelete(){
+    if (this.props.formType === 'Edit'){
+      return (
+        <p onClick={this.handleDelete}>Delete this note</p>
+      )
+    }
   }
 
   render(){
@@ -39,10 +62,11 @@ class NoteForm extends React.Component{
           <textarea value={this.state.content} onChange={this.update('content')} placeholder="Start writing here..."cols="30" rows="10"></textarea>
           <input type="submit" value={this.props.formType}/>
         </form>
+        {this.renderDelete()}
       </div>
     )
   }
 
 }
 
-export default NoteForm;
+export default withRouter(NoteForm);

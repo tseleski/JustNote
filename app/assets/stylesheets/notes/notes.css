@@ -1,0 +1,31 @@
+.side-nav {
+  display: flex;
+  width: 200px;
+  height: 2000px;
+  background-color: #1a1a1a;
+  clear: both;
+}
+
+.side-nav .left-section {
+  height: 120px;
+  align-items: center;
+  padding-left: 20px;
+  color: #b3d4fc;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  clear: both;
+}
+
+.side-nav .new-note {
+  color: #fff;
+}
+
+.side-nav .all-notes {
+  width: 200px;
+}
+
+.note-form {
+  float: right;
+  display: inline-block;
+}

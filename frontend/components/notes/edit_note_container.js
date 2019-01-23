@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchNote, updateNote } from '../../actions/note_actions';
+import { fetchNote, updateNote, deleteNote } from '../../actions/note_actions';
 import React from 'react';
 import NoteForm from './note_form';
 
@@ -11,11 +11,10 @@ class EditNoteForm extends React.Component {
   }
 
   render() {
-    const { action, note, formType, fetchNote } = this.props;
+    const { action, note, formType, fetchNote, deleteNote } = this.props;
     const id = this.props.match.params.noteId;
-    debugger
     return (
-      <NoteForm action={action} id={id} note={note} formType={formType} fetchNote={fetchNote} />
+      <NoteForm action={action} id={id} note={note} formType={formType} fetchNote={fetchNote} deleteNote={deleteNote} />
     );
   }
 }
@@ -32,7 +31,8 @@ const mapStateToProps = (state, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     action: (note) => dispatch(updateNote(note)),
-    fetchNote: (id) => dispatch(fetchNote(id))
+    fetchNote: (id) => dispatch(fetchNote(id)),
+    deleteNote: (id) => dispatch(deleteNote(id))
   };
 };
 

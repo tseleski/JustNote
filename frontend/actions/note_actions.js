@@ -64,10 +64,7 @@ export const createNote = (note) => dispatch => {
 export const updateNote = (note) => dispatch => {
   return NoteAPIUtil.updateNote(note).then(
     note => dispatch(receiveNote(note)),
-    err => {
-      debugger
-      return dispatch(receiveErrors(err.responseJSON))
-    }
+    err =>  dispatch(receiveErrors(err.responseJSON))
   );
 };
 
