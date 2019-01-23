@@ -1,32 +1,52 @@
-.splash-page {
-
-}
-
 .splash-page .navbar {
+  background: #fff;
   display: flex;
   justify-content: space-between;
   height: 130px;
+  padding: 40px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  width: 100%
 }
 
-.splash-page .navbar h2{
+.splash-page .logo{
+  display: flex;
+  align-items: center;
+}
+
+.splash-page .logo-image{
+  width: 40px;
+  height: 40px;
+  margin-right: 5px;
+}
+
+.splash-page .navbar h2 {
   font-family: "Soleil", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  font-size: 16px;
+  font-size: 30px;
+  line-height: 20px;
+  font-weight: bold;
 }
 
 .splash-page .content {
   background: #00A82D;
+  /* background: image-url('green.jpg'); */
+  /* background-image: url('https://images.pexels.com/photos/131634/pexels-photo-131634.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'); */
+  /* background-size: cover; */
   color: #fff;
-  height: 540px;
+  height: 780px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
+  padding-top: 250px;
   padding-left: 40px;
   padding-right: 40px;
+  box-sizing: border-box;
 }
 
 .splash-page .content .content-left {
-  width: 390px;
+  width: 450px;
+  flex-direction: column;
 }
 
 .splash-page .content .content-left p {
@@ -48,12 +68,114 @@
 .splash-page .content button {
   background: white;
   color: #00A82D;
-  padding: 20px;
-  border-radius: 5px;
+  /* padding: 20px; */
+  border-radius: 3px;
   font-family: "Soleil_Bold", Helvetica, Arial, sans-serif;
   font-size: 16px;
   width: 240px;
   text-transform: uppercase;
   box-sizing: border-box;
   text-align: center;
+  /* font-weight: bold; */
+  letter-spacing: 1.5px;
+  padding: 18px 32px 17px;
+  transition: .3s background ease-in-out;
+  -webkit-font-smoothing: antialiased;
+}
+
+.splash-page .content button:hover {
+  background: #F7F7F7;
+}
+
+.splash-page .content-right {
+  align-items: center;
+}
+
+.splash-page .content-right img {
+  width: 530px;
+  height: 316px;
+}
+
+.splash-page .buttons {
+  display: flex;
+  align-items: center;
+}
+
+.splash-page .buttons li {
+  margin-left: 13px;
+  line-height: 21px;
+  font-family: "Soleil", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: .5px;
+}
+
+.splash-page .buttons .signup, .splash-page .buttons .login {
+  color: #00a82d;
+  font-size: 16px;
+  text-decoration: none;
+  transition: .1s color 
+}
+
+.splash-page .buttons .login {
+  height: 40px;
+  min-width: 120px;
+  font-size: 14px;
+  line-height: 37px;
+  text-align: center;
+  text-decoration: none;
+  color: #00a82d;
+  border-radius: 3px;
+  border: 2px solid #00a82d;
+  padding: 0 10px;
+  transition: .3s border 
+}
+
+.splash-page .buttons .signup:hover {
+  color: #14CC45;
+}
+
+.splash-page .buttons .login:hover {
+  color: #14CC45;
+  border: 2px solid #14CC45;
+}
+
+.splash-page .content2 {
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  padding: 115px 0px 100px;
+  justify-content: space-around;
+  align-items: center;
+  font-family: "Soleil_Light", Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 48px;
+  line-height: 64px;
+  background: #F7F7F7;
+}
+
+.content2 .focus-img{
+  width: 105px;
+  height: 119px;
+}
+
+.splash-page .footer {
+  padding-right: 40px;
+  height: 60px;
+  font-family: "Soleil_Light", Helvetica, Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  /* background: #00A82D; */
+  /* color: #fff; */
+  background:  #fff;
+  color: #c5ccca;
+  letter-spacing: .5px;
+}
+
+.splash-page .footer-links {
+  display: flex;
+}
+
+.splash-page .footer-links li {
+  margin-left: 20px;
 }
