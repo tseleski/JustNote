@@ -37,8 +37,8 @@ const Greeting = ({ currentUser, logout }) => {
           <h2 className="focus">Focus on what matters most</h2>
         </div>
 
-        <footer class="footer">
-          <ul class="footer-links">
+        <footer className="footer">
+          <ul className="footer-links">
             <li><a href='https://github.com/tseleski'>Github</a></li>
             <li><a href='https://linkedin.com/in/tamar-seleski-bb0a4192/'>LinkedIn</a></li>
           </ul>

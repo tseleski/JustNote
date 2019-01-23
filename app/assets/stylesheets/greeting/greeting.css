@@ -141,7 +141,7 @@
   height: 450px;
   display: flex;
   flex-direction: column;
-  padding-top: 115px;
+  padding: 115px 0px 100px;
   justify-content: space-around;
   align-items: center;
   font-family: "Soleil_Light", Helvetica, Arial, sans-serif;
