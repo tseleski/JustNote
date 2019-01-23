@@ -23,26 +23,26 @@ class SessionForm extends React.Component {
   }
 
   renderLinks(){
-    if (this.props.formType === 'Log In'){
+    if (this.props.formType === 'Sign In'){
       return(
-        <>
-          <p>Don't have an acconut?</p>
-          <Link to={'/signup'}>Create account</Link>
-        </>
+        <div className="bottom-section">
+          <p className="question">Don't have an account?</p>
+          <button className="link-title"><Link to={'/signup'}>Create account</Link></button>
+        </div>
       )
     } else {
       return (
-        <>
-          <p>Already have an acconut?</p>
-          <Link to={'/login'}>Sign In</Link>
-        </>
+        <div className="bottom-section">
+          <p className="question">Already have an account?</p>
+          <button className="link-title"><Link to={'/login'}>Sign In</Link></button>
+        </div>
       )
     }
   }
 
   renderErrors() {
     return(
-      <ul>
+      <ul className="errors">
         {this.props.errors.map((error, i) => (
           <li key={`error-${i}`}>
             {error}
@@ -52,27 +52,41 @@ class SessionForm extends React.Component {
     );
   }
 
-  render(){
+  renderDemo(){
+    if (this.props.formType === 'Sign In') {
+      return (
+        <div>
+          <button className="demo" onClick={this.props.demoLogin}>Demo Login</button>
+        </div>
+      )
+    }
+  }
 
-    const formTitle = () => (<h2>{this.props.formType}</h2>)
+  render(){
     const links = this.renderLinks();
-    const errorsList = this.props.errors;
     return(
-      <>
-        {formTitle}
-        {this.renderErrors()}
-        <form onSubmit={this.handleSubmit}>
-          <label>Email:
-              <input type="text" value={this.state.email} onChange={this.update('email')}/>
-          </label>
-          <label>Password:
-             <input type="password" value={this.state.password} onChange={this.update('password')} />
-          </label>
-       
-          <input type="submit" value={this.props.formType} />
-        </form>
-        {links}
-      </>
+      <div className="session-page">
+        <div className="session-form">
+          <div className="top-section">
+            <img src={window.logoURL} />
+            <h2>JustNote</h2>
+            <p className="subtitle">Remember everything important.</p>
+          </div>
+          {this.renderErrors()}
+          <form onSubmit={this.handleSubmit}>
+            <label>
+                <input type="text" placeholder="Email" value={this.state.email} onChange={this.update('email')}/>
+            </label>
+            <label>
+              <input type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
+            </label>
+        
+            <input type="submit" value={this.props.formType} />
+          </form>
+          {this.renderDemo()}
+          {links}
+        </div>
+      </div>
     )
   }
 

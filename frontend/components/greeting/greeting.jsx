@@ -12,10 +12,15 @@ const Greeting = ({ currentUser, logout }) => {
     return (
       <section className="splash-page">
         <div className="navbar">
-          <h2><Link to={'/'}>JustNote</Link></h2>
-          <div className="buttons">
-            <button><Link to={'/signup'}>Sign Up</Link></button> or <button><Link to={'/login'}>Log In</Link></button>
-          </div>
+          <div className="logo">
+            <Link to={'/'}><img className="logo-image" src={window.logoURL} /></Link>
+            <h2><Link to={'/'}>JustNote</Link></h2>
+          </div> 
+          <ul className="buttons">
+            <li className="signup"><Link to={'/signup'}>Sign up</Link></li> 
+            <li>or</li>
+            <li className="login"><Link to={'/login'}>Log in</Link></li>
+          </ul>
         </div>
         <div className="content">
           <div className="content-left">
@@ -24,9 +29,21 @@ const Greeting = ({ currentUser, logout }) => {
             <button><Link to={'/signup'}>SIGN UP FOR FREE</Link></button>
           </div>
           <div className="content-right">
-            <img src="" alt=""/>
+            <img src={window.compURL} />
           </div>
         </div>
+        <div className="content2">
+          <img className="focus-img" src={window.focusURL} />
+          <h2 className="focus">Focus on what matters most</h2>
+        </div>
+
+        <footer class="footer">
+          <ul class="footer-links">
+            <li><a href='https://github.com/tseleski'>Github</a></li>
+            <li><a href='https://linkedin.com/in/tamar-seleski-bb0a4192/'>LinkedIn</a></li>
+          </ul>
+
+        </footer>
       </section>
     )
   }
