@@ -31,13 +31,14 @@
 
 .splash-page .content {
   background: #00A82D;
-  /* background: image-url('green.jpg');
-  background-size: cover; */
+  /* background: image-url('green.jpg'); */
+  /* background-image: url('https://images.pexels.com/photos/131634/pexels-photo-131634.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'); */
+  /* background-size: cover; */
   color: #fff;
   height: 780px;
   display: flex;
   justify-content: space-around;
-  padding-top: 230px;
+  padding-top: 250px;
   padding-left: 40px;
   padding-right: 40px;
   box-sizing: border-box;
