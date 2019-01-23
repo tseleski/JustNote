@@ -1,12 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import NoteIndexContainer from '../notes/note_index_container';
 
 const Greeting = ({ currentUser, logout }) => {
   if (currentUser) {
     return (
       <div className="side-nav">
-        <h2>Hello, {currentUser.email}</h2>
+        <h2>{currentUser.email}</h2>
         <button onClick={logout}>Logout</button>
+        <NoteIndexContainer />
       </div>
     )
   } else {
