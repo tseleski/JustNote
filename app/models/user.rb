@@ -13,6 +13,9 @@ class User < ApplicationRecord
     through: :notebooks,
     source: :notes
 
+  def ordered_notes
+    notes.reorder('updated_at DESC')
+  end
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)

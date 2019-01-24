@@ -4,9 +4,11 @@ import { withRouter } from 'react-router-dom';
 class NoteForm extends React.Component{
   constructor(props){
     super(props);
-    this.state = this.props.note;
+    const prevState = { deleteModal: false };
+    this.state = Object.assign(prevState, this.props.note);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
+    this.toggleDelete = this.toggleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -46,23 +48,35 @@ class NoteForm extends React.Component{
     );
   }
 
+  toggleDelete(){
+    this.setState({ deleteModal: !this.state.deleteModal });
+  }
+
   renderDelete(){
+    const deleteModal = this.state.deleteModal ? "show" : "hide";
     if (this.props.formType === 'Edit'){
       return (
-        <p onClick={this.handleDelete} className="delete-note">Delete this note</p>
+        <div className="above-form">
+          <div className="three-dots">
+            <p onClick={this.toggleDelete} className="dots">...</p>
+            <p onClick={this.handleDelete} className={`delete-note ${deleteModal}`}>Delete this note</p>
+          </div> 
+        </div>
       )
     }
   }
 
   render(){
     return (
-      <div className="note-form">
-        <form onSubmit={this.handleSubmit}>
-          <input className="title-input" type="text" value={this.state.title} onChange={this.update('title')} placeholder="Title"/>
-          <textarea className="content-input" value={this.state.content} onChange={this.update('content')} placeholder="Start writing here..."cols="30" rows="30"></textarea>
-          <input type="submit" value={this.props.formType}/>
-        </form>
+      <div className="note-panel">
         {this.renderDelete()}
+        <div className="note-form">
+          <form onSubmit={this.handleSubmit}>
+            <input className="title-input" type="text" value={this.state.title} onChange={this.update('title')} placeholder="Title"/>
+            <textarea className="content-input" value={this.state.content} onChange={this.update('content')} placeholder="Start writing here..."cols="30" rows="30"></textarea>
+            <input type="submit" value="Save"/>
+          </form>
+        </div>
       </div>
     )
   }

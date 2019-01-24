@@ -1,11 +1,12 @@
 class Api::NotesController < ApplicationController 
   def index
-    @notes = current_user.notes
+    @notes = current_user.ordered_notes
     render "api/notes/index"
   end
 
   def show
     @note = current_user.notes.find(params[:id])
+    @notebook = @note.notebook
     render "api/notes/show"
   end
 
