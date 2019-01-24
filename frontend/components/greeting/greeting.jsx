@@ -1,9 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import NoteIndexContainer from '../notes/note_index_container';
-import { ProtectedRoute } from '../../util/route_util';
-import CreateNoteContainer from '../notes/create_note_container';
-import EditNoteContainer from '../notes/edit_note_container';
 import Main from '../Main';
 
 const Greeting = ({ currentUser, logout }) => {

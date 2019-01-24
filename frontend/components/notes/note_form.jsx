@@ -49,7 +49,7 @@ class NoteForm extends React.Component{
   renderDelete(){
     if (this.props.formType === 'Edit'){
       return (
-        <p onClick={this.handleDelete}>Delete this note</p>
+        <p onClick={this.handleDelete} className="delete-note">Delete this note</p>
       )
     }
   }
@@ -58,8 +58,8 @@ class NoteForm extends React.Component{
     return (
       <div className="note-form">
         <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.title} onChange={this.update('title')} placeholder="Title"/>
-          <textarea value={this.state.content} onChange={this.update('content')} placeholder="Start writing here..."cols="30" rows="10"></textarea>
+          <input className="title-input" type="text" value={this.state.title} onChange={this.update('title')} placeholder="Title"/>
+          <textarea className="content-input" value={this.state.content} onChange={this.update('content')} placeholder="Start writing here..."cols="30" rows="30"></textarea>
           <input type="submit" value={this.props.formType}/>
         </form>
         {this.renderDelete()}

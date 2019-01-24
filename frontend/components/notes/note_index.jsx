@@ -14,8 +14,8 @@ class NoteIndex extends React.Component {
     });
     return (
       <div>
-        <h2>All Notes</h2>
-        <ul>{noteList}</ul>
+        <p className="note-count">{noteList.length} notes</p>
+        <ul className="all-notes">{noteList}</ul>
       </div>
     )
   }

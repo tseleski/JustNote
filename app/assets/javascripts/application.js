@@ -15,3 +15,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
+$('single-note').on('click', function () {
+  $('single-note').removeClass('selected');
+  $(this).addClass('selected');
+});

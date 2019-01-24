@@ -9,9 +9,11 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 const App = () => (
   <div>
-    <ProtectedRoute path="/" component={GreetingContainer} />
-    <ProtectedRoute exact path="/notes/new" component={CreateNoteContainer} />
-    <ProtectedRoute exact path="/notes/:noteId/edit" component={EditNoteContainer} />
+    <div className="all-content">
+      <ProtectedRoute path="/" component={GreetingContainer} />
+      <ProtectedRoute exact path="/notes/new" component={CreateNoteContainer} />
+      <ProtectedRoute exact path="/notes/:noteId/edit" component={EditNoteContainer} />
+    </div>
     <AuthRoute exact path="/" component={GreetingContainer} />
     <Switch>
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
