@@ -19,7 +19,6 @@
   background-color: #1a1a1a;
   padding-top: 20px;
   box-sizing: border-box;
-  text-align: center;
 }
 
 /* .side-nav .email {
@@ -32,8 +31,8 @@
 
 .side-nav .top{
   height: 120px;
-  align-items: center;
-  /* padding-left: 20px; */
+  align-items: flex-start;
+  margin-left: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -43,12 +42,14 @@
 .email {
   position: relative;
   color: #666;
-  /* padding-left: 18px; */
   cursor: pointer;
+  margin: 0 auto;
 }
 
 .email .top-email {
   color:  #ccc;
+  font-size: 13px;
+  font-weight: 50;
 }
 
 .top-email:hover { 
@@ -68,7 +69,7 @@
   display: block;
   position: absolute;
   top: 22px;
-  left: 20px;
+  left: 0px;
   background: #fff;
   border: 1px solid rgb(230, 230, 230);
   min-width: 260px;
@@ -76,6 +77,9 @@
   text-align: center;
   font-size: 14px;
   z-index: 2;
+  line-height: 1.5;
+  box-shadow: 0 0 0 1px rgba(99, 114, 130, .16), 0 4px 12px rgba(27, 39, 51, .08);
+
 }
 
 .email .logout-popup.hide {
@@ -90,7 +94,7 @@
 }
 
 .logout-popup-items .account-email {
-  font-weight: 50px;
+  font-weight: 300;
   margin: 0;
   padding: 0px 0px 25px 15px;
   text-align: left;
@@ -119,8 +123,8 @@
 }
 
 .side-nav .new-note-img {
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
   float: left;
   margin-right: 10px;
 }
@@ -133,14 +137,21 @@
 
 .links {
   text-align: left;
-  padding-left: 25px;
   margin-top: 60px;
+  font-weight: 400;
 }
 
 .links li {
   color: #e6e6e6;
   font-size: 14px;
   height: 32px;
+  width: 100%;
+  text-indent: 25px;
+  line-height: 32px;
+}
+
+.links li:hover {
+  background-color: #404040;
 }
 
 .note-sidebar {
@@ -306,6 +317,7 @@
   padding: 10px 15px;
   background: #fff;
   border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(99, 114, 130, .16), 0 4px 12px rgba(27, 39, 51, .08);
 }
 
 .delete-note.hide {

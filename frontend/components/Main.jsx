@@ -33,6 +33,8 @@ class Main extends React.Component {
     return (
       <ul className="links">
         <li key="1"><Link to={'/'}>All Notes</Link></li>
+        <li>Notebooks</li>
+        <li>Tags</li>
       </ul>
     )
   }

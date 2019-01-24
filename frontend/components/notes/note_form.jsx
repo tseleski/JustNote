@@ -72,7 +72,7 @@ class NoteForm extends React.Component{
         {this.renderDelete()}
         <div className="note-form">
           <form onSubmit={this.handleSubmit}>
-            <input className="title-input" type="text" value={this.state.title} onChange={this.update('title')} placeholder="Title"/>
+            <input className="title-input" type="title" value={this.state.title} onChange={this.update('title')} placeholder="Title"/>
             <textarea className="content-input" value={this.state.content} onChange={this.update('content')} placeholder="Start writing here..."cols="30" rows="30"></textarea>
             <input type="submit" value="Save"/>
           </form>
