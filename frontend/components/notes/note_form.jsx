@@ -1,14 +1,19 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import Modal from 'react-modal';
+
 
 class NoteForm extends React.Component{
   constructor(props){
     super(props);
-    const prevState = { deleteModal: false };
+    const prevState = { deleteModal: false, modalIsOpen: false };
     this.state = Object.assign(prevState, this.props.note);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.toggleDelete = this.toggleDelete.bind(this);
+
+    this.openModal = this.openModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
   }
 
   componentDidMount() {
@@ -40,6 +45,15 @@ class NoteForm extends React.Component{
     return e => this.setState({[field]: e.target.value});
   }
 
+  openModal() {
+    this.toggleDelete();
+    this.setState({ modalIsOpen: true });
+  }
+
+  closeModal() {
+    this.setState({ modalIsOpen: false });
+  }
+
   handleDelete(e){
     e.preventDefault();
     const that = this;
@@ -59,7 +73,27 @@ class NoteForm extends React.Component{
         <div className="above-form">
           <div className="three-dots">
             <p onClick={this.toggleDelete} className="dots">...</p>
-            <p onClick={this.handleDelete} className={`delete-note ${deleteModal}`}>Delete this note</p>
+            <p onClick={this.openModal} className={`delete-note ${deleteModal}`}>Delete this note</p>
+            <Modal
+              isOpen={this.state.modalIsOpen}
+              onAfterOpen={this.afterOpenModal}
+              onRequestClose={this.closeModal}
+              contentLabel="Modal"
+              className="delete-modal"
+              overlayClassName="modal-overlay"
+              ariaHideApp={false}
+            >
+              <div className="top-row">
+                <button onClick={this.closeModal} className="x-btn">&times;</button>
+                <h2>Delete Note</h2>
+              </div>
+              <div className="modal-text">{this.state.title} will be deleted.</div>
+              <div className="modal-btns">
+                <button onClick={this.closeModal} className="cancel-btn">Cancel</button>
+                <button onClick={this.handleDelete} className="continue-btn">Continue</button>
+              </div>
+            </Modal>
+
           </div> 
         </div>
       )

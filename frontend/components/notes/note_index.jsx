@@ -7,6 +7,19 @@ class NoteIndex extends React.Component {
     this.props.fetchNotes();
   }
 
+  noteCount(){
+    if (this.props.notes.length === 1) {
+      return (
+        <p className="note-count">{this.props.notes.length} note</p>
+      )
+    } else {
+      return (
+        <p className="note-count">{this.props.notes.length} notes</p>
+      )
+    }
+     
+  }
+
   render() {
     const { notes } = this.props;
     const noteList = notes.map(note => {
@@ -14,7 +27,7 @@ class NoteIndex extends React.Component {
     });
     return (
       <div>
-        <p className="note-count">{noteList.length} notes</p>
+        {this.noteCount()}
         <ul className="all-notes">{noteList}</ul>
       </div>
     )

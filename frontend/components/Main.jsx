@@ -49,7 +49,6 @@ class Main extends React.Component {
               <div className="new-note">
                 <Link to={'/notes/new'}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link>
               </div>
-            
             </div>
           {this.renderLinks()}
           </div>

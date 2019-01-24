@@ -224,11 +224,11 @@
   width: 100%;
   margin: 0 auto;
   padding: 8px 40px 4px;
+  box-sizing: border-box;
 }
 
 .note-form .title-input {
   cursor: text;
-  /* display: block; */
   font-size: 34px;
   margin-bottom: 15px;
 }
@@ -236,6 +236,7 @@
 .note-form {
   overflow-wrap: break-word;
   padding-top: 20px;
+  box-sizing: border-box;
 }
 
 .note-form input[type="submit"] {
@@ -243,8 +244,9 @@
   border: 1px solid rgb(230, 230, 230);
   padding: 10px 15px;
   border-radius: 4px;
-  width: 56px;
+  width: 70px;
   margin: 0 auto;
+  color: #b3b3b3;
 }
 
 .note-form input[type="submit"]:hover {
@@ -268,12 +270,16 @@
 }
 
 .above-form {
-  padding-top: 20px;
-  padding-left: 25px;
+  padding: 20px 0px 10px 25px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 70px;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  box-sizing: border-box;
 }
 
 .note-panel .dots {
-  padding: 0px 3px 10px;
+  padding-bottom: 10px;
   font-weight: 100;
   color: #000;
   border: 1px solid #e6e6e6;
@@ -283,12 +289,11 @@
   width: 25px;
   height: 25px;
   line-height: 16px;
-  /* display: inline-flex; */
   font-weight: bold;
   box-sizing: border-box;
   position: absolute;
   top: 10px;
-  right: 30px;
+  right: 0px;
   letter-spacing: 0;
 }
 
@@ -297,11 +302,6 @@
   cursor: pointer;
 }
 
-.above-form {
-  height: 54px;
-  width: 100%;
-  border-bottom: 1px solid rgb(230, 230, 230);
-}
 
 .three-dots {
   position: relative;
@@ -310,7 +310,7 @@
 .delete-note.show {
   display: block;
   position: absolute;
-  right: 30px;
+  right: 0px;
   top: 40px;
   font-size: 14px;
   border: 1px solid rgb(230, 230, 230);
@@ -331,3 +331,101 @@
 .dots:hover .delete-note {
   display: block;
 }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(42, 51, 60, .4);
+}
+
+.delete-modal {
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  right: auto;
+  bottom: auto;
+  background: white;
+  border-radius: 4px;
+  min-width: 500px;
+  min-height: 200px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: 1s ease-in width;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .08), 0 2px 15px rgba(0, 0, 0, .2);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+.delete-modal .top-row {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  padding: 5px 15px;
+}
+
+.delete-modal .x-btn {
+  font-size:  2em;
+  color: #ccc;
+  font-weight: 300;
+  vertical-align: top;
+  cursor: pointer;
+  line-height: 0.2px
+}
+
+.delete-modal .x-btn:hover {
+  color: #666;
+}
+
+.delete-modal h2 {
+  font-size: 18px;
+  color: #333;
+  font-weight: 500;
+}
+
+.delete-modal .modal-text {
+  border-bottom: 1px solid rgb(230, 230, 230);
+  text-indent: 15px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  font-weight: 300;
+}
+
+.modal-btns {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+.modal-btns .cancel-btn, .continue-btn {
+  border-radius: 4px;
+  margin: 0 10px 0 0;
+  padding: 10px 15px;
+}
+
+.modal-btns .cancel-btn {
+  color: #b3b3b3;
+  border: 1px solid #ededed;
+}
+
+.modal-btns .cancel-btn:hover{
+  border: 1px solid #c3c3c3;
+  color: #999;
+}
+
+.modal-btns .continue-btn {
+  background-color: #00a82d;
+  color: #fff;
+}
+
+.modal-btns .continue-btn:hover {
+  background-color: #0e753d;
+}
+
+
+    
