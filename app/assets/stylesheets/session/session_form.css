@@ -3,6 +3,7 @@
   width: auto;
   height: 2000px;
   background-color: #f4fffc;
+  background-image: url('https://www.evernote.com/static/static_css_resources/bb6ce0ce7affff91989d4aab2ba9fa53.png');
 }
 
 .session-form {
@@ -59,7 +60,7 @@
 }
 
 .top-section h2 {
-  font-style: normal;
+  font-family: 'Volkhov', serif;
   font-weight: bold;
   font-size: 36px;
   margin-bottom: 20px;
