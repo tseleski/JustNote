@@ -17,7 +17,7 @@
   flex-direction: column;
   width: 241px;
   background-color: #1a1a1a;
-  padding-top: 20px;
+  padding-top: 15px;
   box-sizing: border-box;
 }
 
@@ -43,13 +43,19 @@
   position: relative;
   color: #666;
   cursor: pointer;
-  margin: 0 auto;
 }
 
-.email .top-email {
+.email-icon {
+  display: flex;
+  align-items: center;
+}
+
+.email-icon .top-email {
   color:  #ccc;
   font-size: 13px;
   font-weight: 50;
+  margin-left: 5px;
+  
 }
 
 .top-email:hover { 
@@ -68,7 +74,7 @@
 .email .logout-popup.show {
   display: block;
   position: absolute;
-  top: 22px;
+  top: 35px;
   left: 0px;
   background: #fff;
   border: 1px solid rgb(230, 230, 230);
@@ -86,6 +92,10 @@
   display: none;
 }
 
+.logout-popup {
+  width: 260px;
+}
+
 .logout-popup-items {
   display: flex;
   flex-direction: column;
@@ -98,6 +108,7 @@
   margin: 0;
   padding: 0px 0px 25px 15px;
   text-align: left;
+  color: #000;
 }
 
 .logout-popup .logout-btn {
@@ -139,6 +150,7 @@
   text-align: left;
   margin-top: 60px;
   font-weight: 400;
+  cursor: pointer;
 }
 
 .links li {
@@ -148,7 +160,13 @@
   width: 100%;
   text-indent: 25px;
   line-height: 32px;
+  text-indent: 15px;
 }
+
+.fa {
+  margin-right: 10px;
+}
+
 
 .links li:hover {
   background-color: #404040;

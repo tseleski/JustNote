@@ -17,7 +17,13 @@ class Main extends React.Component {
     const popup = this.state.popup ? "show" : "hide";
     return (
       <div className="email">
-        <h2 onClick={this.togglePopup} className="top-email">{this.props.currentUser.email}</h2>
+        <div className="email-icon">
+          <svg onClick={this.togglePopup} width="32" height="32" viewBox="0 0 32 32">
+            <circle cx="15" cy="15" r="13" fill="gray" stroke-width="0.5" stroke="white"></circle>
+            <text x="50%" y="50%" text-anchor="middle" stroke="white" stroke-width="2px" stroke-opacity="0.8" dy=".3em">{this.props.currentUser.email[0].toUpperCase()}</text>
+          </svg>
+          <h2 onClick={this.togglePopup} className="top-email">{this.props.currentUser.email}</h2>
+        </div>
         <div className={`logout-popup ${popup}`}>
           <div className="logout-popup-items">
             <p>Account</p>
@@ -32,9 +38,9 @@ class Main extends React.Component {
   renderLinks(){
     return (
       <ul className="links">
-        <li key="1"><Link to={'/'}>All Notes</Link></li>
-        <li>Notebooks</li>
-        <li>Tags</li>
+        <li key="1"><Link to={'/'}><i className="fa fa-sticky-note"></i>All Notes</Link></li>
+        <li key="2"><i class="fa fa-book"></i>Notebooks</li>
+        <li key="3"><i class="fa fa-hashtag"></i>Tags</li>
       </ul>
     )
   }
