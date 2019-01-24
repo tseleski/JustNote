@@ -73,7 +73,7 @@ class NoteForm extends React.Component{
         <div className="above-form">
           <div className="three-dots">
             <p onClick={this.toggleDelete} className="dots">...</p>
-            <p onClick={this.openModal} className={`delete-note ${deleteModal}`}>Delete this note</p>
+            <p onClick={this.openModal} className={`delete-note ${deleteModal}`}>Delete note</p>
             <Modal
               isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}

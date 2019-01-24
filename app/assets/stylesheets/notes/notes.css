@@ -326,6 +326,7 @@
 }
 
 .delete-note.show {
+  color: #666;
   display: block;
   position: absolute;
   right: 0px;
