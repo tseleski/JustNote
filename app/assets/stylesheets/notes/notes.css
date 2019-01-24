@@ -1,0 +1,450 @@
+.all-content {
+  display: flex;
+}
+
+.main-content {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+.columns {
+  display: flex;
+  height: 100%;
+}
+
+.side-nav {
+  display: flex;
+  flex-direction: column;
+  width: 241px;
+  background-color: #1a1a1a;
+  padding-top: 15px;
+  box-sizing: border-box;
+}
+
+/* .side-nav .email {
+  align-items: center;
+  padding-left: 20px;
+  height: 56px;
+  color: lightgrey;
+  cursor: pointer;
+} */
+
+.side-nav .top{
+  height: 120px;
+  align-items: flex-start;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  clear: both;
+}
+
+.email {
+  position: relative;
+  color: #666;
+  cursor: pointer;
+}
+
+.email-icon {
+  display: flex;
+  align-items: center;
+}
+
+.email-icon .top-email {
+  color:  #ccc;
+  font-size: 13px;
+  font-weight: 50;
+  margin-left: 5px;
+  
+}
+
+.top-email:hover { 
+  color: #fff;
+}
+
+
+.logout-popup-items p {
+  font-size: 13px;
+  color: #b3b3b3;
+  text-align: left;
+  margin-bottom: 5px;
+  padding: 15px 0px 0px 15px;
+}
+
+.email .logout-popup.show {
+  display: block;
+  position: absolute;
+  top: 35px;
+  left: 0px;
+  background: #fff;
+  border: 1px solid rgb(230, 230, 230);
+  min-width: 260px;
+  border-radius: 4px;
+  text-align: center;
+  font-size: 14px;
+  z-index: 2;
+  line-height: 1.5;
+  box-shadow: 0 0 0 1px rgba(99, 114, 130, .16), 0 4px 12px rgba(27, 39, 51, .08);
+
+}
+
+.email .logout-popup.hide {
+  display: none;
+}
+
+.logout-popup {
+  width: 260px;
+}
+
+.logout-popup-items {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  cursor: default;
+}
+
+.logout-popup-items .account-email {
+  font-weight: 300;
+  margin: 0;
+  padding: 0px 0px 25px 15px;
+  text-align: left;
+  color: #000;
+}
+
+.logout-popup .logout-btn {
+  border-top: 1px solid rgb(230, 230, 230);
+  font-size: 14px;
+  color: #666;
+  width: 100%;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.logout-popup .logout-btn:hover {
+  background: #f2f2f2;
+}
+
+.side-nav .new-note {
+  color: #fff;
+  display: flex;
+  width: 110px;
+  height: 30px;
+  vertical-align: middle;
+  margin-top: 60px;
+}
+
+.side-nav .new-note-img {
+  width: 25px;
+  height: 25px;
+  float: left;
+  margin-right: 10px;
+}
+
+.new-note:hover .new-note-img {
+  transition: transform 0.3s ease-out; // note that we're transitioning transform, not height!
+  height: auto;
+  transform: scale(1.2);
+}
+
+.links {
+  text-align: left;
+  margin-top: 60px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.links li {
+  color: #e6e6e6;
+  font-size: 14px;
+  height: 32px;
+  width: 100%;
+  text-indent: 25px;
+  line-height: 32px;
+  text-indent: 15px;
+}
+
+.fa {
+  margin-right: 10px;
+}
+
+
+.links li:hover {
+  background-color: #404040;
+}
+
+.note-sidebar {
+  padding-top: 20px;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  background: #f8f8f8;
+  box-sizing: border-box;
+  height: 800px;
+  position: relative;
+  width: 345px;
+  will-change: transform;
+  overflow: hidden auto;
+}
+
+
+.note-sidebar h2 {
+  color: #333;
+  font-weight: 400px;
+  min-width: 20px;
+  font-size: 20px;
+  letter-spacing: 0.03em;
+  padding-left: 25px;
+}
+
+
+.note-panel {
+  width: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+.single-note {
+  cursor: pointer;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  height: 121px;
+  font-size: 13px;
+  color: #4d4d4d;
+  width: 345px;
+  padding: 15px 24px 15px 0px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 25px;
+}
+
+.note-title {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.note-content {
+  opacity: 1;
+}
+
+.single-note:hover {
+  background: #f2f2f2;
+}
+
+.single-note .selected {
+  background: #f2f2f2;
+}
+
+
+.note-form form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+  padding: 8px 40px 4px;
+  box-sizing: border-box;
+}
+
+.note-form .title-input {
+  cursor: text;
+  font-size: 34px;
+  margin-bottom: 15px;
+}
+
+.note-form {
+  overflow-wrap: break-word;
+  padding-top: 20px;
+  box-sizing: border-box;
+}
+
+.note-form input[type="submit"] {
+  text-align: center;
+  border: 1px solid rgb(230, 230, 230);
+  padding: 10px 15px;
+  border-radius: 4px;
+  width: 70px;
+  margin: 0 auto;
+  color: #b3b3b3;
+}
+
+.note-form input[type="submit"]:hover {
+  background: #f2f2f2;
+}
+
+.note-count {
+  border-bottom: 1px solid rgb(230, 230, 230);
+  margin-top: 40px;
+  padding-bottom: 10px;
+  font-size: 13px;
+  font-weight: 300;
+  color: #a6a6a6;
+  padding-left: 25px;
+}
+
+.timestamp {
+  font-size: 13px;
+  font-weight: 300;
+  color: #a6a6a6;
+}
+
+.above-form {
+  padding: 20px 0px 10px 25px;
+  margin-left: 20px;
+  margin-right: 20px;
+  height: 70px;
+  border-bottom: 1px solid rgb(230, 230, 230);
+  box-sizing: border-box;
+}
+
+.note-panel .dots {
+  padding-bottom: 10px;
+  font-weight: 100;
+  color: #000;
+  border: 1px solid #e6e6e6;
+  background-color: #f2f2f2;
+  text-align: center;
+  border-radius: 4px;
+  width: 25px;
+  height: 25px;
+  line-height: 16px;
+  font-weight: bold;
+  box-sizing: border-box;
+  position: absolute;
+  top: 10px;
+  right: 0px;
+  letter-spacing: 0;
+}
+
+.note-panel .dots:hover {
+  background: #e6e6e6;
+  cursor: pointer;
+}
+
+
+.three-dots {
+  position: relative;
+}
+
+.delete-note.show {
+  color: #666;
+  display: block;
+  position: absolute;
+  right: 0px;
+  top: 40px;
+  font-size: 14px;
+  border: 1px solid rgb(230, 230, 230);
+  padding: 10px 15px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 0 0 1px rgba(99, 114, 130, .16), 0 4px 12px rgba(27, 39, 51, .08);
+}
+
+.delete-note.hide {
+  display: none;
+}
+
+.delete-note:hover {
+  background: #f2f2f2;
+}
+
+.dots:hover .delete-note {
+  display: block;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(42, 51, 60, .4);
+}
+
+.delete-modal {
+  position: absolute;
+  top: 35%;
+  left: 35%;
+  right: auto;
+  bottom: auto;
+  background: white;
+  border-radius: 4px;
+  min-width: 500px;
+  min-height: 200px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  transition: 1s ease-in width;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, .08), 0 2px 15px rgba(0, 0, 0, .2);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+.delete-modal .top-row {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  padding: 5px 15px;
+}
+
+.delete-modal .x-btn {
+  font-size:  2em;
+  color: #ccc;
+  font-weight: 300;
+  vertical-align: top;
+  cursor: pointer;
+  line-height: 0.2px
+}
+
+.delete-modal .x-btn:hover {
+  color: #666;
+}
+
+.delete-modal h2 {
+  font-size: 18px;
+  color: #333;
+  font-weight: 500;
+}
+
+.delete-modal .modal-text {
+  border-bottom: 1px solid rgb(230, 230, 230);
+  text-indent: 15px;
+  padding-top: 25px;
+  padding-bottom: 20px;
+  font-weight: 300;
+}
+
+.modal-btns {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 15px;
+  font-size: 14px;
+}
+
+.modal-btns .cancel-btn, .continue-btn {
+  border-radius: 4px;
+  margin: 0 10px 0 0;
+  padding: 10px 15px;
+}
+
+.modal-btns .cancel-btn {
+  color: #b3b3b3;
+  border: 1px solid #ededed;
+}
+
+.modal-btns .cancel-btn:hover{
+  border: 1px solid #c3c3c3;
+  color: #999;
+}
+
+.modal-btns .continue-btn {
+  background-color: #00a82d;
+  color: #fff;
+}
+
+.modal-btns .continue-btn:hover {
+  background-color: #0e753d;
+}
+
+
+    

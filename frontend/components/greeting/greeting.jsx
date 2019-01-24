@@ -1,13 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Main from '../Main';
 
 const Greeting = ({ currentUser, logout }) => {
   if (currentUser) {
     return (
-      <div className="side-nav">
-        <h2>Hello, {currentUser.email}</h2>
-        <button onClick={logout}>Logout</button>
-      </div>
+      <Main currentUser={currentUser} logout={logout}/>
     )
   } else {
     return (
