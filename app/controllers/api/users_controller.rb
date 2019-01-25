@@ -1,4 +1,13 @@
 class Api::UsersController < ApplicationController
+
+  def check_email
+    if User.find_by(email: params[:user][:email])
+      render json: ["Valid Email"], status: 200
+    else
+      render json: ["There is no account for the email you entered."], status: 404
+    end
+  end
+
   def create
     @user = User.new(user_params)
     if @user.save

@@ -4,6 +4,7 @@ export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 export const RECEIVE_SESSION_ERRORS = 'RECEIVE_SESSION_ERRORS';
 export const CLEAR_SESSION_ERRORS = "CLEAR_SESSION_ERRORS";
+export const RECEIVE_VALID_EMAIL = "RECEIVE_VALID_EMAIL";
 
 const receiveCurrentUser = (currentUser) => {
   return {
@@ -31,6 +32,12 @@ export const clearSessionErrors = () => {
   };
 };
 
+const receiveValidEmail = () => {
+  return {
+    type: RECEIVE_VALID_EMAIL,
+  };
+};
+
 export const demoLogin = () => dispatch => {
   return SessionAPIUtil.login({email: 'demouser@gmail.com', password: 'demouser'}).then(
     user => dispatch(receiveCurrentUser(user)),
@@ -54,6 +61,13 @@ export const logout = () => dispatch => {
 export const signup = (user) => dispatch => {
   return SessionAPIUtil.signup(user).then(
     user => dispatch(receiveCurrentUser(user)),
+    err => dispatch(receiveErrors(err.responseJSON))
+  );
+};
+
+export const checkEmail = (user) => dispatch => {
+  return SessionAPIUtil.checkEmail(user).then(
+    () => dispatch(receiveValidEmail()),
     err => dispatch(receiveErrors(err.responseJSON))
   );
 };
