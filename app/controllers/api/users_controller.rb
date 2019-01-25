@@ -1,7 +1,7 @@
 class Api::UsersController < ApplicationController
 
   def check_email
-    user_email = params[:user][:email].downcase
+    user_email = params[:user][:email].downcase;
     if User.find_by(email: user_email)
       render json: ["Valid Email"], status: 200
     else

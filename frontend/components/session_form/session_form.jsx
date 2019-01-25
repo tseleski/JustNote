@@ -8,6 +8,7 @@ class SessionForm extends React.Component {
     this.state = Object.assign(prevState, { email: '', password: '' });
     this.handleSubmit = this.handleSubmit.bind(this);
     this.revealPassword = this.revealPassword.bind(this);
+    this.handleDemoLogin = this.handleDemoLogin.bind(this);
     // this.handleEmailChange = this.handleEmailChange.bind(this);
   }
 
@@ -71,9 +72,15 @@ class SessionForm extends React.Component {
   renderDemo(){
     if (this.props.formType === 'Sign In') {
       return (
-        <button className="demo" onClick={this.props.demoLogin}>Demo Login</button>
+        <button className="demo" onClick={this.handleDemoLogin}>Demo Login</button>
       )
     }
+  }
+
+  handleDemoLogin(e){
+    e.preventDefault();
+    e.stopPropagation();
+    this.props.demoLogin();
   }
 
   renderForm(){
