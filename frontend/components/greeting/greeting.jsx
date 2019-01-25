@@ -30,13 +30,15 @@ const Greeting = ({ currentUser, logout }) => {
           </div>
         </div>
         <div className="content">
-          <div className="content-left">
-            <h2>Feel organized without the effort</h2>
-            <p>JustNote helps you capture and prioritize ideas, projects, and to-do lists, so nothing falls through the cracks.</p>
-            <button><Link to={'/signup'}>SIGN UP FOR FREE</Link></button>
-          </div>
-          <div className="content-right">
-            <img src={window.compURL} />
+          <div className="content-items">
+            <div className="content-left">
+              <h2>Feel organized without the effort</h2>
+              <p>JustNote helps you capture and prioritize ideas, projects, and to-do lists, so nothing falls through the cracks.</p>
+              <button><Link to={'/signup'}>SIGN UP FOR FREE</Link></button>
+            </div>
+            <div className="content-right">
+              <img src={window.compURL} />
+            </div>
           </div>
         </div>
         <div className="content2">

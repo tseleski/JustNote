@@ -25,7 +25,7 @@
 .splash-page .logo {
   display: flex;
   align-items: center;
-  margin-left: -60px;
+  margin-left: -100px;
 }
 
 .splash-page .navbar h2 {
@@ -43,16 +43,21 @@
   color: #fff;
   height: 780px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   padding-top: 250px;
-  padding-left: 40px;
-  padding-right: 40px;
   box-sizing: border-box;
+}
+
+.splash-page .content-items {
+  width: 1280px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .splash-page .content .content-left {
   width: 450px;
   flex-direction: column;
+  margin-right: 80px;
 }
 
 .splash-page .content .content-left p {
@@ -94,12 +99,16 @@
 }
 
 .splash-page .content-right {
-  align-items: center;
+  display: flex;
+  align-items: top;
+  justify-content: center;
 }
 
 .splash-page .content-right img {
-  width: 530px;
-  height: 316px;
+  max-height: 68%;
+  height: auto;
+  max-width: 100%;
+  width: auto;
 }
 
 .splash-page .buttons {
