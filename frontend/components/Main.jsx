@@ -59,7 +59,6 @@ class Main extends React.Component {
           {this.renderLinks()}
           </div>
           <div className="note-sidebar">
-            <h2>All Notes</h2>
             <NoteIndexContainer />
           </div>
         </div>

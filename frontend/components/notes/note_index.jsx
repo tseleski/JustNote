@@ -27,7 +27,11 @@ class NoteIndex extends React.Component {
     });
     return (
       <div>
-        {this.noteCount()}
+        <div className="fixed-header">
+          <h2>All Notes</h2>
+          {this.noteCount()}
+        </div>
+        <div className="clearfix"></div>
         <ul className="all-notes">{noteList}</ul>
       </div>
     )

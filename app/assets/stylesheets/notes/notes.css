@@ -174,7 +174,6 @@
 }
 
 .note-sidebar {
-  padding-top: 20px;
   width: 200px;
   display: flex;
   flex-direction: column;
@@ -187,6 +186,14 @@
   overflow: hidden auto;
 }
 
+.note-sidebar .fixed-header {
+  position: sticky;
+  background: #f8f8f8;
+  top: 0;
+  z-index: 3;
+  padding-top: 30px;
+  height: 120px;
+}
 
 .note-sidebar h2 {
   color: #333;
@@ -205,6 +212,10 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.all-notes {
+
 }
 
 .single-note {
