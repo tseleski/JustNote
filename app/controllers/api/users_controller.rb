@@ -1,7 +1,8 @@
 class Api::UsersController < ApplicationController
 
   def check_email
-    if User.find_by(email: params[:user][:email])
+    user_email = params[:user][:email].downcase
+    if User.find_by(email: user_email)
       render json: ["Valid Email"], status: 200
     else
       render json: ["There is no account for the email you entered."], status: 404
