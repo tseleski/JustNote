@@ -1,7 +1,9 @@
 class Api::SessionsController < ApplicationController
+
   def create
+    user_email = params[:user][:email].downcase
     @user = User.find_by_credentials(
-      params[:user][:email],
+      user_email,
       params[:user][:password]
     )
 

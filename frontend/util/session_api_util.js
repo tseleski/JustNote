@@ -20,3 +20,11 @@ export const logout = () => (
     url: '/api/session'
   })
 );
+
+export const checkEmail = (user) => (
+  $.ajax({
+    method: 'GET',
+    url: '/api/users/emails',
+    data: { user }
+  })
+);

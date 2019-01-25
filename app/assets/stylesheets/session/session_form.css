@@ -1,8 +1,11 @@
 .session-page{
   margin: auto 0;
   width: auto;
-  height: 2000px;
+  height: 100vh;
   background-color: #f4fffc;
+  background-image: url('https://www.evernote.com/static/static_css_resources/bb6ce0ce7affff91989d4aab2ba9fa53.png');
+  display: flex;
+  align-items: center;
 }
 
 .session-form {
@@ -11,10 +14,7 @@
   background: #ffffff;
   box-shadow: 0px 4px 24px rgba(0, 0, 0, 0.1);
   padding: 62.12px 99px 48px;
-  position: fixed;
-  top: 50px;
-  left: 50%;
-  margin-left: -261px;
+  margin: 0 auto;
   box-sizing: border-box;
   border-radius: 2px;
   display: flex;
@@ -25,13 +25,22 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, helvetica, arial, sans-serif;
 }
 
+.session-form.expand {
+  transition: ease-in;
+  transition-duration: 0.5s;
+  /* transform: scaleY(.8);
+  transform-origin: top;
+  animation: grow-down cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.5s forwards; */
+  height: 690px;
+}
+
 .session-form img {
   width: 46px;
   height: 54px;
   margin: 0 auto;
 }
 
-.session-form input[type=text], input[type=password] {
+.session-form input[type=text]{
   color: #333333;
   border: 1px solid #e6e6e6;
   padding: 12px 16px;
@@ -41,9 +50,68 @@
   margin-bottom: 10px;
 }
 
-.session-form input[type=submit]{
+.session-form input[type=text]:focus, input[type=password]:focus {
+  border-color: #dff2e6;
+  box-shadow: 0 0 0 1px #dff2e6, 0 0 4px 0 #dff2e6;
+}
+
+.session-form .sign-up-password {
+  color: #333333;
+  border: 1px solid #e6e6e6;
+  padding: 12px 16px;
+  border-radius: 7px;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+@keyframes grow-down {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+.session-form .password-input.hide {
+    position: relative;
+    max-height: 0px;
+    overflow: hidden;
+    /* transition-duration: 1s;
+    transition-timing-function: ease-in;
+    transition-property: opacity, max-height;
+    transition-delay: 0s;
+    opacity: 1;  */
+    transition: max-height 3s cubic-bezier(0, 0.80, 0, 1);;
+}
+
+.session-form .password-input.show {
+  max-height: 100px;
+  transition: max-height 3s cubic-bezier(0, 0.80, 0, 1);;
+  /* transition-delay: 0s;
+  opacity: 1; 
+  transition-duration: 1s;
+  transition-timing-function: ease-out;
+  transition-property: opacity, max-height; */
+
+  /* transform: scaleY(0);
+  transform-origin: top;
+  animation: grow-down cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.5s forwards;
+  animation-delay: 0.2s; */
+  position: relative;
+  color: #333333;
+  border: 1px solid #e6e6e6;
+  padding: 12px 16px;
+  border-radius: 7px;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.session-form input[type=submit], .demo {
   margin-top: 7px;
-  margin-bottom: 14px;
+  margin-bottom: 5px;
   background-color: #00a82d;
   border-radius: 7px;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, helvetica, arial, sans-serif;
@@ -58,14 +126,23 @@
   background-color: #008f26;
 }
 
+.session-form form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+}
+
 .top-section h2 {
-  font-style: normal;
+  font-family: 'Volkhov', serif;
   font-weight: bold;
   font-size: 36px;
+  margin-top: -40px;
   margin-bottom: 20px;
 }
 
-.bottom-section .question{
+.bottom-section .question {
   font-style: normal;
   font-weight: 400;
   font-size: 14px;

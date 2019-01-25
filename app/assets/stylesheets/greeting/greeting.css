@@ -1,39 +1,50 @@
+.splash-page .total-top {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background: #fff;
+  height: 130px;
+  position: fixed;
+  top: 0;
+}
+
 .splash-page .navbar {
   background: #fff;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   height: 130px;
-  padding: 40px;
+  /* padding: 40px 80px; */
   box-sizing: border-box;
-  position: fixed;
-  top: 0;
-  width: 100%
+  
+  /* width: 100%; */
+  width: 1220px;
 }
 
-.splash-page .logo{
+.splash-page .logo {
   display: flex;
   align-items: center;
+  margin-left: -40px;
 }
 
-.splash-page .logo-image{
+.splash-page .logo-image {
   width: 40px;
   height: 40px;
   margin-right: 5px;
 }
 
 .splash-page .navbar h2 {
-  font-family: "Soleil", Helvetica, Arial, sans-serif;
+  font-family: 'Volkhov', serif;
   -webkit-font-smoothing: antialiased;
   font-size: 30px;
   line-height: 20px;
   font-weight: bold;
+  margin-left: -70px;
 }
 
 .splash-page .content {
   background: #00A82D;
-  /* background: image-url('green.jpg'); */
-  /* background-image: url('https://images.pexels.com/photos/131634/pexels-photo-131634.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'); */
-  /* background-size: cover; */
+  background-image: url('https://evernote.com/img/backgrounds/patterns/main-green.png');
   color: #fff;
   height: 780px;
   display: flex;
@@ -127,7 +138,8 @@
   border-radius: 3px;
   border: 2px solid #00a82d;
   padding: 0 10px;
-  transition: .3s border 
+  transition: .3s border;
+  font-weight: 600;
 }
 
 .splash-page .buttons .signup:hover {
