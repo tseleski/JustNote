@@ -112,20 +112,18 @@ class NoteForm extends React.Component{
 
   render(){
     const toolbar = [
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
       [{ 'font': [] }],
       ['italic', 'underline', 'strike'],
       [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-      [{ 'script': 'sub' }, { 'script': 'super' }],
       [{ 'indent': '-1' }, { 'indent': '+1' }],
       [{ 'direction': 'rtl' }],
 
       [{ 'size': ['small', false, 'large', 'huge'] }],
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
       [{ 'color': [] }, { 'background': [] }],
       [{ 'align': [] }],
 
-      ['clean']
     ];
     return (
       <div className="note-panel">
@@ -134,7 +132,6 @@ class NoteForm extends React.Component{
           <form onSubmit={this.handleSubmit}>
             <div className="input-fields">
               <input className="title-input" type="title" value={this.state.title} onChange={this.update('title')} placeholder="Title"/>
-              {/* <textarea className="content-input" value={this.state.content} onChange={this.update('content')} placeholder="Start writing here..."cols="30" rows="30"></textarea> */}
               <ReactQuill
                 theme="snow"
                 modules={{ toolbar }}
