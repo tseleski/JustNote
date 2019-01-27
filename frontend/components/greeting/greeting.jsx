@@ -25,7 +25,7 @@ const Greeting = ({ currentUser, logout }) => {
             <ul className="buttons">
               <li className="signup"><Link to={'/signup'}>Sign up</Link></li> 
               <li>or</li>
-              <li className="login"><Link to={'/login'}>Log in</Link></li>
+              <Link to={'/login'}><li className="login">Log in</li></Link>
             </ul>
           </div>
         </div>
