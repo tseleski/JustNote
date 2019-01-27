@@ -20,7 +20,7 @@ class EditNoteForm extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const defaultNote = { title: '', content: '', notebook: { title: ''} };
+  const defaultNote = { title: '', content: '', plain_text: ''};
   const note = state.entities.notes[ownProps.match.params.noteId] || defaultNote;
   return {
     note: note,

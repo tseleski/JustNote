@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
+import ReactQuill from 'react-quill';
 
 
 class NoteForm extends React.Component{
@@ -14,12 +15,14 @@ class NoteForm extends React.Component{
 
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+
+    this.handleEditorChange = this.handleEditorChange.bind(this);
   }
 
   componentDidMount() {
     if(this.props.formType === 'Edit'){
       this.props.fetchNote(this.props.id).then(({ note }) => {
-        this.setState({ id: note.id, title: note.title, content: note.content});
+        this.setState({ id: note.id, title: note.title, content: note.content, plain_text: note.plain_text});
       });
     }
   }
@@ -27,7 +30,7 @@ class NoteForm extends React.Component{
   componentDidUpdate(prevProps){
     if(prevProps.note.id != this.props.id) {
       this.props.fetchNote(this.props.id).then(({ note }) => {
-        this.setState({ id: note.id, title: note.title, content: note.content });
+        this.setState({ id: note.id, title: note.title, content: note.content, plain_text: note.plain_text });
       });
     }
   }
@@ -39,6 +42,13 @@ class NoteForm extends React.Component{
     } else {
       this.props.action(this.state);
     }
+  }
+
+  handleEditorChange(content, delta, source, editor) {
+    this.setState({
+      content: content,
+      plain_text: editor.getText().trim()
+    });
   }
 
   update(field){
@@ -101,6 +111,20 @@ class NoteForm extends React.Component{
   }
 
   render(){
+    const toolbar = [
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'font': [] }],
+      ['italic', 'underline', 'strike'],
+      [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+      [{ 'indent': '-1' }, { 'indent': '+1' }],
+      [{ 'direction': 'rtl' }],
+
+      [{ 'size': ['small', false, 'large', 'huge'] }],
+
+      [{ 'color': [] }, { 'background': [] }],
+      [{ 'align': [] }],
+
+    ];
     return (
       <div className="note-panel">
         {this.renderDelete()}
@@ -108,7 +132,15 @@ class NoteForm extends React.Component{
           <form onSubmit={this.handleSubmit}>
             <div className="input-fields">
               <input className="title-input" type="title" value={this.state.title} onChange={this.update('title')} placeholder="Title"/>
-              <textarea className="content-input" value={this.state.content} onChange={this.update('content')} placeholder="Start writing here..."cols="30" rows="30"></textarea>
+              <ReactQuill
+                theme="snow"
+                modules={{ toolbar }}
+                value={this.state.content}
+                ref={editor => { this.editor = editor; }}
+                placeholder={"Start writing here..."}
+                onChange={this.handleEditorChange}
+              >
+              </ReactQuill>
             </div>
             <input type="submit" value="Save"/>
           </form>
