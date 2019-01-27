@@ -27,7 +27,14 @@ class NoteIndex extends React.Component {
     });
     return (
       <div>
+<<<<<<< HEAD
         {this.noteCount()}
+=======
+        <div className="fixed-header">
+          <h2>All Notes</h2>
+          {this.noteCount()}
+        </div>
+>>>>>>> users
         <ul className="all-notes">{noteList}</ul>
       </div>
     )
