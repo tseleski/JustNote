@@ -187,12 +187,10 @@
 }
 
 .note-sidebar .fixed-header {
-  position: sticky;
   background: #f8f8f8;
-  top: 0;
-  z-index: 3;
   padding-top: 30px;
   height: 120px;
+  display: block;
 }
 
 .note-sidebar h2 {
@@ -212,10 +210,18 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  line-height: 1.5;
+}
+
+.second-column {
+  display: flex;
+  flex-direction: column;
 }
 
 .all-notes {
-
+  display: block;
+  will-change: transform;
+  overflow: hidden auto;
 }
 
 .single-note {
@@ -240,6 +246,7 @@
 
 .note-content {
   opacity: 1;
+  line-height: 1.5;
 }
 
 .single-note:hover {

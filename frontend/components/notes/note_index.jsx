@@ -26,7 +26,7 @@ class NoteIndex extends React.Component {
       return <NoteIndexItem key={note.id} note={note} deleteNote={this.props.deleteNote} />
     });
     return (
-      <div>
+      <div className="second-column">
         <div className="fixed-header">
           <h2>All Notes</h2>
           {this.noteCount()}
