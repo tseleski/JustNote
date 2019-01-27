@@ -174,7 +174,6 @@
 }
 
 .note-sidebar {
-  padding-top: 20px;
   width: 200px;
   display: flex;
   flex-direction: column;
@@ -187,6 +186,12 @@
   overflow: hidden auto;
 }
 
+.note-sidebar .fixed-header {
+  background: #f8f8f8;
+  padding-top: 30px;
+  height: 120px;
+  display: block;
+}
 
 .note-sidebar h2 {
   color: #333;
@@ -205,6 +210,18 @@
   height: 100vh;
   display: flex;
   flex-direction: column;
+  line-height: 1.5;
+}
+
+.second-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.all-notes {
+  display: block;
+  will-change: transform;
+  overflow: hidden auto;
 }
 
 .single-note {
@@ -229,6 +246,7 @@
 
 .note-content {
   opacity: 1;
+  line-height: 1.5;
 }
 
 .single-note:hover {
