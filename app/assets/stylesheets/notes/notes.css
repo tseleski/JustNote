@@ -289,11 +289,14 @@
 .note-form input[type="submit"] {
   text-align: center;
   border: 1px solid rgb(230, 230, 230);
-  padding: 10px 15px;
+  padding: 7px 15px;
   border-radius: 4px;
-  width: 70px;
+  vertical-align: center;
+  min-height: 45px;
+  width: 80px;
   margin: 0 auto;
   color: #b3b3b3;
+  box-sizing: border-box;
 }
 
 .note-form input[type="submit"]:hover {
