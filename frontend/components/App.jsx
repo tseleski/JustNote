@@ -2,6 +2,7 @@ import React from 'react';
 import GreetingContainer from '../components/greeting/greeting_container';
 import Side from './Side';
 import NoteIndexContainer from '../components/notes/note_index_container';
+import FilteredNoteIndexContainer from '../components/notes/filtered_note_index_container';
 import LoginFormContainer from '../components/session_form/login_form_container';
 import SignupFormContainer from '../components/session_form/signup_form_container';
 import CreateNoteContainer from '../components/notes/create_note_container';
@@ -27,6 +28,7 @@ const App = () => (
           <ProtectedRoute exact path="/notes/new" component={CreateNoteContainer} />
           <ProtectedRoute exact path="/notes/:noteId/edit" component={EditNoteContainer} />
           <ProtectedRoute exact path="/notebooks" component={NotebookIndexContainer} />
+          <ProtectedRoute exact path="/notebooks/:notebookId" component={FilteredNoteIndexContainer} />
         </div>
       </div>
     </div>

@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 
 class NoteIndex extends React.Component {
   componentDidMount() {
-    this.props.fetchNotes();
+    if(this.props.title === "All Notes"){
+      this.props.fetchNotes();
+    }
   }
 
   noteCount(){
