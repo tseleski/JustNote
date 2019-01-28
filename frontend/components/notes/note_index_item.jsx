@@ -5,10 +5,10 @@ import { format } from 'timeago.js';
 
 const NoteIndexItem = (props) => {
   const limitedContent = (content) => {
-    if (content.split('').length < 90){
+    if (content.split('').length < 80){
       return content;
     } else {
-      return content.substring(0, 90) + "...";
+      return content.substring(0, 80) + "...";
     } 
   };
   return (

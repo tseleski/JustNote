@@ -241,13 +241,15 @@
 }
 
 .note-title {
-  font-weight: bold;
+  font-weight: 500;
   margin-bottom: 5px;
+  font-size: 14px;
 }
 
 .note-content {
   opacity: 1;
   line-height: 1.5;
+  font-weight: 300;
 }
 
 .single-note:hover {
