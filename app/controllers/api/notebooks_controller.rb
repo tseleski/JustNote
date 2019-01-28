@@ -1,4 +1,4 @@
-class Api::NotebookssController < ApplicationController 
+class Api::NotebooksController < ApplicationController 
   def index
     @notebooks = current_user.notebooks
     render "api/notebooks/index"
@@ -10,7 +10,7 @@ class Api::NotebookssController < ApplicationController
   end
 
   def create
-    @notebook = Notebook.new(notebook_params)@
+    @notebook = Notebook.new(notebook_params)
     @notebook.user = current_user
     if @notebook.save
       render "api/notebooks/show"

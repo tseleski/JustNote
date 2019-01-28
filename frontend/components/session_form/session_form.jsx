@@ -80,7 +80,7 @@ class SessionForm extends React.Component {
   handleDemoLogin(e){
     e.preventDefault();
     e.stopPropagation();
-    this.props.demoLogin();
+    this.props.demoLogin().then(this.props.history.push('/notes'));
   }
 
   renderForm(){

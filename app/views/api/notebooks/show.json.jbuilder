@@ -1,1 +1,1 @@
-    json.partial! "api/notebooks/notebook", notebook: notebook
+    json.partial! "api/notebooks/notebook", notebook: @notebook

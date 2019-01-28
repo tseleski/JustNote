@@ -15,8 +15,8 @@ export const fetchNotebook = (id) => (
 export const createNotebook = (notebook) => (
   $.ajax({
     method: 'POST',
-    url: '/api/notebookbooks',
-    data: { note }
+    url: '/api/notebooks',
+    data: { notebook }
   })
 );
 
