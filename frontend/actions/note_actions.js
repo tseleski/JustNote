@@ -49,7 +49,7 @@ export const fetchNotes = () => dispatch => {
 export const fetchNote = (id) => dispatch => {
   return NoteAPIUtil.fetchNote(id).then(
     note => {
-      return dispatch(receiveNote(note))
+      return dispatch(receiveNote(note));
     }
   );
 };

@@ -1,4 +1,4 @@
-import { RECEIVE_NOTEBOOK_ERRORS, CLEAR_NOTEBOOK_ERRORS } from "../actions/notebook_actions";
+import { RECEIVE_NOTEBOOK_ERRORS, CLEAR_NOTEBOOK_ERRORS, RECEIVE_NOTEBOOK } from "../actions/notebook_actions";
 
 
 const notebookErrorsReducer = (state = [], action) => {
@@ -6,6 +6,8 @@ const notebookErrorsReducer = (state = [], action) => {
   switch (action.type) {
     case RECEIVE_NOTEBOOK_ERRORS:
       return action.errors;
+    case RECEIVE_NOTEBOOK:
+      return [];
     case CLEAR_NOTEBOOK_ERRORS:
       return [];
     default:

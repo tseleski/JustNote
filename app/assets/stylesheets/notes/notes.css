@@ -328,6 +328,19 @@
   height: 56px;
   border-bottom: 1px solid rgb(230, 230, 230);
   box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+
+.above-form .notebook-name {
+  font-size: 13px;
+  color: #7a8083;
+  font-weight: 300;
+  max-width: 195px;
+}
+
+.notebook-name .fa-book {
+  color: #7a8083;
 }
 
 .note-panel .dots {
@@ -343,7 +356,7 @@
   font-weight: bold;
   box-sizing: border-box;
   position: absolute;
-  bottom: -20px;
+  bottom: 0px;
   right: 0px;
   letter-spacing: 0;
 }
@@ -362,8 +375,10 @@
   color: #666;
   display: block;
   position: absolute;
+  width: 110px;
+  text-align: center;
   right: 0px;
-  top: 40px;
+  top: 30px;
   font-size: 14px;
   border: 1px solid rgb(230, 230, 230);
   padding: 10px 15px;

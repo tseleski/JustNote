@@ -23,7 +23,8 @@ class NoteIndex extends React.Component {
   render() {
     const { notes } = this.props;
     const noteList = notes.map(note => {
-      return <NoteIndexItem key={note.id} note={note} deleteNote={this.props.deleteNote} />
+      return <NoteIndexItem key={note.id} note={note} deleteNote={this.props.deleteNote}
+      fetchNotebook={this.props.fetchNotebook} />
     });
     return (
       <div className="note-sidebar">

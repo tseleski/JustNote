@@ -9,6 +9,7 @@ import EditNoteContainer from '../components/notes/edit_note_container';
 import { Route, Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import NotebookIndexContainer from './notebooks/notebook_index_container';
+import Modal from '../components/modal/modal';
 
 const App = () => (
   <div>
@@ -16,9 +17,11 @@ const App = () => (
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
     </Switch>
+    
     <div className="all-content">
       <div className="main-content">
         <div className="columns">
+          <Modal />
           <ProtectedRoute path="/" component={GreetingContainer} />
           <ProtectedRoute path="/notes" component={NoteIndexContainer} />
           <ProtectedRoute exact path="/notes/new" component={CreateNoteContainer} />

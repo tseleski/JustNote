@@ -9,7 +9,7 @@ const notebooksReducer = (state = {}, action) => {
       return merge({}, state, action.notebooks);
     case RECEIVE_NOTEBOOK:
       newState = merge({}, state);
-      newState[action.note.id] = action.notebook;
+      newState[action.notebook.id] = action.notebook;
       return newState;
     case REMOVE_NOTEBOOK:
       newState = merge({}, state);

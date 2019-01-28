@@ -37,8 +37,8 @@ class Side extends React.Component {
   renderLinks() {
     return (
       <ul className="links">
-        <li key="1"><Link to={'/notes'}><i className="fa fa-sticky-note"></i>All Notes</Link></li>
-        <li key="2"><Link to={'/notebooks'}><i className="fa fa-book"></i>Notebooks</Link></li>
+        <Link to={'/notes'}><li key="1"><i className="fa fa-sticky-note"></i>All Notes</li></Link>
+        <Link to={'/notebooks'}><li key="2"><i className="fa fa-book"></i>Notebooks</li></Link>
         <li key="3"><i className="fa fa-hashtag"></i>Tags</li>
       </ul>
     )
