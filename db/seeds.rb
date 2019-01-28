@@ -13,7 +13,11 @@ Note.destroy_all
 
 u1 = User.create!({email: 'demouser@gmail.com', password: 'demouser'});
 n1  = Notebook.create!({title: 'notebook1', user_id: u1.id})
-Note.create!({title: 'Things to do', content: "Homework", plain_text: "Homework", notebook_id: n1.id})
+# Notebook.create!({title: 'notebook2', user_id: u1.id})
+# Notebook.create!({title: 'notebook3', user_id: u1.id})
+# Notebook.create!({title: 'notebook4', user_id: u1.id})
+# Notebook.create!({title: 'notebook5', user_id: u1.id})
+Note.create!({title: 'Things to do', content: "Homework",  plain_text: "Homework", notebook_id: n1.id})
 Note.create!({title: 'My favorite things', content: "music", plain_text: "music", notebook_id: n1.id})
 Note.create!({title: 'Recipes', content: "4 (8 ounce) packages Cream Cheese, room temperature
 1 cup granulated sugar

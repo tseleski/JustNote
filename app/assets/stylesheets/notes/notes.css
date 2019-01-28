@@ -5,11 +5,13 @@
 .main-content {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   text-rendering: optimizeLegibility;
+  width: 100%;
 }
 
 .columns {
   display: flex;
   height: 100%;
+  width: 100%;
 }
 
 .side-nav {
@@ -174,7 +176,6 @@
 }
 
 .note-sidebar {
-  width: 200px;
   display: flex;
   flex-direction: column;
   background: #f8f8f8;
@@ -205,7 +206,7 @@
 
 
 .note-panel {
-  width: 100%;
+  width: calc(100% - 586px);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   text-rendering: optimizeLegibility;
   height: 100vh;
@@ -217,6 +218,7 @@
 .second-column {
   display: flex;
   flex-direction: column;
+  width: 345px;
 }
 
 .all-notes {
@@ -331,6 +333,19 @@
   height: 56px;
   border-bottom: 1px solid rgb(230, 230, 230);
   box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+}
+
+.above-form .notebook-name {
+  font-size: 13px;
+  color: #7a8083;
+  font-weight: 300;
+  max-width: 195px;
+}
+
+.notebook-name .fa-book {
+  color: #7a8083;
 }
 
 .note-panel .dots {
@@ -346,7 +361,7 @@
   font-weight: bold;
   box-sizing: border-box;
   position: absolute;
-  bottom: -20px;
+  bottom: 0px;
   right: 0px;
   letter-spacing: 0;
 }
@@ -365,8 +380,10 @@
   color: #666;
   display: block;
   position: absolute;
+  width: 110px;
+  text-align: center;
   right: 0px;
-  top: 40px;
+  top: 30px;
   font-size: 14px;
   border: 1px solid rgb(230, 230, 230);
   padding: 10px 15px;

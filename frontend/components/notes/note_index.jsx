@@ -4,7 +4,9 @@ import { Link } from 'react-router-dom';
 
 class NoteIndex extends React.Component {
   componentDidMount() {
-    this.props.fetchNotes();
+    if(this.props.title === "All Notes"){
+      this.props.fetchNotes();
+    }
   }
 
   noteCount(){
@@ -23,15 +25,18 @@ class NoteIndex extends React.Component {
   render() {
     const { notes } = this.props;
     const noteList = notes.map(note => {
-      return <NoteIndexItem key={note.id} note={note} deleteNote={this.props.deleteNote} />
+      return <NoteIndexItem key={note.id} note={note} deleteNote={this.props.deleteNote}
+      fetchNotebook={this.props.fetchNotebook} />
     });
     return (
-      <div className="second-column">
-        <div className="fixed-header">
-          <h2>All Notes</h2>
-          {this.noteCount()}
+      <div className="note-sidebar">
+        <div className="second-column">
+          <div className="fixed-header">
+            <h2>All Notes</h2>
+            {this.noteCount()}
+          </div>
+          <ul className="all-notes">{noteList}</ul>
         </div>
-        <ul className="all-notes">{noteList}</ul>
       </div>
     )
   }

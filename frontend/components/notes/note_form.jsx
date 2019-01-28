@@ -81,6 +81,10 @@ class NoteForm extends React.Component{
     if (this.props.formType === 'Edit'){
       return (
         <div className="above-form">
+          <div className="notebook-name">
+            <i className="fa fa-book"></i>
+            {this.props.notebook}
+          </div>
           <div className="three-dots">
             <p onClick={this.toggleDelete} className="dots">...</p>
             <p onClick={this.openModal} className={`delete-note ${deleteModal}`}>Delete note</p>

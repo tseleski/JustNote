@@ -3,25 +3,34 @@ import { Link } from 'react-router-dom';
 import { format } from 'timeago.js';
 
 
-const NoteIndexItem = (props) => {
-  const limitedContent = (content) => {
-    if (content.split('').length < 80){
-      return content;
-    } else {
+class NoteIndexItem extends React.Component {
+  constructor(props){
+    super(props);
+  }
+
+  componentDidMount(){
+    this.props.fetchNotebook(this.props.note.notebook_id);
+  }
+
+  render(){
+    const limitedContent = (content) => {
+      if (content.split('').length < 80){
+        return content;
+      }
       return content.substring(0, 80) + "...";
-    } 
-  };
-  return (
-    <Link to={`/notes/${props.note.id}/edit`}><div className="single-note">
-      <div className="top">
-        <p className="note-title">{props.note.title}</p>
-        <p className="note-content">{limitedContent(props.note.plain_text)}</p>
-      </div>
-      <div className="timestamp">
-        <p className="note-updated">{format(props.note.updated_at)}</p>
-      </div>
-    </div></Link>
-  )
+    };
+    return (
+      <Link to={`/notes/${this.props.note.id}/edit`}><div className="single-note">
+        <div className="top">
+          <p className="note-title">{this.props.note.title}</p>
+          <p className="note-content">{limitedContent(this.props.note.content)}</p>
+        </div>
+        <div className="timestamp">
+          <p className="note-updated">{format(this.props.note.updated_at)}</p>
+        </div>
+      </div></Link>
+    )
+  }
 }
 
 export default NoteIndexItem;

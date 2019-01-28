@@ -14,7 +14,8 @@ class EditNoteForm extends React.Component {
     const { action, note, formType, fetchNote, deleteNote } = this.props;
     const id = this.props.match.params.noteId;
     return (
-      <NoteForm action={action} id={id} note={note} formType={formType} fetchNote={fetchNote} deleteNote={deleteNote} />
+      <NoteForm action={action} id={id} note={note} formType={formType} 
+      fetchNote={fetchNote} deleteNote={deleteNote} notebook={this.props.notebook} />
     );
   }
 }
@@ -22,9 +23,11 @@ class EditNoteForm extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const defaultNote = { title: '', content: '', plain_text: ''};
   const note = state.entities.notes[ownProps.match.params.noteId] || defaultNote;
+  const notebook = state.entities.notebooks[note.notebook_id] || {};
   return {
     note: note,
-    formType: 'Edit'
+    formType: 'Edit',
+    notebook: notebook.title,
   };
 };
 

@@ -74,6 +74,28 @@
   }
 }
 
+@keyframes slideDown {
+	0% {
+		transform: translateY(30%);
+	}
+	50%{
+		transform: translateY(15%);
+	}
+	65%{
+		transform: translateY(10%);
+	}
+	80%{
+		transform: translateY(4%);
+	}
+	95%{
+		transform: translateY(1%);
+	}			
+	100% {
+		transform: translateY(0%);
+	}		
+}
+
+
 .session-form .password-input.hide {
     position: relative;
     max-height: 0px;
@@ -87,8 +109,19 @@
 }
 
 .session-form .password-input.show {
+  /* transition: 1s;
+  bottom: 0; */
+  
+  /* animation-name: slideDown cubic-bezier(0, 0.80, 0, 1);
+  -webkit-animation-name: slideDown;	
+	animation-duration: 0.5s;
+	animation-timing-function: ease;	 */
+
+  /*  was using the following 2 lines: */
   max-height: 100px;
   transition: max-height 3s cubic-bezier(0, 0.80, 0, 1);;
+
+
   /* transition-delay: 0s;
   opacity: 1; 
   transition-duration: 1s;
