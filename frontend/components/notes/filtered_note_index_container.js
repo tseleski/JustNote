@@ -13,6 +13,7 @@ const mapStateToProps = (state, ownProps) => {
   const sorted_notes = allNotes.sort(sortFunction);
   const notebook = state.entities.notebooks[ownProps.match.params.notebookId] || {};
   const title = notebook.title || 'Notebook Title';
+  debugger
   return {
     notes: sorted_notes,
     notebookId: ownProps.match.params.notebookId,

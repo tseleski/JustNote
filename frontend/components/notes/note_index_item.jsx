@@ -13,8 +13,10 @@ class NoteIndexItem extends React.Component {
   }
 
   render(){
+    debugger
     const limitedContent = (content) => {
-      if (content.split('').length < 80){
+      debugger
+      if (content.split('').length < 80) {
         return content;
       }
       return content.substring(0, 80) + "...";
@@ -24,7 +26,7 @@ class NoteIndexItem extends React.Component {
         <Link to={`/notes/${this.props.note.id}/edit`}><div className="single-note">
           <div className="top">
             <p className="note-title">{this.props.note.title}</p>
-            <p className="note-content">{limitedContent(this.props.note.content)}</p>
+            <p className="note-content">{limitedContent(this.props.note.plain_text)}</p>
           </div>
           <div className="timestamp">
             <p className="note-updated">{format(this.props.note.updated_at)}</p>
@@ -36,7 +38,7 @@ class NoteIndexItem extends React.Component {
         <Link to={`/notebooks/${this.props.notebook.id}/notes/${this.props.note.id}/edit`}><div className="single-note">
           <div className="top">
             <p className="note-title">{this.props.note.title}</p>
-            <p className="note-content">{limitedContent(this.props.note.content)}</p>
+            <p className="note-content">{limitedContent(this.props.note.plain_text)}</p>
           </div>
           <div className="timestamp">
             <p className="note-updated">{format(this.props.note.updated_at)}</p>
