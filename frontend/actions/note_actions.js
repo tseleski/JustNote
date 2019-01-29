@@ -2,11 +2,12 @@ import * as NoteAPIUtil from '../util/note_api_util';
 export const RECEIVE_NOTES = 'RECEIVE_NOTES';
 export const RECEIVE_NOTE = 'RECEIVE_NOTE';
 export const REMOVE_NOTE = 'REMOVE_NOTE';
+export const CLEAR_NOTES = 'CLEAR_NOTES';
 export const RECEIVE_NOTE_ERRORS = 'RECEIVE_NOTE_ERRORS';
 export const CLEAR_NOTE_ERRORS = 'CLEAR_NOTE_ERRORS';
 
 
-const receiveNotes = (notes) => {
+export const receiveNotes = (notes) => {
   return {
     type: RECEIVE_NOTES,
     notes
@@ -24,6 +25,12 @@ const removeNote = (note) => {
   return {
     type: REMOVE_NOTE,
     noteId: note.id
+  };
+};
+
+export const clearNotes = () => {
+  return {
+    type: CLEAR_NOTES,
   };
 };
 

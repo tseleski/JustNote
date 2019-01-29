@@ -34,7 +34,7 @@ const Greeting = ({ currentUser, logout }) => {
             <div className="content-left">
               <h2>Feel organized without the effort</h2>
               <p>JustNote helps you capture and prioritize ideas, projects, and to-do lists, so nothing falls through the cracks.</p>
-              <button><Link to={'/signup'}>SIGN UP FOR FREE</Link></button>
+              <Link to={'/signup'}><button>SIGN UP FOR FREE</button></Link>
             </div>
             <div className="content-right">
               <img src={window.compURL} />

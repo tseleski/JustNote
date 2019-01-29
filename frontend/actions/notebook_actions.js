@@ -4,6 +4,7 @@ export const RECEIVE_NOTEBOOK = 'RECEIVE_NOTEBOOK';
 export const REMOVE_NOTEBOOK = 'REMOVE_NOTEBOOK';
 export const RECEIVE_NOTEBOOK_ERRORS = 'RECEIVE_NOTEBOOK_ERRORS';
 export const CLEAR_NOTEBOOK_ERRORS = 'CLEAR_NOTEBOOK_ERRORS';
+import { receiveNotes } from '../actions/note_actions';
 
 
 const receiveNotebooks = (notebooks) => {
@@ -48,7 +49,9 @@ export const fetchNotebooks = () => dispatch => {
 
 export const fetchNotebook = (id) => dispatch => {
   return NotebookAPIUtil.fetchNotebook(id).then(
-    notebook => dispatch(receiveNotebook(notebook))
+    notes => {
+      return dispatch(receiveNotes(notes));
+    }
   );
 };
 

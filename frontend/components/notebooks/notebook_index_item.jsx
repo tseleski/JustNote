@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 // import { openModal } from '../../actions/modal_actions';
 // import Modal from '../modal/modal';
 // import Popup from 'reactjs-popup';
+import { Link } from 'react-router-dom';
 
 class NotebookIndexItem extends React.Component {
   constructor(props){
@@ -74,10 +75,12 @@ class NotebookIndexItem extends React.Component {
           this.setState({ popup: false })
           }
         }}>
-        <div className="title">
+        <div className="title-area">
           <i className="fa fa-caret-right"></i>
-          <i className="fa fa-book"></i>
-          {this.state.title}
+          <Link to={`/notebooks/${this.state.id}`}><div className="title">
+            <i className="fa fa-book"></i>
+            {this.state.title}
+          </div></Link>
         </div>
         <div className="updated">
           <p>{format(this.state.updated_at)}</p>
