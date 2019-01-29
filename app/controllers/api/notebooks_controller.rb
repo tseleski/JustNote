@@ -24,12 +24,14 @@ class Api::NotebooksController < ApplicationController
   def destroy
     @notebook = current_user.notebooks.find(params[:id])
     @notebook.destroy
+    @notes = @notebook.notes
     render "api/notebooks/show"
   end
 
   def update
     @notebook = current_user.notebooks.find(params[:id])
     if @notebook.update(notebook_params)
+      @notes = @notebook.notes
       render "api/notebooks/show"
     else
       render json: @notebook.errors.full_messages, status: 422

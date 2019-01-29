@@ -72,6 +72,9 @@ export const updateNotebook = (notebook) => dispatch => {
 
 export const deleteNotebook = (id) => dispatch => {
   return NotebookAPIUtil.deleteNotebook(id).then(
-    notebook => dispatch(removeNotebook(notebook))
+    notebookWithNotes => {
+      debugger
+      return dispatch(removeNotebook(notebookWithNotes.notebook));
+    }
   );
 };
