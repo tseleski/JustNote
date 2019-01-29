@@ -1,6 +1,7 @@
 import { RECEIVE_NOTE, RECEIVE_NOTES, REMOVE_NOTE, CLEAR_NOTES } from "../actions/note_actions";
 import { RECEIVE_NOTEBOOK } from '../actions/notebook_actions';
 import { merge } from 'lodash';
+import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
 const notesReducer = (state = {}, action) => {
   Object.freeze(state);
@@ -20,6 +21,8 @@ const notesReducer = (state = {}, action) => {
       const notes = action.notes || {};
       return notes;
     case CLEAR_NOTES:
+      return {};
+    case LOGOUT_CURRENT_USER:
       return {};
     default:
       return state;
