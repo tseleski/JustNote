@@ -7,7 +7,7 @@ const mapStateToProps = (state, ownProps) => {
   const notebookId = ownProps.match.params.notebookId;
   return {
     note: { title: '', content: '', plain_text: '', notebook: { title: '' } },
-    formType: 'Create'
+    formType: 'Create',
     notebookId: notebookId,
   };
 };
