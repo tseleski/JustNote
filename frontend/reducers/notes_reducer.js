@@ -18,7 +18,6 @@ const notesReducer = (state = {}, action) => {
       return newState;
     case RECEIVE_NOTEBOOK:
       const notes = action.notes || {};
-      debugger
       return notes;
     case CLEAR_NOTES:
       return {};

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 class NotebookIndexNoteItem extends React.Component {
   render() {
-    debugger
     return (
       <div className="notebook-index-item">
         <div className="each-note">

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { createNote } from '../../actions/note_actions';
+import { fetchNotebooks } from '../../actions/notebook_actions';
 import NoteForm from './note_form';
 
 const mapStateToProps = (state, ownProps) => {
@@ -13,7 +14,8 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    action: (note) => dispatch(createNote(note))
+    action: (note) => dispatch(createNote(note)),
+    fetchNotebooks: () => dispatch(fetchNotebooks()),
   };
 };
 

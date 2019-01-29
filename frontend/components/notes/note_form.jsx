@@ -23,6 +23,9 @@ class NoteForm extends React.Component{
         this.setState({ notebook: notebook });
       });
     }
+    this.props.fetchNotebooks().then( ({ notebooks }) => {
+      this.setState({ notebooks: notebooks });
+    });
   }
 
   componentDidUpdate(prevProps){
@@ -74,6 +77,12 @@ class NoteForm extends React.Component{
 
   renderDelete(){
     const deleteModal = this.state.deleteModal ? "show" : "hide";
+    if(this.state.notebooks){
+      const notebooks = Object.values(this.state.notebooks);
+    }
+    // const notebookList = notebooks.map( notebook => {
+    //   return 
+    // })
     if (this.props.formType === 'Edit'){
       return (
         <div className="above-form">
