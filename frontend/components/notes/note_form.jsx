@@ -8,7 +8,7 @@ class NoteForm extends React.Component{
   constructor(props){
     super(props);
     const prevState = { deleteModal: false, modalIsOpen: false };
-    this.state = Object.assign(prevState, this.props.note);
+    this.state = Object.assign(prevState, this.props.note, this.props.notebookId);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.toggleDelete = this.toggleDelete.bind(this);
@@ -21,10 +21,14 @@ class NoteForm extends React.Component{
 
   componentDidMount() {
     if(this.props.formType === 'Edit'){
-      this.props.fetchNote(this.props.id).then(({ note }) => {
-        this.setState({ id: note.id, title: note.title, content: note.content, plain_text: note.plain_text});
+      this.props.fetchNote(this.props.id).then(({ note, notebook }) => {
+        this.setState({ id: note.id, title: note.title, content: note.content});
+        this.setState({ notebook: notebook });
       });
     }
+    this.props.fetchNotebooks().then( ({ notebooks }) => {
+      this.setState({ notebooks: notebooks });
+    });
   }
 
   componentDidUpdate(prevProps){
@@ -38,7 +42,12 @@ class NoteForm extends React.Component{
   handleSubmit(e){
     e.preventDefault();
     if (this.props.formType === 'Create'){
-      this.props.action(this.state).then(this.props.history.push(`/`));
+      const note = Object.assign(this.state, { notebook_id: this.props.notebookId});
+      if( this.props.notebookId ){
+        this.props.action(note).then(this.props.history.push(`/notebooks/${this.props.notebookId}`));
+      } else {
+        this.props.action(note).then(this.props.history.push(`/notes`));
+      }
     } else {
       this.props.action(this.state);
     }
@@ -67,9 +76,14 @@ class NoteForm extends React.Component{
   handleDelete(e){
     e.preventDefault();
     const that = this;
-    this.props.deleteNote(this.props.id).then(() =>
-      that.props.history.push('/')
-    );
+    this.props.deleteNote(this.props.id).then(() => {
+      let newPath = that.props.history.location.pathname.match(/\/notebooks\/[0-9]*/) || "/notes";
+      if (newPath !== "/notes"){
+        newPath = newPath[0];
+      }
+      that.props.history.push(newPath)
+    }).then(that.closeModal);
+      // that.props.history.push(that.props.history.location.pathname.match(/\/notebooks\/[0-9]*/)[0])).then(that.closeModal);
   }
 
   toggleDelete(){
@@ -78,6 +92,12 @@ class NoteForm extends React.Component{
 
   renderDelete(){
     const deleteModal = this.state.deleteModal ? "show" : "hide";
+    if(this.state.notebooks){
+      const notebooks = Object.values(this.state.notebooks);
+    }
+    // const notebookList = notebooks.map( notebook => {
+    //   return 
+    // })
     if (this.props.formType === 'Edit'){
       return (
         <div className="above-form">

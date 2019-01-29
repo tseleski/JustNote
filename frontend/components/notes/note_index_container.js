@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchNotes, createNote, deleteNote } from '../../actions/note_actions';
+import { fetchNotes, createNote, deleteNote, clearNotes } from '../../actions/note_actions';
 import { fetchNotebook } from '../../actions/notebook_actions';
 import NoteIndex from './note_index';
 
@@ -24,6 +24,7 @@ const mapDispatchToProps = dispatch => {
     createNote: note => dispatch(createNote(note)),
     deleteNote: id => dispatch(deleteNote(id)),
     fetchNotebook: id => dispatch(fetchNotebook(id)),
+    clearNotes: () => dispatch(clearNotes())
   };
 };
 

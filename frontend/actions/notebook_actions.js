@@ -4,6 +4,7 @@ export const RECEIVE_NOTEBOOK = 'RECEIVE_NOTEBOOK';
 export const REMOVE_NOTEBOOK = 'REMOVE_NOTEBOOK';
 export const RECEIVE_NOTEBOOK_ERRORS = 'RECEIVE_NOTEBOOK_ERRORS';
 export const CLEAR_NOTEBOOK_ERRORS = 'CLEAR_NOTEBOOK_ERRORS';
+import { receiveNotes } from '../actions/note_actions';
 
 
 const receiveNotebooks = (notebooks) => {
@@ -13,10 +14,11 @@ const receiveNotebooks = (notebooks) => {
   };
 };
 
-const receiveNotebook = (notebook) => {
+const receiveNotebook = (notebookWithNotes) => {
   return {
     type: RECEIVE_NOTEBOOK,
-    notebook
+    notebook: notebookWithNotes.notebook,
+    notes: notebookWithNotes.notes
   };
 };
 
@@ -48,7 +50,9 @@ export const fetchNotebooks = () => dispatch => {
 
 export const fetchNotebook = (id) => dispatch => {
   return NotebookAPIUtil.fetchNotebook(id).then(
-    notebook => dispatch(receiveNotebook(notebook))
+    notebookWithNotes => {
+      return dispatch(receiveNotebook(notebookWithNotes));
+    }
   );
 };
 
@@ -68,6 +72,8 @@ export const updateNotebook = (notebook) => dispatch => {
 
 export const deleteNotebook = (id) => dispatch => {
   return NotebookAPIUtil.deleteNotebook(id).then(
-    notebook => dispatch(removeNotebook(notebook))
+    notebookWithNotes => {
+      return dispatch(removeNotebook(notebookWithNotes.notebook));
+    }
   );
 };

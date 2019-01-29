@@ -1,4 +1,6 @@
 import { RECEIVE_NOTEBOOK, RECEIVE_NOTEBOOKS, REMOVE_NOTEBOOK } from "../actions/notebook_actions";
+import { RECEIVE_NOTE } from '../actions/note_actions';
+import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 import { merge } from 'lodash';
 
 const notebooksReducer = (state = {}, action) => {
@@ -15,6 +17,12 @@ const notebooksReducer = (state = {}, action) => {
       newState = merge({}, state);
       delete newState[action.notebookId];
       return newState;
+    case RECEIVE_NOTE:
+      newState = merge({}, state);
+      newState[action.notebook.id] = action.notebook;
+      return newState;
+    case LOGOUT_CURRENT_USER:
+      return {};
     default:
       return state;
   }

@@ -54,7 +54,7 @@ class NotebookIndex extends React.Component {
       deleteNotebook={this.props.deleteNotebook} currentUser={this.props.currentUser}
       openModal={this.props.openModal} closeModal={this.props.closeModal} 
       errors={this.props.errors} updateNotebook={this.props.updateNotebook}
-      fetchNotebook={this.props.fetchNotebook} />
+      fetchNotebook={this.props.fetchNotebook} notes={this.props.notes} />
     });
     return (
       <div className="notebook-panel">
@@ -73,6 +73,7 @@ class NotebookIndex extends React.Component {
                 <path id="113a" d="M19 17v-2h2v2h2v2h-2v2h-2v-2h-2v-2h2zm-1-2.874a4.002 4.002 0 0 0-2.952 4.497H9V4h7c1.105 0 2 .873 2 1.95v8.176zM6 4h2v14.623H6V4zm9.5 4h-4c-.276 0-.5.15-.5.333v1.334c0 .184.224.333.5.333h4c.276 0 .5-.15.5-.333V8.333C16 8.15 15.776 8 15.5 8z"></path>
               </use>
             </svg> */}
+            <i className="fa fa-book"></i>
             New Notebook </div>
             <Modal
               isOpen={this.state.modalIsOpen}
@@ -111,7 +112,7 @@ class NotebookIndex extends React.Component {
             <div className="updated-col">UPDATED</div>
             <div className="actions-col">ACTIONS</div>
           </div>
-          <ul>{notebookList}</ul>
+          <ul className="notebook-list">{notebookList}</ul>
         </div>
       </div>
     )

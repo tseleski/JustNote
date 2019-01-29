@@ -13,6 +13,7 @@ class Api::NotesController < ApplicationController
   def create
     @note = Note.new(note_params)
     @note.notebook = Notebook.all.first unless @note.notebook
+    @notebook = @note.notebook
     if @note.save
       render "api/notes/show"
     else
@@ -23,12 +24,13 @@ class Api::NotesController < ApplicationController
   def destroy
     @note = current_user.notes.find(params[:id])
     @note.destroy
-    render "api/notes/show"
+    render json: @note
   end
 
   def update
     @note = current_user.notes.find(params[:id])
     if @note.update(note_params)
+      @notebook = @note.notebook
       render "api/notes/show"
     else
       render json: @note.errors.full_messages, status: 422

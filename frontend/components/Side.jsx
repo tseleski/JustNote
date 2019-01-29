@@ -45,17 +45,31 @@ class Side extends React.Component {
   }
 
   render() {
-    return (
-      <div className="side-nav">
-        <div className="top">
-          {this.renderEmail()}
-          <div className="new-note">
-            <Link to={'/notes/new'}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link>
+    if (this.props.notebookId) {
+      return (
+        <div className="side-nav">
+          <div className="top">
+            {this.renderEmail()}
+            <div className="new-note">
+              <Link to={`/notebooks/${this.props.notebookId}/notes/new`}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link>
+            </div>
           </div>
+          {this.renderLinks()}
         </div>
-        {this.renderLinks()}
-      </div>
-    )
+      )
+    } else {
+      return (
+        <div className="side-nav">
+          <div className="top">
+            {this.renderEmail()}
+            <div className="new-note">
+              <Link to={'/notes/new'}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link>
+            </div>
+          </div>
+          {this.renderLinks()}
+        </div>
+      )
+    }
   }
 }
 

@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchNotes, createNote, deleteNote } from '../../actions/note_actions';
+import { fetchNotes, createNote, deleteNote, clearNotes } from '../../actions/note_actions';
 import { fetchNotebook } from '../../actions/notebook_actions';
 import NoteIndex from './note_index';
 
@@ -10,13 +10,14 @@ const mapStateToProps = (state, ownProps) => {
     return dateA > dateB ? -1 : 1;
   }
   const allNotes = Object.values(state.entities.notes);
-  const filteredNotes = allNotes.filter(note => (note.notebook_id === ownProps.match.params.notebookId));
-  const sorted_notes = filteredNotes.sort(sortFunction);
-  debugger
+  const sorted_notes = allNotes.sort(sortFunction);
   const notebook = state.entities.notebooks[ownProps.match.params.notebookId] || {};
+  const title = notebook.title || 'Notebook Title';
   return {
     notes: sorted_notes,
-    title: notebook
+    notebookId: ownProps.match.params.notebookId,
+    notebook: notebook,
+    title: title,
   };
 };
 
@@ -25,6 +26,7 @@ const mapDispatchToProps = dispatch => {
     createNote: note => dispatch(createNote(note)),
     deleteNote: id => dispatch(deleteNote(id)),
     fetchNotebook: id => dispatch(fetchNotebook(id)),
+    clearNotes: () => dispatch(clearNotes())
   };
 };
 

@@ -44,6 +44,10 @@
   cursor: pointer;
 }
 
+.new-notebook .fa-book {
+  color: #00a82d;
+}
+
 .notebook-table {
   border-top: 2px solid #5b6b70;
   font-size: 14px;
@@ -64,12 +68,13 @@
     display: flex;
     text-align: left;
     vertical-align: bottom;
-    padding: 0.5rem;
+    padding: 0.5rem 0.5rem 0.5rem 0;
     justify-content: space-between;
 }
 
 .title-col {
-  flex-basis: 30%;
+  padding-left: 0.5rem;
+  flex-basis: 31%;
 }
 
 .updated-col {
@@ -82,12 +87,16 @@
   justify-content: flex-end;
 }
 
+.notebook-index-item:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
 .single-notebook {
   display: flex;
   justify-content: space-between;
   height: 40px;
   font-size: 14px;
-  padding: 0px 10px 0px 30px;
+  padding: 0px 10px 0px 0px;
   align-items: center;
   color: #777;
   font-weight: 300;
@@ -97,24 +106,97 @@
   background: #f2f2f2;
 }
 
+.single-notebook .title-area {
+  display: flex;
+  flex-basis: 32%;
+  color: #313131;
+  font-weight: 400;
+  text-align: middle;
+  padding-left: 20px;
+}
+
 .fa-caret-right {
   color: #777;
+  padding-top: 4px;
+}
+
+.fa-caret-right:hover {
+  cursor: pointer;
+}
+
+.fa-caret-right.down {
+  transform: rotate(90deg);
 }
 
 .single-notebook .fa-book {
   color: #313131;
 }
 
-.single-notebook .title {
-  flex-basis: 30%;
+.notebook-notes.hide {
+  display: none;
+}
+
+.notebook-notes.show {
+  display: block;
+}
+
+.each-note {
+  width: 100%;
+  display: flex;
+  height: 40px;
+  
+  align-items: center;
+  justify-content: space-between;
+}
+
+.each-note:hover {
+  background: #f2f2f2;
+  cursor: default;
+}
+
+.each-note-title:hover .fa-sticky-note {
+  text-decoration: none;
+}
+
+.each-note-title {
+  flex-basis: 32%;
+  padding-left: 60px;
   color: #313131;
   font-weight: 400;
+}
+
+.each-note-title:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.each-note-updated {
+  width: 120px;
+  text-align: left;
+  color: #777;
+}
+
+.each-note-actions {
+  padding-right: 30px;
+}
+
+.each-note .fa-sticky-note {
+  opacity: 0.40;
+}
+
+.single-notebook .title:hover {
+  text-decoration: underline;
   cursor: pointer;
 }
 
 .single-notebook .updated {
   width: 120px;
   text-align: left;
+}
+
+.single-notebook .updated:hover {
+  color: #bcbcbc;
+  cursor: default;
 }
 
 .single-notebook .three-dots {
