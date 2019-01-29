@@ -9,7 +9,7 @@ class NoteIndexItem extends React.Component {
   }
 
   componentDidMount(){
-    this.props.fetchNotebook(this.props.note.notebook_id);
+    // this.props.fetchNotebook(this.props.note.notebook_id);
   }
 
   render(){
@@ -19,17 +19,32 @@ class NoteIndexItem extends React.Component {
       }
       return content.substring(0, 80) + "...";
     };
-    return (
-      <Link to={`/notes/${this.props.note.id}/edit`}><div className="single-note">
-        <div className="top">
-          <p className="note-title">{this.props.note.title}</p>
-          <p className="note-content">{limitedContent(this.props.note.content)}</p>
-        </div>
-        <div className="timestamp">
-          <p className="note-updated">{format(this.props.note.updated_at)}</p>
-        </div>
-      </div></Link>
-    )
+    if (this.props.title === 'All Notes'){
+      return (
+        <Link to={`/notes/${this.props.note.id}/edit`}><div className="single-note">
+          <div className="top">
+            <p className="note-title">{this.props.note.title}</p>
+            <p className="note-content">{limitedContent(this.props.note.content)}</p>
+          </div>
+          <div className="timestamp">
+            <p className="note-updated">{format(this.props.note.updated_at)}</p>
+          </div>
+        </div></Link>
+      )
+    } else {
+      return (
+        <Link to={`/notebooks/${this.props.notebook.id}/notes/${this.props.note.id}/edit`}><div className="single-note">
+          <div className="top">
+            <p className="note-title">{this.props.note.title}</p>
+            <p className="note-content">{limitedContent(this.props.note.content)}</p>
+          </div>
+          <div className="timestamp">
+            <p className="note-updated">{format(this.props.note.updated_at)}</p>
+          </div>
+        </div></Link>
+      )
+    }
+    
   }
 }
 

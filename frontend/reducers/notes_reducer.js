@@ -17,7 +17,9 @@ const notesReducer = (state = {}, action) => {
       delete newState[action.noteId];
       return newState;
     case RECEIVE_NOTEBOOK:
-      return merge({}, action.notes);
+      const notes = action.notes || {};
+      debugger
+      return notes;
     case CLEAR_NOTES:
       return {};
     default:

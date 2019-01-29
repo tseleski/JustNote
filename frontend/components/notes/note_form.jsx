@@ -7,7 +7,7 @@ class NoteForm extends React.Component{
   constructor(props){
     super(props);
     const prevState = { deleteModal: false, modalIsOpen: false };
-    this.state = Object.assign(prevState, this.props.note);
+    this.state = Object.assign(prevState, this.props.note, this.props.notebookId);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.toggleDelete = this.toggleDelete.bind(this);
@@ -18,8 +18,9 @@ class NoteForm extends React.Component{
 
   componentDidMount() {
     if(this.props.formType === 'Edit'){
-      this.props.fetchNote(this.props.id).then(({ note }) => {
+      this.props.fetchNote(this.props.id).then(({ note, notebook }) => {
         this.setState({ id: note.id, title: note.title, content: note.content});
+        this.setState({ notebook: notebook });
       });
     }
   }
@@ -35,7 +36,12 @@ class NoteForm extends React.Component{
   handleSubmit(e){
     e.preventDefault();
     if (this.props.formType === 'Create'){
-      this.props.action(this.state).then(this.props.history.push(`/`));
+      const note = Object.assign(this.state, { notebook_id: this.props.notebookId});
+      if( this.props.notebookId ){
+        this.props.action(note).then(this.props.history.push(`/notebooks/${this.props.notebookId}`));
+      } else {
+        this.props.action(note).then(this.props.history.push(`/notes`));
+      }
     } else {
       this.props.action(this.state);
     }

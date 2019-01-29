@@ -14,10 +14,11 @@ const receiveNotebooks = (notebooks) => {
   };
 };
 
-const receiveNotebook = (notebook) => {
+const receiveNotebook = (notebookWithNotes) => {
   return {
     type: RECEIVE_NOTEBOOK,
-    notebook
+    notebook: notebookWithNotes.notebook,
+    notes: notebookWithNotes.notes
   };
 };
 
@@ -49,8 +50,8 @@ export const fetchNotebooks = () => dispatch => {
 
 export const fetchNotebook = (id) => dispatch => {
   return NotebookAPIUtil.fetchNotebook(id).then(
-    notes => {
-      return dispatch(receiveNotes(notes));
+    notebookWithNotes => {
+      return dispatch(receiveNotebook(notebookWithNotes));
     }
   );
 };

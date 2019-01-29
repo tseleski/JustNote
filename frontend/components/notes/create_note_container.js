@@ -2,10 +2,12 @@ import { connect } from 'react-redux';
 import { createNote } from '../../actions/note_actions';
 import NoteForm from './note_form';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
+  const notebookId = ownProps.match.params.notebookId;
   return {
     note: { title: '', content: '', notebook: { title: '' } },
-    formType: 'Create'
+    formType: 'Create',
+    notebookId: notebookId,
   };
 };
 

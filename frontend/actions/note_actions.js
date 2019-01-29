@@ -14,10 +14,11 @@ export const receiveNotes = (notes) => {
   };
 };
 
-const receiveNote = (note) => {
+const receiveNote = (noteWithNotebook) => {
   return {
     type: RECEIVE_NOTE,
-    note
+    note: noteWithNotebook.note,
+    notebook: noteWithNotebook.notebook
   };
 };
 
@@ -49,14 +50,16 @@ export const clearNoteErrors = () => {
 
 export const fetchNotes = () => dispatch => {
   return NoteAPIUtil.fetchNotes().then(
-    notes => dispatch(receiveNotes(notes))
+    notes => {
+      return dispatch(receiveNotes(notes));
+    }
   );
 };
 
 export const fetchNote = (id) => dispatch => {
   return NoteAPIUtil.fetchNote(id).then(
-    note => {
-      return dispatch(receiveNote(note));
+    noteWithNotebook => {
+      return dispatch(receiveNote(noteWithNotebook));
     }
   );
 };

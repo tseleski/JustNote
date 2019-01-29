@@ -22,7 +22,7 @@ class NoteIndex extends React.Component {
   componentWillUnmount(){
     this.props.clearNotes();
   }
-  
+
   noteCount(){
     if (this.props.notes.length === 1) {
       return (
@@ -36,11 +36,12 @@ class NoteIndex extends React.Component {
      
   }
 
+
   render() {
     const { notes } = this.props;
     const noteList = notes.map(note => {
       return <NoteIndexItem key={note.id} note={note} deleteNote={this.props.deleteNote}
-      fetchNotebook={this.props.fetchNotebook} />
+      fetchNotebook={this.props.fetchNotebook} title={this.props.title} notebook={this.props.notebook} />
     });
     return (
       <div className="note-sidebar">

@@ -28,7 +28,9 @@ const App = () => (
           <ProtectedRoute exact path="/notes/new" component={CreateNoteContainer} />
           <ProtectedRoute exact path="/notes/:noteId/edit" component={EditNoteContainer} />
           <ProtectedRoute exact path="/notebooks" component={NotebookIndexContainer} />
-          <ProtectedRoute exact path="/notebooks/:notebookId" component={FilteredNoteIndexContainer} />
+          <ProtectedRoute path="/notebooks/:notebookId" component={FilteredNoteIndexContainer} />
+          <ProtectedRoute exact path="/notebooks/:notebookId/notes/:noteId/edit" component={EditNoteContainer} />
+          <ProtectedRoute exact path="/notebooks/:notebookId/notes/new" component={CreateNoteContainer} />
         </div>
       </div>
     </div>

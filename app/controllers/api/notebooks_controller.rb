@@ -14,6 +14,7 @@ class Api::NotebooksController < ApplicationController
     @notebook = Notebook.new(notebook_params)
     @notebook.user = current_user
     if @notebook.save
+      @notes = @notebook.notes
       render "api/notebooks/show"
     else
       render json: @notebook.errors.full_messages, status: 422

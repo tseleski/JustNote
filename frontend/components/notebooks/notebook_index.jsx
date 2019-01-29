@@ -54,7 +54,7 @@ class NotebookIndex extends React.Component {
       deleteNotebook={this.props.deleteNotebook} currentUser={this.props.currentUser}
       openModal={this.props.openModal} closeModal={this.props.closeModal} 
       errors={this.props.errors} updateNotebook={this.props.updateNotebook}
-      fetchNotebook={this.props.fetchNotebook} />
+      fetchNotebook={this.props.fetchNotebook} notes={this.props.notes} />
     });
     return (
       <div className="notebook-panel">

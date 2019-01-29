@@ -5,7 +5,9 @@ import { logout } from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/modal_actions'; 
 
 const mapStateToProps = state => {
+  const notes = Object.values(state.entities.notes) || {};
   return {
+    notes: notes,
     notebooks: Object.values(state.entities.notebooks),
     currentUser: state.entities.users[state.session.id],
     errors: state.errors.notebooks,
