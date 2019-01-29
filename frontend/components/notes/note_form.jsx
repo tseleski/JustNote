@@ -66,9 +66,14 @@ class NoteForm extends React.Component{
   handleDelete(e){
     e.preventDefault();
     const that = this;
-    this.props.deleteNote(this.props.id).then(() =>
-      that.props.history.push('/')
-    );
+    this.props.deleteNote(this.props.id).then(() => {
+      let newPath = that.props.history.location.pathname.match(/\/notebooks\/[0-9]*/) || "/notes";
+      if (newPath !== "/notes"){
+        newPath = newPath[0];
+      }
+      that.props.history.push(newPath)
+    }).then(that.closeModal);
+      // that.props.history.push(that.props.history.location.pathname.match(/\/notebooks\/[0-9]*/)[0])).then(that.closeModal);
   }
 
   toggleDelete(){
