@@ -7,6 +7,7 @@ class Api::NotesController < ApplicationController
   def show
     @note = current_user.notes.find(params[:id])
     @notebook = @note.notebook
+    @tags = @note.tags
     render "api/notes/show"
   end
 
@@ -14,6 +15,7 @@ class Api::NotesController < ApplicationController
     @note = Note.new(note_params)
     @note.notebook = current_user.notebooks.first unless @note.notebook
     @notebook = @note.notebook
+    @tags = @note.tags
     if @note.save
       render "api/notes/show"
     else
@@ -31,6 +33,7 @@ class Api::NotesController < ApplicationController
     @note = current_user.notes.find(params[:id])
     if @note.update(note_params)
       @notebook = @note.notebook
+      @tags = @note.tags
       render "api/notes/show"
     else
       render json: @note.errors.full_messages, status: 422

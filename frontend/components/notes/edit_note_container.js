@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchNote, updateNote, deleteNote } from '../../actions/note_actions';
 import { fetchNotebooks } from '../../actions/notebook_actions';
+import { createTag, clearTagErrors, removeTagging } from '../../actions/tag_actions';
 import React from 'react';
 import NoteForm from './note_form';
 
@@ -17,7 +18,9 @@ class EditNoteForm extends React.Component {
     return (
       <NoteForm action={action} id={id} note={note} formType={formType} 
       fetchNote={fetchNote} deleteNote={deleteNote} notebook={this.props.notebook}
-      fetchNotebooks={this.props.fetchNotebooks} />
+      fetchNotebooks={this.props.fetchNotebooks} createTag={this.props.createTag}
+      tagErrors={this.props.tagErrors} clearTagErrors={this.props.clearTagErrors} 
+      tags={this.props.tags} removeTagging={this.props.removeTagging} />
     );
   }
 }
@@ -30,6 +33,8 @@ const mapStateToProps = (state, ownProps) => {
     note: note,
     formType: 'Edit',
     notebook: notebook.title,
+    tagErrors: state.errors.tags,
+    tags: Object.values(state.entities.tags)
   };
 };
 
@@ -39,6 +44,9 @@ const mapDispatchToProps = dispatch => {
     fetchNote: (id) => dispatch(fetchNote(id)),
     deleteNote: (id) => dispatch(deleteNote(id)),
     fetchNotebooks: () => dispatch(fetchNotebooks()),
+    createTag: tag => dispatch(createTag(tag)),
+    clearTagErrors: () => dispatch(clearTagErrors()),
+    removeTagging: (tagging) => dispatch(removeTagging(tagging)),
   };
 };
 

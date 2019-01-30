@@ -11,16 +11,23 @@ class Api::TagsController < ApplicationController
 
   def create
     @tag = current_user.tags.find_by(name: params[:name])
-    unless @tag 
+    noteId = params[:tag][:note_id].to_i
+    if @tag 
+      @newTagging = Tagging.new({ note_id: noteId, tag_id: @tag.id })
+    else
       @tag = current_user.tags.new(tag_params)
+      @tag.save
+      @newTagging = Tagging.new({ note_id: noteId, tag_id: @tag.id })
     end
-    # create new tagging
-    
-    if @tag.save
+    if @newTagging.save
       render "api/tags/show"
     else
-      render json: @tag.errors.full_messages, status: 422
-    end
+      if @tag.name == "" 
+        render json: ['Tag name cannot be blank'], status: 422
+      else
+        render json: ['This note already has that tag'], status: 422
+      end
+    end 
   end
 
   def destroy

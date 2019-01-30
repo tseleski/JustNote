@@ -2,7 +2,7 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 import ReactQuill from 'react-quill';
-
+import TagForm from '../tags/tag_form';
 
 class NoteForm extends React.Component{
   constructor(props){
@@ -134,6 +134,16 @@ class NoteForm extends React.Component{
     }
   }
 
+  renderTagForm(){
+    if (this.props.formType === 'Edit') {
+      return(
+        <TagForm createTag={this.props.createTag} errors={this.props.tagErrors} 
+        clearTagErrors={this.props.clearTagErrors} noteId={this.props.id} 
+        tags={this.props.tags} removeTagging={this.props.removeTagging} />
+      )
+    }
+  }
+
   render(){
     const toolbar = [
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
@@ -168,6 +178,9 @@ class NoteForm extends React.Component{
             </div>
             <input type="submit" value="Save"/>
           </form>
+        </div>
+        <div className="tag-footer">
+          {this.renderTagForm()}
         </div>
       </div>
     )

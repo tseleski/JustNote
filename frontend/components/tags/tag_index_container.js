@@ -3,8 +3,14 @@ import { fetchTags, deleteTag } from '../../actions/tag_actions';
 import TagIndex from './tag_index';
 
 const mapStateToProps = state => {
+  function sortFunction(a, b) {
+    var textA = a.name.toUpperCase();
+    var textB = b.name.toUpperCase();
+    return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;
+  }
+  const sorted_tags = Object.values(state.entities.tags).sort(sortFunction);
   return {
-    tags: Object.values(state.entities.tags)
+    tags: sorted_tags
   };
 };
 

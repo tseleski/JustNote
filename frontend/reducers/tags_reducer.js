@@ -1,4 +1,5 @@
 import { RECEIVE_TAG, REMOVE_TAG, RECEIVE_TAGS, CLEAR_TAGS } from '../actions/tag_actions';
+import { RECEIVE_NOTE } from '../actions/note_actions';
 import { merge } from 'lodash';
 import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 
@@ -8,6 +9,8 @@ const tagsReducer = (state = {}, action ) => {
   switch (action.type) {
     case RECEIVE_TAGS:
       return merge({}, action.tags);
+    case RECEIVE_NOTE:
+      return action.tags;
     case RECEIVE_TAG:
       newState = merge({}, state);
       newState[action.tag.id] = action.tag;

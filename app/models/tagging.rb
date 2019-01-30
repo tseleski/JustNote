@@ -6,4 +6,8 @@ class Tagging < ApplicationRecord
 
   belongs_to :tag
 
+  # def self.find_by_credentials(tag_id, note_id){
+  #   Tag.where(["tag_id = :tag_id and note_id = :note_id", { tag_id: tag_id, note_id: note_id }])
+  # end
+
 end

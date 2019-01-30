@@ -28,8 +28,7 @@ class TagIndexItem extends React.Component {
 
   handleDelete(e) {
     e.preventDefault();
-    const that = this;
-    this.props.deleteTag(this.props.tag.id).then(that.props.history.push('/tags'));
+    this.props.deleteTag(this.props.tag.id);
   }
 
   render(){

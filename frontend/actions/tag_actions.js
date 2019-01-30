@@ -1,4 +1,5 @@
 import * as TagAPIUtil from '../util/tag_api_util';
+import { receiveNote } from './note_actions';
 export const RECEIVE_TAG  = 'RECEIVE_TAG';
 export const RECEIVE_TAGS  = 'RECEIVE_TAGS';
 export const REMOVE_TAG  = 'REMOVE_TAG';
@@ -68,5 +69,11 @@ export const createTag = (tag) => dispatch => {
 export const deleteTag = (id) => dispatch => {
   return TagAPIUtil.deleteTag(id).then(
     tag => dispatch(removeTag(tag))
+  );
+};
+
+export const removeTagging = (tagging) => dispatch => {
+  return TagAPIUtil.removeTagging(tagging).then(
+    noteWithNotebookAndTags => dispatch(receiveNote(noteWithNotebookAndTags))
   );
 };

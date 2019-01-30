@@ -14,11 +14,12 @@ export const receiveNotes = (notes) => {
   };
 };
 
-const receiveNote = (noteWithNotebook) => {
+export const receiveNote = (noteWithNotebookAndTags) => {
   return {
     type: RECEIVE_NOTE,
-    note: noteWithNotebook.note,
-    notebook: noteWithNotebook.notebook
+    note: noteWithNotebookAndTags.note,
+    notebook: noteWithNotebookAndTags.notebook,
+    tags: noteWithNotebookAndTags.tags
   };
 };
 
@@ -58,22 +59,22 @@ export const fetchNotes = () => dispatch => {
 
 export const fetchNote = (id) => dispatch => {
   return NoteAPIUtil.fetchNote(id).then(
-    noteWithNotebook => {
-      return dispatch(receiveNote(noteWithNotebook));
+    noteWithNotebookAndTags => {
+      return dispatch(receiveNote(noteWithNotebookAndTags));
     }
   );
 };
 
 export const createNote = (note) => dispatch => {
   return NoteAPIUtil.createNote(note).then(
-    note => dispatch(receiveNote(note)),
+    noteWithNotebookAndTags => dispatch(receiveNote(noteWithNotebookAndTags)),
     err => dispatch(receiveErrors(err.responseJSON))
   );
 };
 
 export const updateNote = (note) => dispatch => {
   return NoteAPIUtil.updateNote(note).then(
-    note => dispatch(receiveNote(note)),
+    noteWithNotebookAndTags => dispatch(receiveNote(noteWithNotebookAndTags)),
     err =>  dispatch(receiveErrors(err.responseJSON))
   );
 };

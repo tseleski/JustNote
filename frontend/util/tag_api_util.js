@@ -27,10 +27,11 @@ export const deleteTag = (id) => (
   })
 );
 
-export const removeTagging = (id) => (
+export const removeTagging = (tagging) => (
   $.ajax({
-    method: 'DELETE',
-    url: `/api/taggings/${id}`,
+    method: 'GET',
+    url: `api/taggings/remove`,
+    data: { tagging }
   })
 );
 
