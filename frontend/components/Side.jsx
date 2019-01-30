@@ -39,7 +39,7 @@ class Side extends React.Component {
       <ul className="links">
         <Link to={'/notes'}><li key="1"><i className="fa fa-sticky-note"></i>All Notes</li></Link>
         <Link to={'/notebooks'}><li key="2"><i className="fa fa-book"></i>Notebooks</li></Link>
-        <li key="3"><i className="fa fa-hashtag"></i>Tags</li>
+        <Link to={'/tags'}><li key="3"><i className="fa fa-hashtag"></i>Tags</li></Link>
       </ul>
     )
   }

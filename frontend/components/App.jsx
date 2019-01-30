@@ -7,6 +7,7 @@ import LoginFormContainer from '../components/session_form/login_form_container'
 import SignupFormContainer from '../components/session_form/signup_form_container';
 import CreateNoteContainer from '../components/notes/create_note_container';
 import EditNoteContainer from '../components/notes/edit_note_container';
+import TagIndexContainer from '../components/tags/tag_index_container';
 import { Route, Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import NotebookIndexContainer from './notebooks/notebook_index_container';
@@ -31,6 +32,7 @@ const App = () => (
           <ProtectedRoute path="/notebooks/:notebookId" component={FilteredNoteIndexContainer} />
           <ProtectedRoute exact path="/notebooks/:notebookId/notes/:noteId/edit" component={EditNoteContainer} />
           <ProtectedRoute exact path="/notebooks/:notebookId/notes/new" component={CreateNoteContainer} />
+          <ProtectedRoute exact path="/tags" component={TagIndexContainer} />
         </div>
       </div>
     </div>

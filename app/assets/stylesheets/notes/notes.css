@@ -447,7 +447,7 @@
   font-weight: 300;
   vertical-align: top;
   cursor: pointer;
-  line-height: 0.2px
+  line-height: 0.2px;
 }
 
 .delete-modal .x-btn:hover {
@@ -458,6 +458,7 @@
   font-size: 18px;
   color: #333;
   font-weight: 500;
+  padding-top: 10px;
 }
 
 .delete-modal .modal-text {
@@ -473,6 +474,7 @@
   justify-content: flex-end;
   margin-right: 15px;
   font-size: 14px;
+  padding: 10px 0px;
 }
 
 .modal-btns .cancel-btn, .continue-btn {

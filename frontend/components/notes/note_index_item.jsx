@@ -13,9 +13,7 @@ class NoteIndexItem extends React.Component {
   }
 
   render(){
-    debugger
     const limitedContent = (content) => {
-      debugger
       if (content.split('').length < 80) {
         return content;
       }

@@ -12,7 +12,7 @@ class Api::NotesController < ApplicationController
 
   def create
     @note = Note.new(note_params)
-    @note.notebook = Notebook.all.first unless @note.notebook
+    @note.notebook = current_user.notebooks.first unless @note.notebook
     @notebook = @note.notebook
     if @note.save
       render "api/notes/show"

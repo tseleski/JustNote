@@ -8,7 +8,6 @@ export const CLEAR_NOTE_ERRORS = 'CLEAR_NOTE_ERRORS';
 
 
 export const receiveNotes = (notes) => {
-  debugger
   return {
     type: RECEIVE_NOTES,
     notes

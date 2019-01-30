@@ -8,6 +8,8 @@ Rails.application.routes.draw do
     resources :users, only: [:create]
     resources :notes, only: [:index, :create, :update, :destroy, :show]
     resources :notebooks, only: [:index, :create, :update, :destroy, :show]
+    resources :tags, only: [:index, :create, :destroy, :show]
+    resources :taggings, only: [:destroy]
     get 'users/emails', to: 'users#check_email'
   end
 end
