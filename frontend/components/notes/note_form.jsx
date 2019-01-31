@@ -46,10 +46,10 @@ class NoteForm extends React.Component{
         const note = Object.assign(this.state, { notebook_id: this.props.notebookId});
         this.props.action(note).then(this.props.history.push(`/notebooks/${this.props.notebookId}`));
       } else if (this.props.tagId){
-        const noteWithTagId = Object.assign(this.state, { tag_id: this.props.tagId })
+        const noteWithTagId = Object.assign(this.state, { tag_id: this.props.tagId });
         this.props.action(noteWithTagId).then(this.props.history.push(`/tags/${this.props.tagId}`));
       } else {
-        this.props.action(note).then(this.props.history.push(`/notes`));
+        this.props.action(this.state).then(this.props.history.push(`/notes`));
       }
     } else {
       this.props.action(this.state);

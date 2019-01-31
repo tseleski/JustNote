@@ -23,7 +23,8 @@ const notesReducer = (state = {}, action) => {
       return notes;
     case RECEIVE_TAG:
       const tagNotes = action.notes || {};
-      return tagNotes;
+      newState = merge({}, state, tagNotes);
+      return newState;
     case CLEAR_NOTES:
       return {};
     case LOGOUT_CURRENT_USER:

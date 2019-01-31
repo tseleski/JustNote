@@ -1,4 +1,5 @@
 import React from 'react';
+import { withRouter } from 'react-router-dom';
 
 class TagFormItem extends React.Component {
   constructor(props) {
@@ -16,7 +17,13 @@ class TagFormItem extends React.Component {
 
   handleRemove(e) {
     e.preventDefault();
-    this.props.removeTagging({ note_id: this.props.noteId, tag_id: this.props.tag.id})
+    const that = this;
+    this.props.removeTagging({ note_id: this.props.noteId, tag_id: this.props.tag.id}).then(
+      () => {
+        if (that.props.tag.id == that.props.match.params.tagId){
+          that.props.history.push(`tags/${this.props.tag.id}`);
+        }
+      });
   }
 
   render(){
@@ -37,4 +44,4 @@ class TagFormItem extends React.Component {
 
 }
 
-export default TagFormItem;
+export default withRouter(TagFormItem);

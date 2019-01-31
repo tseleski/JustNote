@@ -12,10 +12,15 @@ const mapStateToProps = (state, ownProps) => {
   const allNotes = Object.values(state.entities.notes);
   const sorted_notes = allNotes.sort(sortFunction);
   const tag = state.entities.tags[ownProps.match.params.tagId] || {};
+  const tagId = ownProps.match.params.tagId;
+  const filteredNotes = sorted_notes.filter(note => {
+
+    return note.tag_ids.includes(parseInt(tagId));
+  });
   const title = tag.name || 'Tag Name';
   return {
-    notes: sorted_notes,
-    tagId: ownProps.match.params.tagId,
+    notes: filteredNotes,
+    tagId: tagId,
     tag: tag,
     title: title,
     filterType: 'Tag',

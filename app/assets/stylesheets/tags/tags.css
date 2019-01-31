@@ -134,7 +134,7 @@
   margin-bottom: -10px;
 }
 
-::-webkit-scrollbar {
+.tag-form-list-container ::-webkit-scrollbar {
   width: 0px;  /* remove scrollbar space */
   /* background: transparent;  optional: just make scrollbar invisible */
 }

@@ -26,15 +26,18 @@ class EditNoteForm extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const defaultNote = { title: '', content: '', plain_text: ''};
+  const defaultNote = { title: '', content: '', plain_text: '', tag_ids: []};
   const note = state.entities.notes[ownProps.match.params.noteId] || defaultNote;
   const notebook = state.entities.notebooks[note.notebook_id] || {};
+  const noteTags = note.tag_ids.map(tag_id => {
+    return state.entities.tags[tag_id];
+  }).filter(tag => tag);
   return {
     note: note,
     formType: 'Edit',
     notebook: notebook.title,
     tagErrors: state.errors.tags,
-    tags: Object.values(state.entities.tags)
+    tags: noteTags,
   };
 };
 
