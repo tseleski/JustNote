@@ -1,30 +1,32 @@
 import { connect } from 'react-redux';
-import { fetchNotes, createNote, deleteNote, clearNotes } from '../../actions/note_actions';
-import { fetchNotebook } from '../../actions/notebook_actions';
+import { createNote, deleteNote, clearNotes } from '../../actions/note_actions';
+import { fetchTag } from '../../actions/tag_actions';
 import NoteIndex from './note_index';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   function sortFunction(a, b) {
     var dateA = new Date(a.updated_at).getTime();
     var dateB = new Date(b.updated_at).getTime();
     return dateA > dateB ? -1 : 1;
   }
-  const sorted_notes = Object.values(state.entities.notes).sort(sortFunction);
+  const allNotes = Object.values(state.entities.notes);
+  const sorted_notes = allNotes.sort(sortFunction);
+  const tag = state.entities.tags[ownProps.match.params.tagId] || {};
+  const title = tag.name || 'Tag Name';
   return {
-    // sort the notes by date here
-    // notes: Object.values(state.entities.notes)
     notes: sorted_notes,
-    title: 'All Notes',
-    filterType: 'All'
+    tagId: ownProps.match.params.tagId,
+    tag: tag,
+    title: title,
+    filterType: 'Tag',
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return{
-    fetchNotes: () => dispatch(fetchNotes()),
+  return {
     createNote: note => dispatch(createNote(note)),
     deleteNote: id => dispatch(deleteNote(id)),
-    fetchNotebook: id => dispatch(fetchNotebook(id)),
+    fetchTag: id => dispatch(fetchTag(id)),
     clearNotes: () => dispatch(clearNotes())
   };
 };

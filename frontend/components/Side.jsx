@@ -57,6 +57,18 @@ class Side extends React.Component {
           {this.renderLinks()}
         </div>
       )
+    } else if (this.props.tagId) {
+      return (
+        <div className="side-nav">
+          <div className="top">
+            {this.renderEmail()}
+            <div className="new-note">
+              <Link to={`/tags/${this.props.tagId}/notes/new`}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link>
+            </div>
+          </div>
+          {this.renderLinks()}
+        </div>
+      )
     } else {
       return (
         <div className="side-nav">

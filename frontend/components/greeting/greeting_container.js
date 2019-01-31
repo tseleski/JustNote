@@ -6,15 +6,20 @@ const mapStateToProps = ({ session, entities: { users }}, ownProps) => {
   // put regex here!!
   // for "notebooks/(###)/"
   // var regex = '/notebooks\/([0-9]*)\//';
-  const result = ownProps.location.pathname.match(/notebooks\/([0-9]*)/);
-  let notebookId = result || "";
+  const notebookResult = ownProps.location.pathname.match(/notebooks\/([0-9]*)/);
+  let notebookId = notebookResult || "";
   if( notebookId !== ""){
-    notebookId = result[1];
+    notebookId = notebookResult[1];
   }  
-  // const notebookId = ownProps.location.pathname.slice(11, 13) || "";
+  const tagResult = ownProps.location.pathname.match(/tags\/([0-9]*)/);
+  let tagId = tagResult || "";
+  if (tagId !== "") {
+    tagId = tagResult[1];
+  } 
   return {
     currentUser: users[session.id],
     notebookId: notebookId,
+    tagId: tagId,
   };
 };
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { Link } from 'react-router-dom';
 
 class TagIndexItem extends React.Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class TagIndexItem extends React.Component {
       <div className="single-tag-row">
         <div className="single-tag">
           <div className="single-tag-contents">
-            <div className="tag-name">{this.props.tag.name}</div>
+            <Link to={`/tags/${this.props.tag.id}`}><div className="tag-name">{this.props.tag.name}</div></Link>
             <div><i className="fa fa-caret-down" onClick={this.togglePopup}></i></div>
           </div>
           <div className={`tag-delete ${popup}`} >

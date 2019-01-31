@@ -4,19 +4,25 @@ import { Link } from 'react-router-dom';
 
 class NoteIndex extends React.Component {
   componentDidMount() {
-    if(this.props.title === "All Notes"){
+    if(this.props.filterType === 'All'){
       this.props.fetchNotes();
-    } else {
+    } else if (this.props.filterType === 'Notebook'){
       this.props.fetchNotebook(this.props.notebookId);
+    } else if (this.props.filterType === 'Tag'){
+      this.props.fetchTag(this.props.tagId);
     }
   }
 
   componentDidUpdate(prevProps){
-    if (this.props.title !== 'All Notes'){
+    if (this.props.filterType === 'Notebook'){
       if (prevProps.notebookId !== this.props.notebookId) {
         this.props.fetchNotebook(this.props.notebookId);
       }
-    }    
+    } else if (this.props.filterType === 'Tag'){
+      if (prevProps.tagId !== this.props.tagId) {
+        this.props.fetchTag(this.props.tagId);
+      }
+    }  
   }
 
   componentWillUnmount(){
@@ -33,7 +39,6 @@ class NoteIndex extends React.Component {
         <p className="note-count">{this.props.notes.length} notes</p>
       )
     }
-     
   }
 
 
@@ -41,7 +46,9 @@ class NoteIndex extends React.Component {
     const { notes } = this.props;
     const noteList = notes.map(note => {
       return <NoteIndexItem key={note.id} note={note} deleteNote={this.props.deleteNote}
-      fetchNotebook={this.props.fetchNotebook} title={this.props.title} notebook={this.props.notebook} />
+      fetchNotebook={this.props.fetchNotebook} title={this.props.title} 
+      notebook={this.props.notebook} filterType={this.props.filterType}
+      tag={this.props.tag} />
     });
     return (
       <div className="note-sidebar">

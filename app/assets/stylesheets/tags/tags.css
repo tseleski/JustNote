@@ -154,9 +154,7 @@
   display: inline-flex;
   vertical-align: middle;
   align-items: center;
-  white-space: nowrap
-  /* transform: rotate(90deg);
-  transform-origin: right top; */
+  white-space: nowrap;
 }
 
 .tag-form-list-item:hover {

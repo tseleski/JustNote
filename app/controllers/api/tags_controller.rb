@@ -6,6 +6,7 @@ class Api::TagsController < ApplicationController
 
   def show
     @tag = current_user.tags.find(params[:id])
+    @notes = @tag.notes
     render "api/tags/show"
   end
 
@@ -20,6 +21,7 @@ class Api::TagsController < ApplicationController
       @newTagging = Tagging.new({ note_id: noteId, tag_id: @tag.id })
     end
     if @newTagging.save
+      @notes = @tag.notes
       render "api/tags/show"
     else
       if @tag.name == "" 

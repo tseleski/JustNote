@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchNotes, createNote, deleteNote, clearNotes } from '../../actions/note_actions';
+import { createNote, deleteNote, clearNotes } from '../../actions/note_actions';
 import { fetchNotebook } from '../../actions/notebook_actions';
 import NoteIndex from './note_index';
 
@@ -18,6 +18,7 @@ const mapStateToProps = (state, ownProps) => {
     notebookId: ownProps.match.params.notebookId,
     notebook: notebook,
     title: title,
+    filterType: 'Notebook'
   };
 };
 

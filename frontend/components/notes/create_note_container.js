@@ -5,10 +5,12 @@ import NoteForm from './note_form';
 
 const mapStateToProps = (state, ownProps) => {
   const notebookId = ownProps.match.params.notebookId;
+  const tagId = ownProps.match.params.tagId;
   return {
     note: { title: '', content: '', plain_text: '', notebook: { title: '' } },
     formType: 'Create',
     notebookId: notebookId,
+    tagId: tagId
   };
 };
 

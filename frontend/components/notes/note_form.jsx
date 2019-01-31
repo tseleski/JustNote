@@ -42,9 +42,12 @@ class NoteForm extends React.Component{
   handleSubmit(e){
     e.preventDefault();
     if (this.props.formType === 'Create'){
-      const note = Object.assign(this.state, { notebook_id: this.props.notebookId});
       if( this.props.notebookId ){
+        const note = Object.assign(this.state, { notebook_id: this.props.notebookId});
         this.props.action(note).then(this.props.history.push(`/notebooks/${this.props.notebookId}`));
+      } else if (this.props.tagId){
+        const noteWithTagId = Object.assign(this.state, { tag_id: this.props.tagId })
+        this.props.action(noteWithTagId).then(this.props.history.push(`/tags/${this.props.tagId}`));
       } else {
         this.props.action(note).then(this.props.history.push(`/notes`));
       }
@@ -95,9 +98,6 @@ class NoteForm extends React.Component{
     if(this.state.notebooks){
       const notebooks = Object.values(this.state.notebooks);
     }
-    // const notebookList = notebooks.map( notebook => {
-    //   return 
-    // })
     if (this.props.formType === 'Edit'){
       return (
         <div className="above-form">

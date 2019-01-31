@@ -19,7 +19,7 @@ class NoteIndexItem extends React.Component {
       }
       return content.substring(0, 80) + "...";
     };
-    if (this.props.title === 'All Notes'){
+    if (this.props.filterType === 'All'){
       return (
         <Link to={`/notes/${this.props.note.id}/edit`}><div className="single-note">
           <div className="top">
@@ -31,7 +31,7 @@ class NoteIndexItem extends React.Component {
           </div>
         </div></Link>
       )
-    } else {
+    } else if (this.props.filterType === 'Notebook') {
       return (
         <Link to={`/notebooks/${this.props.notebook.id}/notes/${this.props.note.id}/edit`}><div className="single-note">
           <div className="top">
@@ -43,9 +43,21 @@ class NoteIndexItem extends React.Component {
           </div>
         </div></Link>
       )
-    }
-    
+    } else if (this.props.filterType === 'Tag'){
+      return (
+        <Link to={`/tags/${this.props.tag.id}/notes/${this.props.note.id}/edit`}><div className="single-note">
+          <div className="top">
+            <p className="note-title">{this.props.note.title}</p>
+            <p className="note-content">{limitedContent(this.props.note.plain_text)}</p>
+          </div>
+          <div className="timestamp">
+            <p className="note-updated">{format(this.props.note.updated_at)}</p>
+          </div>
+        </div></Link>
+      )
+    } 
   }
+  
 }
 
 export default NoteIndexItem;

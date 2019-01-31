@@ -7,10 +7,11 @@ export const CLEAR_TAGS  = 'CLEAR_TAGS';
 export const RECEIVE_TAG_ERRORS = 'RECEIVE_TAG_ERRORS';
 export const CLEAR_TAG_ERRORS = 'CLEAR_TAG_ERRORS';
 
-const receiveTag = (tag) => {
+const receiveTag = (tagWithNotes) => {
   return {
     type: RECEIVE_TAG,
-    tag
+    tag: tagWithNotes.tag,
+    notes: tagWithNotes.notes
   };
 };
 
@@ -55,13 +56,13 @@ export const fetchTags = () => dispatch => {
 
 export const fetchTag = id => dispatch => {
   return TagAPIUtil.fetchTag(id).then(
-    tag => dispatch(receiveTag(tag))
+    tagWithNotes => dispatch(receiveTag(tagWithNotes))
   );
 };
 
 export const createTag = (tag) => dispatch => {
   return TagAPIUtil.createTag(tag).then(
-    tag => dispatch(receiveTag(tag)),
+    tagWithNotes => dispatch(receiveTag(tagWithNotes)),
     err => dispatch(receiveErrors(err.responseJSON))
   );
 };

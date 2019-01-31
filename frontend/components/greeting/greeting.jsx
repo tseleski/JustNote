@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Main from '../Main';
 
-const Greeting = ({ currentUser, logout, notebookId }) => {
+const Greeting = ({ currentUser, logout, notebookId, tagId }) => {
   if (currentUser) {
     return (
-      <Main currentUser={currentUser} logout={logout} notebookId={notebookId} />
+      <Main currentUser={currentUser} logout={logout} 
+      notebookId={notebookId} tagId={tagId} />
     )
   } else {
     return (

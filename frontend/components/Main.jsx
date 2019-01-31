@@ -6,7 +6,8 @@ import { Link } from 'react-router-dom';
 class Main extends React.Component {
   render(){
     return (
-      <Side currentUser={this.props.currentUser} logout={this.props.logout} notebookId={this.props.notebookId} /> 
+      <Side currentUser={this.props.currentUser} logout={this.props.logout} 
+      notebookId={this.props.notebookId} tagId={this.props.tagId} /> 
     )
   }
 } 

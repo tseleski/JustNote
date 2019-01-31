@@ -10,6 +10,7 @@ const tagsReducer = (state = {}, action ) => {
     case RECEIVE_TAGS:
       return merge({}, action.tags);
     case RECEIVE_NOTE:
+    debugger
       return action.tags;
     case RECEIVE_TAG:
       newState = merge({}, state);

@@ -15,8 +15,11 @@ class Api::NotesController < ApplicationController
     @note = Note.new(note_params)
     @note.notebook = current_user.notebooks.first unless @note.notebook
     @notebook = @note.notebook
-    @tags = @note.tags
     if @note.save
+      if params[:note][:tag_id]
+        Tagging.create!({ note_id: @note.id, tag_id: params[:note][:tag_id]})
+      end
+      @tags = @note.tags
       render "api/notes/show"
     else
       render json: @note.errors.full_messages, status: 422
