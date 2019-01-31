@@ -99,15 +99,18 @@
 
 
 .session-form .password-input.hide {
+    /* was using the following 3 lines: */
     position: relative;
     max-height: 0px;
     overflow: hidden;
+
     /* transition-duration: 1s;
     transition-timing-function: ease-in;
     transition-property: opacity, max-height;
     transition-delay: 0s;
     opacity: 1;  */
-    transition: max-height 25s cubic-bezier(0, 0.80, 0, 1);;
+
+    /* transition: max-height 25s cubic-bezier(0, 0.80, 0, 1);; */
 }
 
 .session-form .password-input.show {
@@ -121,7 +124,7 @@
 
   /*  was using the following 2 lines: */
   max-height: 100px;
-  transition: max-height 25s cubic-bezier(0, 0.80, 0, 1);;
+  transition: max-height 40s cubic-bezier(0, 0.80, 0, 1);;
 
 
   /* transition-delay: 0s;
@@ -134,6 +137,7 @@
   transform-origin: top;
   animation: grow-down cubic-bezier(0.785, 0.135, 0.15, 0.86) 0.5s forwards;
   animation-delay: 0.2s; */
+
   position: relative;
   color: #333333;
   border: 1px solid #e6e6e6;
@@ -172,13 +176,14 @@
 .top-section h2 {
   font-family: 'Volkhov', serif;
   font-weight: bold;
-  font-size: 36px;
+  font-size: 40px;
   margin-top: -40px;
   margin-bottom: 20px;
 }
 
 .top-section .subtitle {
   margin-bottom: 44px;
+  font-weight: 300;
 }
 
 .bottom-section {

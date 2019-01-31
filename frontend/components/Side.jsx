@@ -5,7 +5,7 @@ import LogoutPopup from './popups/logout_popup';
 class Side extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { popup: false };
+    this.state = { popup: false, notesSelected: false, notebooksSelected: false, tagsSelected: false };
     this.togglePopup = this.togglePopup.bind(this);
     this.closePopup = this.closePopup.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -55,11 +55,41 @@ class Side extends React.Component {
   }
 
   renderLinks() {
+    const notesSelected = this.state.notesSelected ? "selected" : "";
+    const notebooksSelected = this.state.notebooksSelected ? "selected" : "";
+    const tagsSelected = this.state.tagsSelected ? "selected" : "";
     return (
       <ul className="links">
-        <Link to={'/notes'}><li key="1"><i className="fa fa-sticky-note"></i>All Notes</li></Link>
-        <Link to={'/notebooks'}><li key="2"><i className="fa fa-book"></i>Notebooks</li></Link>
-        <Link to={'/tags'}><li key="3"><i className="fa fa-tag"></i>Tags</li></Link>
+        <Link to={'/notes'}>
+          <li key="1" className={`${notesSelected}`} onClick={() => {
+              this.setState({ notesSelected: true})
+              this.setState({ notebooksSelected: false})
+              this.setState({ tagsSelected: false})
+            }}>
+            <i className="fa fa-sticky-note"></i>
+            <div>All Notes</div>
+          </li>
+        </Link>
+        <Link to={'/notebooks'}>
+          <li key="2" className={`${notebooksSelected}`} onClick={() => {
+            this.setState({ notebooksSelected: true })
+            this.setState({ notesSelected: false })
+            this.setState({ tagsSelected: false })
+          }}>
+            <i className="fa fa-book"></i>
+            <div>Notebooks</div>
+          </li>
+        </Link>
+        <Link to={'/tags'}>
+          <li key="3" className={`${tagsSelected}`} onClick={() => {
+            this.setState({ tagsSelected: true })
+            this.setState({ notesSelected: false })
+            this.setState({ notebooksSelected: false })
+          }}>
+            <i className="fa fa-tag"></i>
+            <div>Tags</div>
+          </li>
+        </Link>
       </ul>
     )
   }

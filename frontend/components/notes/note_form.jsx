@@ -12,12 +12,11 @@ class NoteForm extends React.Component{
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.toggleDelete = this.toggleDelete.bind(this);
-
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
-
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.closePopup = this.closePopup.bind(this);
+    // this.autoSave = this.autoSave.bind(this);
   }
 
   componentDidMount() {
@@ -56,6 +55,13 @@ class NoteForm extends React.Component{
       this.props.action(this.state);
     }
   }
+
+  // autoSave(){
+  //   if(this.props.formType === 'Edit'){
+  //     this.props.action(this.state);
+  //     // setTimeout("autoSave()", 60000);
+  //   }
+  // }
 
   handleEditorChange(content, delta, source, editor) {
     this.setState({
