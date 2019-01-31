@@ -9,6 +9,7 @@
   line-height: 1.5;
   padding: 0px 30px;
   height: 100vh;
+  overflow: scroll;
   box-sizing: border-box;
   color: #333;
 }

@@ -5,6 +5,8 @@
   width: calc(100% - 241px);
   font-weight: 400;
   box-sizing: border-box;
+  height: 100vh;
+  overflow: scroll;
 }
 
 .tags-header {
@@ -38,12 +40,12 @@
   display: inline-block;
   overflow: visible;
   margin-left: -15px;
+  position: relative;
 }
 
 .single-tag-contents {
   display: flex;
   padding: 0px 10px 0px 15px;
-  position: relative;
 }
 
 .fa-caret-down {
@@ -57,11 +59,7 @@
   cursor: pointer;
 }
 
-.tag-delete.hide {
-  display: none;
-}
-
-.tag-delete.show {
+.tag-delete {
   display: block;
   position: absolute;
   text-align: center;
@@ -69,12 +67,18 @@
   border: 1px solid #ededed;
   border-radius: 4px;
   width: 140px;
-  color: #666;
+  color: #555;
   font-size: 14px;
   font-weight: 300;
   background: #fff;
   z-index: 4;
   box-shadow: 0 0 0 1px rgba(99, 114, 130, .16), 0 4px 12px rgba(27, 39, 51, .08);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+.tag-delete.hide {
+  display: none;
 }
 
 .tag-delete:hover {
@@ -120,12 +124,6 @@
   height: 15px;
 }
 
-.tag-form-list-container {
-/* overflow-x: scroll;
-  max-width: none;
-  position: relative; */
-}
-
 .tag-form-list {
   display: flex;
   width: auto;
@@ -140,7 +138,7 @@
 }
 
 
-.tag-form-list-item .tag-name{
+.tag-form-list-item .tag-name {
   position: relative;
   padding: 0 12px;
   height: 28px;

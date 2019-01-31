@@ -17,6 +17,7 @@ class NoteForm extends React.Component{
     this.closeModal = this.closeModal.bind(this);
 
     this.handleEditorChange = this.handleEditorChange.bind(this);
+    this.closePopup = this.closePopup.bind(this);
   }
 
   componentDidMount() {
@@ -68,12 +69,16 @@ class NoteForm extends React.Component{
   }
 
   openModal() {
-    this.toggleDelete();
     this.setState({ modalIsOpen: true });
   }
 
   closeModal() {
     this.setState({ modalIsOpen: false });
+  }
+
+  closePopup() {
+
+    this.setState({ deleteModal: false });
   }
 
   handleDelete(e){
@@ -105,9 +110,11 @@ class NoteForm extends React.Component{
             <i className="fa fa-book"></i>
             {this.props.notebook}
           </div>
-          <div className="three-dots">
-            <p onClick={this.toggleDelete} className="dots">...</p>
-            <p onClick={this.openModal} className={`delete-note ${deleteModal}`}>Delete note</p>
+          <div className="three-dots" >
+            <div onClick={this.toggleDelete} onBlur={this.closePopup} tabIndex="0">
+              <div className="dots" >...</div>
+              <div onClick={this.openModal} className={`delete-note ${deleteModal}`}>Delete note</div>
+            </div>
             <Modal
               isOpen={this.state.modalIsOpen}
               onAfterOpen={this.afterOpenModal}

@@ -87,13 +87,8 @@ class SessionForm extends React.Component {
     if (this.props.formType === 'Sign Up') {
       return (
         <form onSubmit={this.handleSubmit}>
-          <label>
-            <input type="text" placeholder="Email" value={this.state.email} onChange={this.update('email')} />
-          </label>
-          <label>
+            <input className="email-input" type="text" placeholder="Email" value={this.state.email} onChange={this.update('email')} />
             <input className="sign-up-password" type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
-          </label>
-
           <input type="submit" value={this.props.formType} />
         </form>
       )
@@ -102,12 +97,8 @@ class SessionForm extends React.Component {
       const text = this.state.revealedPassword ? "Sign In" : "Continue";
       return (
         <form onSubmit={this.handleSubmit}>
-          <label>
-            <input type="text" placeholder="Email address" value={this.state.email} onChange={this.update('email')} />
-          </label>
-    
+            <input className="email-input" type="text" placeholder="Email address" value={this.state.email} onChange={this.update('email')} />
             <input  className={`password-input ${passwordReveal}`} type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
-
           <input type="submit" value={text} />
           {this.renderDemo()}
         </form>

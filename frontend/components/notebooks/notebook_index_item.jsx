@@ -18,6 +18,7 @@ class NotebookIndexItem extends React.Component {
     this.togglePopup = this.togglePopup.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.toggleShow = this.toggleShow.bind(this);
+    this.closePopup = this.closePopup.bind(this);
   }
 
   componentDidMount(){
@@ -32,6 +33,10 @@ class NotebookIndexItem extends React.Component {
 
   closeModal() {
     this.setState({ modalIsOpen: false });
+  }
+
+  closePopup() {
+    this.setState({ popup: false });
   }
 
   handleDotsClick(e){
@@ -70,10 +75,12 @@ class NotebookIndexItem extends React.Component {
     const popup = this.state.popup ? "show" : "hide";
     return (
       <>
-        <div className="three-dots" onClick={this.togglePopup}>...</div>
-        <div className={`actions-list ${popup}`}>
-          <li onClick={this.openModal}>Rename Notebook</li>
-          <li onClick={() => this.props.deleteNotebook(this.state.id)}>Delete Notebook</li>
+        <div onClick={this.togglePopup} onBlur={this.closePopup} tabIndex="0">
+          <div className="three-dots">...</div>
+          <div className={`actions-list ${popup}`}>
+            <li onClick={this.openModal}>Rename Notebook</li>
+            <li onClick={() => this.props.deleteNotebook(this.state.id)}>Delete Notebook</li>
+          </div>
         </div>
       </>
     )
