@@ -9,13 +9,21 @@ class TagForm extends React.Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.noteId != this.props.noteId) {
+      this.props.clearTagErrors();
+      this.setState({ name: ''});
+    }
+  }
+
   handleKeyPress(e){
     if(e.key === 'Enter'){
       console.log(this.state.name);
       const that = this;
-      this.props.createTag({ name: this.state.name.toLowerCase(), note_id: this.props.noteId }).then(
+      this.props.createTag({ name: this.state.name.trim().toLowerCase(), note_id: this.props.noteId }).then(
         () => that.setState({ name: '' })
       ).then(() => that.props.clearTagErrors());
+      this.setState({ name: '' });
     }
   }
 
@@ -53,7 +61,6 @@ class TagForm extends React.Component {
             {this.renderTags()}
           </div>
         </div>
-        {this.renderErrors()}
         <div className="tag-input">
           <i className="fa fa-tag" aria-hidden="true"></i>
           <input type="text" placeholder="Add Tag" 

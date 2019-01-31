@@ -10,7 +10,7 @@ class Api::TagsController < ApplicationController
   end
 
   def create
-    @tag = current_user.tags.find_by(name: params[:name])
+    @tag = current_user.tags.find_by(name: params[:tag][:name])
     noteId = params[:tag][:note_id].to_i
     if @tag 
       @newTagging = Tagging.new({ note_id: noteId, tag_id: @tag.id })
