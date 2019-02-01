@@ -359,6 +359,7 @@
   color: #7a8083;
   font-weight: 300;
   max-width: 195px;
+  cursor: default;
 }
 
 .notebook-name .fa-book {
