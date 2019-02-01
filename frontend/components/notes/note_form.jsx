@@ -159,19 +159,21 @@ class NoteForm extends React.Component{
 
   render(){
     const toolbar = [
-      [{ 'header': [1, 2, 3, false] }],
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
       [{ 'font': [] }],
       ['bold', 'italic', 'underline', 'strike'],
       [{ 'list': 'ordered' }, { 'list': 'bullet' }],
       [{ 'indent': '-1' }, { 'indent': '+1' }],
       [{ 'direction': 'rtl' }],
 
-      // [{ 'size': ['small', false, 'large', 'huge'] }],
+      [{ 'size': ['small', false, 'large', 'huge'] }],
 
       [{ 'color': [] }, { 'background': [] }],
       [{ 'align': [] }],
 
-      ['clean'],
+      ['blockquote', 'code-block'],
+      [{ 'script': 'sub' }, { 'script': 'super' }],
+      ['clean']
     ];
     return (
       <div className="note-panel">
