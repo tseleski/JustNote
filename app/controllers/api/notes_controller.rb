@@ -33,7 +33,7 @@ class Api::NotesController < ApplicationController
   end
 
   def update
-    @note = current_user.notes.find(params[:id]).includes(:tags)
+    @note = current_user.notes.find(params[:id])
     if @note.update(note_params)
       @notebook = @note.notebook
       @tags = @note.tags

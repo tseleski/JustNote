@@ -15,12 +15,13 @@ class TagIndexItem extends React.Component {
   }
 
   openModal() {
-    this.togglePopup();
+    this.setState({ deletePopup: false });
     this.setState({ modalIsOpen: true });
   }
 
   closeModal(e) {
     this.setState({ modalIsOpen: false });
+    this.setState({ deletePopup: false });
   }
 
   togglePopup() {

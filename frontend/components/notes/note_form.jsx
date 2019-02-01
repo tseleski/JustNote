@@ -16,7 +16,6 @@ class NoteForm extends React.Component{
     this.closeModal = this.closeModal.bind(this);
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.closePopup = this.closePopup.bind(this);
-    // this.autoSave = this.autoSave.bind(this);
   }
 
   componentDidMount() {
@@ -52,16 +51,10 @@ class NoteForm extends React.Component{
         this.props.action(this.state).then(this.props.history.push(`/notes`));
       }
     } else {
+      debugger
       this.props.action(this.state);
     }
   }
-
-  // autoSave(){
-  //   if(this.props.formType === 'Edit'){
-  //     this.props.action(this.state);
-  //     // setTimeout("autoSave()", 60000);
-  //   }
-  // }
 
   handleEditorChange(content, delta, source, editor) {
     this.setState({
@@ -97,7 +90,6 @@ class NoteForm extends React.Component{
       }
       that.props.history.push(newPath)
     }).then(that.closeModal);
-      // that.props.history.push(that.props.history.location.pathname.match(/\/notebooks\/[0-9]*/)[0])).then(that.closeModal);
   }
 
   toggleDelete(){

@@ -5,12 +5,14 @@ import { merge } from 'lodash';
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
 const notesReducer = (state = {}, action) => {
+  debugger
   Object.freeze(state);
   let newState;
   switch (action.type) {
     case RECEIVE_NOTES:
       return merge({}, action.notes);
     case RECEIVE_NOTE:
+      debugger
       newState = merge({}, state);
       newState[action.note.id] = action.note;
       return newState;
