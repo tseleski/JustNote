@@ -14,8 +14,6 @@ JustNote uses React, Redux, and ES6 to generate the frontend of the app and Ruby
 
 Users can easily and securely log in or sign up to access their account.
 
-![auth](app/assets/images/sign_up.png)
-
 <img src="https://github.com/tseleski/JustNote/blob/master/app/assets/images/sign_up.png" width="60%">
 
 ## Notes
