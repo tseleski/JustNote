@@ -51,7 +51,6 @@ class NoteForm extends React.Component{
         this.props.action(this.state).then(this.props.history.push(`/notes`));
       }
     } else {
-      debugger
       this.props.action(this.state);
     }
   }
@@ -136,6 +135,15 @@ class NoteForm extends React.Component{
           </div> 
         </div>
       )
+    } else {
+      return (
+        <div className="above-form">
+          <div className="notebook-name">
+          </div>
+          <div className="three-dots" >
+          </div>
+        </div>
+      )
     }
   }
 
@@ -151,18 +159,19 @@ class NoteForm extends React.Component{
 
   render(){
     const toolbar = [
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'header': [1, 2, 3, false] }],
       [{ 'font': [] }],
-      ['italic', 'underline', 'strike'],
+      ['bold', 'italic', 'underline', 'strike'],
       [{ 'list': 'ordered' }, { 'list': 'bullet' }],
       [{ 'indent': '-1' }, { 'indent': '+1' }],
       [{ 'direction': 'rtl' }],
 
-      [{ 'size': ['small', false, 'large', 'huge'] }],
+      // [{ 'size': ['small', false, 'large', 'huge'] }],
 
       [{ 'color': [] }, { 'background': [] }],
       [{ 'align': [] }],
 
+      ['clean'],
     ];
     return (
       <div className="note-panel">

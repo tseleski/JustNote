@@ -49,8 +49,8 @@ const Greeting = ({ currentUser, logout, notebookId, tagId }) => {
 
         <footer className="footer">
           <ul className="footer-links">
-            <li><a href='https://github.com/tseleski'>Github</a></li>
-            <li><a href='https://linkedin.com/in/tamar-seleski-bb0a4192/'>LinkedIn</a></li>
+            <li><a href='https://github.com/tseleski'><i className="fab fa-github"></i>  Github</a></li>
+            <li><a href='https://linkedin.com/in/tamar-seleski-bb0a4192/'><i className="fab fa-linkedin"></i>  LinkedIn</a></li>
           </ul>
 
         </footer>

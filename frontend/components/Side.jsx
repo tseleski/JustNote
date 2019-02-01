@@ -5,7 +5,7 @@ import LogoutPopup from './popups/logout_popup';
 class Side extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { popup: false, notesSelected: false, notebooksSelected: false, tagsSelected: false };
+    this.state = { popup: false, notesSelected: true, notebooksSelected: false, tagsSelected: false };
     this.togglePopup = this.togglePopup.bind(this);
     this.closePopup = this.closePopup.bind(this);
     this.handleLogout = this.handleLogout.bind(this);

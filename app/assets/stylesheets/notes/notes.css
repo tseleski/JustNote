@@ -276,7 +276,7 @@
 }
 
 .note-form form {
-  height: 90%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -315,12 +315,16 @@
   min-height: 45px;
   width: 80px;
   margin: 0 auto;
-  color: #b3b3b3;
+  /* color: #b3b3b3; */
+  color: #fff;
   box-sizing: border-box;
+  background-color:  #00a82d;
+  margin-bottom: 10px;
 }
 
 .note-form input[type="submit"]:hover {
-  background: #f2f2f2;
+  /* background: #f2f2f2; */
+  background-color: #0e753d;
 }
 
 .note-count {
@@ -340,7 +344,7 @@
 }
 
 .above-form {
-  padding: 20px 0px 10px 25px;
+  padding: 20px 0px 10px 10px;
   margin-left: 20px;
   margin-right: 20px;
   height: 56px;
