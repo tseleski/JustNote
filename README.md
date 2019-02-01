@@ -22,12 +22,12 @@ Users can organize their thoughts into notes that they can create, edit, and del
 
 ## Notebooks
 
-Users can organize their notes into notebooks. Notebooks can be created, renamed, and deleted. They can fiter notes based on a notebook.
+Users can organize their notes into notebooks. Notebooks can be created, renamed, and deleted. Users can filter notes based on a notebook.
 
 
 ## Tags
 
-Users can place multiple tags on notes. They can remove tags from individual notes, or delete tags altogether. They can fiter notes based on a tag.
+Users can place multiple tags on notes. They can remove tags from individual notes, or delete a tag from all their notes. They can filter notes based on a tag.
 
 ![tags](app/assets/images/tags.png)
 
@@ -35,5 +35,6 @@ Users can place multiple tags on notes. They can remove tags from individual not
 
 React and Redux create a simple and intuitive user interface. Users can easily navigate to where they want to go.
 
-
-
+### Future features:
+1. Auto-save
+2. Search notes
