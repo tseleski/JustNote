@@ -1,15 +1,14 @@
 # JustNote
 
-[JustNote](https://just-note.herokuapp.com) is a single-page clone of [Evernote](https://evernote.com/), a web application used to create and edit rich text formatted notes to help you stay on top of all the many parts of your life!
+[JustNote Live!](https://just-note.herokuapp.com) 
 
-## Technologies
-JustNote uses React, Redux, and ES6 to generate the frontend of the app and Ruby on Rails, with an SQL database to manage data on the backend.
+JustNote is a single-page clone of [Evernote](https://evernote.com/), a web application used to create and edit rich text formatted notes to help you stay on top of all the many parts of your life!
 
 ## Home Page
 ![homePage](app/assets/images/home_page.png)
 
-# Key Features
 
+# Key Features
 ## User Authentication
 
 Users can easily and securely log in or sign up to access their account.
@@ -31,10 +30,52 @@ Users can place multiple tags on notes. They can remove tags from individual not
 
 ![tags](app/assets/images/tags.png)
 
+> To make dropdown menus (like the "remove tag" one above) disappear on a click outside of the component, I used the following code:
+
+```javascript
+
+togglePopup(e) {
+    e.stopPropagation();
+    this.setState({ deletePopup: !this.state.deletePopup });
+  }
+
+  closePopup() {
+    this.setState({ deletePopup: false });
+  }
+
+  //..
+
+  render(){
+    const popup = this.state.deletePopup ? "show" : "hide";
+    return (
+      <div className="tag-form-list-item" onClick={this.togglePopup} onBlur={this.closePopup} tabIndex="0">
+        <div className="tag-relative">
+          <div className="tag-name">{this.props.tag.name}
+            <div className="caret-container">
+              <i className="fa fa-caret-down"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      // Additional component rendering
+    )
+  }
+
+  ```
+
 ## Easy UI
 
 React and Redux create a simple and intuitive user interface. Users can easily navigate to where they want to go.
 
-### Future features:
-1. Auto-save
-2. Search notes
+## Technologies Used
+
+* Ruby on Rails
+* PostgreSQL
+* React.js and Redux
+* Javascript (ES6)
+* HTML and CSS
+
+### Future Features
+
+* Auto-save
+* Search notes
