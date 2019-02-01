@@ -1,24 +1,39 @@
-# README
+# JustNote
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+JustNote is a single-page clone of Evernote, a web application used to create and edit rich text formatted notes to help you stay on top of all the many parts of your life!
 
-Things you may want to cover:
+## Technologies
+JustNote uses React, Redux, and ES6 to generate the frontend of the app and Ruby on Rails, with an SQL database to manage data on the backend.
 
-* Ruby version
+## Home Page
+![homePage](app/assets/images/home_page.png)
 
-* System dependencies
+# Key Features
 
-* Configuration
+## User Authentication
 
-* Database creation
+Users can easily and securely log in or sign up to access their account.
 
-* Database initialization
+![auth](app/assets/images/sign_up.png)
 
-* How to run the test suite
+## Notes
 
-* Services (job queues, cache servers, search engines, etc.)
+Users can organize their thoughts into notes that they can create, edit, and delete. They can format their text using rich text formatting.
 
-* Deployment instructions
+## Notebooks
 
-* ...
+Users can organize their notes into notebooks. Notebooks can be created, renamed, and deleted. They can fiter notes based on a notebook.
+
+
+## Tags
+
+Users can place multiple tags on notes. They can remove tags from individual notes, or delete tags altogether. They can fiter notes based on a tag.
+
+![tags](app/assets/images/tags.png)
+
+## Easy UI
+
+React and Redux create a simple and intuitive user interface. Users can easily navigate to where they want to go.
+
+
+
