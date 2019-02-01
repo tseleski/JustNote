@@ -15,7 +15,6 @@ export const receiveNotes = (notes) => {
 };
 
 export const receiveNote = (noteWithNotebookAndTags) => {
-  debugger
   return {
     type: RECEIVE_NOTE,
     note: noteWithNotebookAndTags.note,
@@ -74,7 +73,6 @@ export const createNote = (note) => dispatch => {
 };
 
 export const updateNote = (note) => dispatch => {
-  debugger
   return NoteAPIUtil.updateNote(note).then(
     noteWithNotebookAndTags => dispatch(receiveNote(noteWithNotebookAndTags)),
     err =>  dispatch(receiveErrors(err.responseJSON))

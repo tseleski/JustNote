@@ -41,6 +41,13 @@
   margin: 0 auto;
 }
 
+.session-form-errors {
+  display: flex;
+  flex-direction: column;
+  height: 60px;
+  align-items: middle;
+}
+
 .session-form input[type=text]{
   color: #333333;
   border: 1px solid #e6e6e6;
@@ -49,7 +56,7 @@
   text-align: left;
   width: 100%;
   margin-bottom: 10px;
-  margin-top: 70px;
+  margin-top: 10px;
 }
 
 .session-form input[type=text]:focus, input[type=password]:focus {
@@ -182,7 +189,7 @@
 }
 
 .top-section .subtitle {
-  margin-bottom: 44px;
+  margin-bottom: 54px;
   font-weight: 300;
 }
 
