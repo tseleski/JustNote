@@ -12,5 +12,6 @@ Rails.application.routes.draw do
     resources :taggings, only: [:destroy]
     get 'users/emails', to: 'users#check_email'
     get 'taggings/remove', to: 'taggings#remove'
+    get 'search', to: 'notes#search'
   end
 end

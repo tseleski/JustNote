@@ -10,6 +10,7 @@ export const START_LOADING_NOTE = 'START_LOADING_NOTE';
 
 
 export const receiveNotes = (notes) => {
+  debugger
   return {
     type: RECEIVE_NOTES,
     notes
@@ -60,7 +61,6 @@ export const startLoadingNote = () => ({
 });
 
 export const fetchNotes = () => dispatch => {
-  // dispatch(startLoadingAllNotes());
   return NoteAPIUtil.fetchNotes().then(
     notes => {
       return dispatch(receiveNotes(notes));
@@ -93,5 +93,12 @@ export const updateNote = (note) => dispatch => {
 export const deleteNote = (id) => dispatch => {
   return NoteAPIUtil.deleteNote(id).then(
     note =>  dispatch(removeNote(note))
+  );
+};
+
+export const searchNotes = (query) => dispatch => {
+  debugger
+  return NoteAPIUtil.searchNotes(query).then(
+    notes => dispatch(receiveNotes(notes))
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
 import LogoutPopup from './popups/logout_popup';
+import SearchContainer from './search/search_container';
 
 class Side extends React.Component {
   constructor(props) {
@@ -94,12 +95,19 @@ class Side extends React.Component {
     )
   }
 
+  renderSearch(){
+    return (
+      <SearchContainer />
+    )
+  }
+
   render() {
     if (this.props.notebookId) {
       return (
         <div className="side-nav">
           <div className="top">
             {this.renderEmail()}
+            {this.renderSearch()}
             <div className="new-note">
               <Link to={`/notebooks/${this.props.notebookId}/notes/new`}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link>
             </div>
@@ -112,6 +120,7 @@ class Side extends React.Component {
         <div className="side-nav">
           <div className="top">
             {this.renderEmail()}
+            {this.renderSearch()}
             <div className="new-note">
               <Link to={`/tags/${this.props.tagId}/notes/new`}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link>
             </div>
@@ -124,6 +133,7 @@ class Side extends React.Component {
         <div className="side-nav">
           <div className="top">
             {this.renderEmail()}
+            {this.renderSearch()}
             <div className="new-note">
               <Link to={'/notes/new'}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link>
             </div>

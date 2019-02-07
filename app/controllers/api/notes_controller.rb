@@ -43,6 +43,17 @@ class Api::NotesController < ApplicationController
     end
   end
 
+  def search
+    @query = params[:query]
+    @notes = current_user.notes.select do |note|
+      title = note.title.downcase
+      plain_text = note.plain_text.downcase
+      (title.include?(@query) || plain_text.include?(@query))
+    end
+
+    render "api/notes/index"
+  end
+
   private
 
   def note_params

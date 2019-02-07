@@ -34,3 +34,11 @@ export const deleteNote = (id) => (
     url: `/api/notes/${id}`,
   })
 );
+
+export const searchNotes = (query) => (
+  $.ajax({
+    method: 'GET',
+    url: "/api/search",
+    data: { query }
+  })
+);

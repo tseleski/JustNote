@@ -19,7 +19,7 @@ class NoteIndexItem extends React.Component {
       }
       return content.substring(0, 80) + "...";
     };
-    if (this.props.filterType === 'All'){
+    if (this.props.filterType === 'All' || 'Search'){
       return (
         <Link to={`/notes/${this.props.note.id}/edit`}><div className="single-note">
           <div className="top">

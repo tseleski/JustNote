@@ -19,7 +19,6 @@
   width: 1220px;
 }
 
-
 .splash-page .logo {
   display: flex;
   align-items: center;
@@ -78,7 +77,6 @@
 .splash-page .content button {
   background: white;
   color: #00A82D;
-  /* padding: 20px; */
   border-radius: 3px;
   font-family: "Soleil_Bold", Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -86,10 +84,9 @@
   text-transform: uppercase;
   box-sizing: border-box;
   text-align: center;
-  /* font-weight: bold; */
   letter-spacing: 1.5px;
   padding: 18px 32px 17px;
-  transition: .3s background ease-in-out;
+  transition: .3s ease-in-out;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -166,6 +163,7 @@
   font-size: 48px;
   line-height: 64px;
   background: #F7F7F7;
+  cursor: default;
 }
 
 .content2 .focus-img{
@@ -180,8 +178,6 @@
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  /* background: #00A82D; */
-  /* color: #fff; */
   background:  #fff;
   color: #c5ccca;
   letter-spacing: .5px;
