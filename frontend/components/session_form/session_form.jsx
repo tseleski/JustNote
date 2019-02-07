@@ -8,8 +8,9 @@ class SessionForm extends React.Component {
     this.state = Object.assign(prevState, { email: '', password: '' });
     this.handleSubmit = this.handleSubmit.bind(this);
     this.revealPassword = this.revealPassword.bind(this);
-    this.handleDemoLogin = this.handleDemoLogin.bind(this);
-    // this.handleEmailChange = this.handleEmailChange.bind(this);
+    // this.handleDemoLogin = this.handleDemoLogin.bind(this);
+    this.loginAsGuest = this.loginAsGuest.bind(this);
+    this.loginAsGuestHelper = this.loginAsGuestHelper.bind(this);
   }
 
   componentDidMount(){
@@ -70,27 +71,59 @@ class SessionForm extends React.Component {
   }
 
   renderDemo(){
-    if (this.props.formType === 'Sign In') {
+    if (this.props.formType === 'Sign Up') {
       return (
-        <button className="demo" onClick={this.handleDemoLogin}>Demo Login</button>
+        <button className="demo" onClick={this.loginAsGuest}>Sign Up As Guest</button>
       )
     }
   }
 
-  handleDemoLogin(e){
-    e.preventDefault();
-    e.stopPropagation();
-    this.props.demoLogin();
+  // handleDemoLogin(e){
+  //   e.preventDefault();
+  //   e.stopPropagation();
+  //   this.props.demoLogin();
+  // }
+
+
+  loginAsGuest() {
+    const emailArr = 'demouser@gmail.com'.split('');
+    const passwordArr = 'demouser'.split('');
+    this.setState({ email: '', password: '' }, () =>
+      this.loginAsGuestHelper(emailArr, passwordArr)
+    );
+  }
+
+  loginAsGuestHelper(emailArr, passwordArr) {
+    if (emailArr.length > 0) {
+      this.setState(
+        { email: this.state.email + emailArr.shift() }, () => {
+          window.setTimeout(() =>
+            this.loginAsGuestHelper(emailArr, passwordArr), 75);
+        }
+      );
+    } else if (passwordArr.length > 0) {
+      this.setState(
+        { password: this.state.password + passwordArr.shift() }, () => {
+          window.setTimeout(() =>
+            this.loginAsGuestHelper(emailArr, passwordArr), 100);
+        }
+      );
+    } else {
+      this.props.demoLogin(this.state);
+    }
   }
 
   renderForm(){
     if (this.props.formType === 'Sign Up') {
       return (
-        <form onSubmit={this.handleSubmit}>
-            <input className="email-input" type="text" placeholder="Email" value={this.state.email} onChange={this.update('email')} />
-            <input className="sign-up-password" type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
-          <input type="submit" value={this.props.formType} />
-        </form>
+        <>
+          <form onSubmit={this.handleSubmit}>
+              <input className="email-input" type="text" placeholder="Email" value={this.state.email} onChange={this.update('email')} />
+              <input className="sign-up-password" type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
+            <input type="submit" value={this.props.formType} />
+          </form>
+          {this.renderDemo()}
+        </>
       )
     } else {
       const passwordReveal = this.state.revealedPassword ? "show" : "hide";
@@ -100,7 +133,6 @@ class SessionForm extends React.Component {
             <input className="email-input" type="text" placeholder="Email address" value={this.state.email} onChange={this.update('email')} />
             <input  className={`password-input ${passwordReveal}`} type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
           <input type="submit" value={text} />
-          {this.renderDemo()}
         </form>
       )
     }

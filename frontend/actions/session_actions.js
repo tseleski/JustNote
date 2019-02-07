@@ -38,14 +38,6 @@ const receiveValidEmail = () => {
   };
 };
 
-const demoUser = { email: 'demouser@gmail.com', password: 'demouser'};
-export const demoLogin = () => dispatch => {
-  return SessionAPIUtil.login(demoUser).then(
-    user => dispatch(receiveCurrentUser(user)),
-    err => dispatch(receiveErrors(err.responseJSON))
-  );
-};
-
 export const login = (user) => dispatch => {
   return SessionAPIUtil.login(user).then(
     user => dispatch(receiveCurrentUser(user)),
