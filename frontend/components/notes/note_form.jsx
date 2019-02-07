@@ -3,6 +3,8 @@ import { withRouter } from 'react-router-dom';
 import Modal from 'react-modal';
 import ReactQuill from 'react-quill';
 import TagForm from '../tags/tag_form';
+import { Link } from 'react-router-dom';
+import Loading from '../loader';
 
 class NoteForm extends React.Component{
   constructor(props){
@@ -19,6 +21,7 @@ class NoteForm extends React.Component{
   }
 
   componentDidMount() {
+    this.props.clearNoteErrors();
     if(this.props.formType === 'Edit'){
       this.props.fetchNote(this.props.id).then(({ note, notebook }) => {
         this.setState({ id: note.id, title: note.title, content: note.content});
@@ -31,27 +34,41 @@ class NoteForm extends React.Component{
   }
 
   componentDidUpdate(prevProps){
-    if(prevProps.note.id != this.props.id) {
+    if (Boolean(prevProps.note.id) && (prevProps.note.id != this.props.id)) {
+      this.props.clearNoteErrors();
       this.props.fetchNote(this.props.id).then(({ note }) => {
         this.setState({ id: note.id, title: note.title, content: note.content, plain_text: note.plain_text });
       });
     }
   }
 
+  componentWillUnmount(){
+    this.props.clearNoteErrors();
+  }
+
   handleSubmit(e){
     e.preventDefault();
     if (this.props.formType === 'Create'){
-      if( this.props.notebookId ){
+      if (this.props.notebookId) {
         const note = Object.assign(this.state, { notebook_id: this.props.notebookId});
-        this.props.action(note).then(this.props.history.push(`/notebooks/${this.props.notebookId}`));
+        this.props.action(note).then(() => {
+          this.props.clearNoteErrors();
+          this.props.history.push(`/notebooks/${this.props.notebookId}`);
+        });
       } else if (this.props.tagId){
         const noteWithTagId = Object.assign(this.state, { tag_id: this.props.tagId });
-        this.props.action(noteWithTagId).then(this.props.history.push(`/tags/${this.props.tagId}`));
+        this.props.action(noteWithTagId).then(() => {
+          this.props.clearNoteErrors();
+          this.props.history.push(`/tags/${this.props.tagId}`);
+        });
       } else {
-        this.props.action(this.state).then(this.props.history.push(`/notes`));
+        this.props.action(this.state).then(() => {
+          this.props.clearNoteErrors();
+          this.props.history.push(`/notes`);
+        });
       }
     } else {
-      this.props.action(this.state);
+      this.props.action(this.state).then(this.props.clearNoteErrors());
     }
   }
 
@@ -75,7 +92,6 @@ class NoteForm extends React.Component{
   }
 
   closePopup() {
-
     this.setState({ deleteModal: false });
   }
 
@@ -103,10 +119,10 @@ class NoteForm extends React.Component{
     if (this.props.formType === 'Edit'){
       return (
         <div className="above-form">
-          <div className="notebook-name">
+          <Link to={`/notebooks/${this.props.notebook.id}`}><div className="notebook-name">
             <i className="fa fa-book"></i>
-            {this.props.notebook}
-          </div>
+            <div className="notebook-title">{this.props.notebook.title}</div>
+          </div></Link>
           <div className="three-dots" >
             <div onClick={this.toggleDelete} onBlur={this.closePopup} tabIndex="0">
               <div className="dots" >...</div>
@@ -147,6 +163,19 @@ class NoteForm extends React.Component{
     }
   }
 
+  renderErrors() {
+    return (
+      <ul className="note-form-errors errors">
+        {this.props.errors.map((error, i) => (
+          <li key={`error-${i}`}>
+            {error}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+
+
   renderTagForm(){
     if (this.props.formType === 'Edit') {
       return(
@@ -158,6 +187,9 @@ class NoteForm extends React.Component{
   }
 
   render(){
+      // if (this.props.loading){
+      //   return <Loading />
+      // } else {
     const toolbar = [
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
       [{ 'font': [] }],
@@ -194,6 +226,7 @@ class NoteForm extends React.Component{
             </div>
             <input type="submit" value="Save"/>
           </form>
+          {this.renderErrors()}
         </div>
         <div className="tag-footer">
           {this.renderTagForm()}

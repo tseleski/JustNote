@@ -18,7 +18,6 @@ class TagForm extends React.Component {
 
   handleKeyPress(e){
     if(e.key === 'Enter'){
-      console.log(this.state.name);
       const that = this;
       this.props.createTag({ name: this.state.name.trim().toLowerCase(), note_id: this.props.noteId }).then(
         () => that.setState({ name: '' })

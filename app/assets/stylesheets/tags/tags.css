@@ -172,6 +172,9 @@
 .tag-remove.show {
   display: block;
   position: absolute;
+  bottom: 9px;
+  margin-bottom: 75px;
+  padding: 8px 0;
   background-color: #fff;
   z-index: 2;
   border-radius: 4px;
@@ -181,14 +184,14 @@
   box-shadow: 0 0 0 1px rgba(99, 114, 130, .16), 0 4px 12px rgba(27, 39, 51, .08);
 }
 
-.tag-remove-row {
+.tag-remove-row, .filter-by-tag-row {
   padding: 6px 20px;
   color: #666;
   font-size: 14px;
   font-weight: 300;
 }
 
-.tag-remove-row:hover {
+.tag-remove-row:hover, .filter-by-tag-row:hover{
   background: #f2f2f2;
   cursor: pointer;
 }

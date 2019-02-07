@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { fetchNote, updateNote, deleteNote } from '../../actions/note_actions';
+import { fetchNote, updateNote, deleteNote, startLoadingNote, clearNoteErrors } from '../../actions/note_actions';
 import { fetchNotebooks } from '../../actions/notebook_actions';
 import { createTag, clearTagErrors, removeTagging } from '../../actions/tag_actions';
 import React from 'react';
@@ -20,7 +20,10 @@ class EditNoteForm extends React.Component {
       fetchNote={fetchNote} deleteNote={deleteNote} notebook={this.props.notebook}
       fetchNotebooks={this.props.fetchNotebooks} createTag={this.props.createTag}
       tagErrors={this.props.tagErrors} clearTagErrors={this.props.clearTagErrors} 
-      tags={this.props.tags} removeTagging={this.props.removeTagging} />
+      tags={this.props.tags} removeTagging={this.props.removeTagging}
+      startLoadingNote={this.props.startLoadingNote}
+      loading={this.props.loading} errors={this.props.errors}
+      clearNoteErrors={this.props.clearNoteErrors} />
     );
   }
 }
@@ -35,9 +38,11 @@ const mapStateToProps = (state, ownProps) => {
   return {
     note: note,
     formType: 'Edit',
-    notebook: notebook.title,
+    notebook: notebook,
     tagErrors: state.errors.tags,
     tags: noteTags,
+    loading: state.ui.loading.noteShowLoading,
+    errors: state.errors.notes
   };
 };
 
@@ -50,6 +55,8 @@ const mapDispatchToProps = dispatch => {
     createTag: tag => dispatch(createTag(tag)),
     clearTagErrors: () => dispatch(clearTagErrors()),
     removeTagging: (tagging) => dispatch(removeTagging(tagging)),
+    startLoadingNote: () => dispatch(startLoadingNote()),
+    clearNoteErrors: () => dispatch(clearNoteErrors()),
   };
 };
 

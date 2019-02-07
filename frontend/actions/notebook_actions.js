@@ -74,6 +74,7 @@ export const deleteNotebook = (id) => dispatch => {
   return NotebookAPIUtil.deleteNotebook(id).then(
     notebookWithNotes => {
       return dispatch(removeNotebook(notebookWithNotes.notebook));
-    }
+    },
+    err => dispatch(receiveErrors(err.responseJSON))
   );
 };

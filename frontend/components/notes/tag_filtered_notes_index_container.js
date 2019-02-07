@@ -17,7 +17,7 @@ const mapStateToProps = (state, ownProps) => {
 
     return note.tag_ids.includes(parseInt(tagId));
   });
-  const title = tag.name || 'Tag Name';
+  const title = tag.name || '';
   return {
     notes: filteredNotes,
     tagId: tagId,

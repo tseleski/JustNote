@@ -11,8 +11,6 @@ const mapStateToProps = state => {
   }
   const sorted_notes = Object.values(state.entities.notes).sort(sortFunction);
   return {
-    // sort the notes by date here
-    // notes: Object.values(state.entities.notes)
     notes: sorted_notes,
     title: 'All Notes',
     filterType: 'All'

@@ -23,9 +23,13 @@ class Api::NotebooksController < ApplicationController
 
   def destroy
     @notebook = current_user.notebooks.find(params[:id])
-    @notebook.destroy
-    @notes = @notebook.notes
-    render "api/notebooks/show"
+    if current_user.notebooks.length == 1
+      render json: ['You must have at least one notebook'], status: 422
+    else
+      @notebook.destroy unless
+      @notes = @notebook.notes
+      render "api/notebooks/show"
+    end
   end
 
   def update

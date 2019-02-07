@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link, Redirect } from 'react-router-dom';
 
 class TagFormItem extends React.Component {
   constructor(props) {
@@ -8,6 +8,7 @@ class TagFormItem extends React.Component {
     this.state = Object.assign(prevState, this.props);
     this.togglePopup = this.togglePopup.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
     this.closePopup = this.closePopup.bind(this);
   }
 
@@ -31,20 +32,28 @@ class TagFormItem extends React.Component {
       });
   }
 
+  handleFilter(e) {
+    e.preventDefault();
+    this.props.history.push(`/tags/${this.props.tag.id}`);
+  }
+
   render(){
     const popup = this.state.deletePopup ? "show" : "hide";
     return (
       <div className="tag-form-list-item" onClick={this.togglePopup} onBlur={this.closePopup} tabIndex="0">
+        <div className={`tag-remove ${popup}`} >
+          <div className="tag-remove-row" onClick={this.handleRemove}>
+            <div>Remove</div>
+          </div>
+          <div className="filter-by-tag-row" onClick={this.handleFilter}>
+            <div>Filter by Tag</div>
+          </div>
+        </div>
         <div className="tag-relative">
           <div className="tag-name">{this.props.tag.name}
             <div className="caret-container">
               <i className="fa fa-caret-down"></i>
             </div>
-          </div>
-        </div>
-        <div className={`tag-remove ${popup}`} >
-          <div className="tag-remove-row" onClick={this.handleRemove}>
-            <div>Remove tag</div>
           </div>
         </div>
       </div>

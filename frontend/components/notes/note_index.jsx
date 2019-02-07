@@ -1,6 +1,6 @@
 import React from 'react';
 import NoteIndexItem from './note_index_item';
-import { Link } from 'react-router-dom';
+import Loading from '../loader';
 
 class NoteIndex extends React.Component {
   componentDidMount() {

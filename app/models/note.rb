@@ -1,5 +1,6 @@
 class Note < ApplicationRecord
-  validates :title, :content, :notebook_id, presence: true
+  validates :title, :notebook_id, presence: true
+  validates :plain_text, presence: true
 
   belongs_to :notebook
 
