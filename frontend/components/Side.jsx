@@ -1,11 +1,11 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import LogoutPopup from './popups/logout_popup';
 
 class Side extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { popup: false, notesSelected: true, notebooksSelected: false, tagsSelected: false };
+    this.state = { popup: false, notesSelected: false, notebooksSelected: false, tagsSelected: false };
     this.togglePopup = this.togglePopup.bind(this);
     this.closePopup = this.closePopup.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
@@ -55,9 +55,9 @@ class Side extends React.Component {
   }
 
   renderLinks() {
-    const notesSelected = this.state.notesSelected ? "selected" : "";
-    const notebooksSelected = this.state.notebooksSelected ? "selected" : "";
-    const tagsSelected = this.state.tagsSelected ? "selected" : "";
+    const notesSelected = (!this.props.history.location.pathname.match(/notebooks/) && !this.props.history.location.pathname.match(/tags/) ) ? "selected" : "";
+    const notebooksSelected = this.props.history.location.pathname.match(/notebooks/) ? "selected" : "";
+    const tagsSelected = this.props.history.location.pathname.match(/tags/) ? "selected" : "";
     return (
       <ul className="links">
         <Link to={'/notes'}>
@@ -135,4 +135,4 @@ class Side extends React.Component {
   }
 }
 
-export default Side;
+export default withRouter(Side);

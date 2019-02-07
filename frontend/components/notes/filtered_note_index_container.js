@@ -12,10 +12,14 @@ const mapStateToProps = (state, ownProps) => {
   const allNotes = Object.values(state.entities.notes);
   const sorted_notes = allNotes.sort(sortFunction);
   const notebook = state.entities.notebooks[ownProps.match.params.notebookId] || {};
-  const title = notebook.title || 'Notebook Title';
+  const notebookId = ownProps.match.params.notebookId;
+  const filteredNotes = sorted_notes.filter(note => {
+    return note.notebook_id == notebookId;
+  });
+  const title = notebook.title || '';
   return {
-    notes: sorted_notes,
-    notebookId: ownProps.match.params.notebookId,
+    notes: filteredNotes,
+    notebookId: notebookId,
     notebook: notebook,
     title: title,
     filterType: 'Notebook'

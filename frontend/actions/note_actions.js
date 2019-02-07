@@ -5,6 +5,8 @@ export const REMOVE_NOTE = 'REMOVE_NOTE';
 export const CLEAR_NOTES = 'CLEAR_NOTES';
 export const RECEIVE_NOTE_ERRORS = 'RECEIVE_NOTE_ERRORS';
 export const CLEAR_NOTE_ERRORS = 'CLEAR_NOTE_ERRORS';
+export const START_LOADING_ALL_NOTES = 'START_LOADING_ALL_NOTES';
+export const START_LOADING_NOTE = 'START_LOADING_NOTE';
 
 
 export const receiveNotes = (notes) => {
@@ -49,7 +51,16 @@ export const clearNoteErrors = () => {
   };
 };
 
+export const startLoadingAllNotes = () => ({
+  type: START_LOADING_ALL_NOTES
+});
+
+export const startLoadingNote = () => ({
+  type: START_LOADING_NOTE
+});
+
 export const fetchNotes = () => dispatch => {
+  // dispatch(startLoadingAllNotes());
   return NoteAPIUtil.fetchNotes().then(
     notes => {
       return dispatch(receiveNotes(notes));
