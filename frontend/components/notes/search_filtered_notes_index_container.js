@@ -10,10 +10,6 @@ const mapStateToProps = (state, ownProps) => {
   }
   const allNotes = Object.values(state.entities.notes);
   const sorted_notes = allNotes.sort(sortFunction);
-  // const filteredNotes = sorted_notes.filter(note => {
-  //   return note.tag_ids.includes(parseInt(tagId));
-  // });
-  debugger
   const title = "All Notes";
   return {
     notes: sorted_notes,

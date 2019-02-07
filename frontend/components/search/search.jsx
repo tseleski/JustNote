@@ -9,20 +9,17 @@ class Search extends React.Component {
     this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
-
   update(field) {
     return (e) => this.setState({ [field]: e.target.value });
   }
 
   handleKeyPress(e) {
-    debugger
     if (e.key === 'Enter' && this.state.query.length > 0) {
       this.handleSubmit(e);
     }
   }
 
   handleSubmit(e) {
-    debugger
     e.preventDefault();
     e.stopPropagation();
     this.props.search(this.state.query.toLowerCase()).then(() => {

@@ -4,7 +4,6 @@ import Loading from '../loader';
 
 class NoteIndex extends React.Component {
   componentDidMount() {
-    debugger
     if(this.props.filterType === 'All'){
       this.props.fetchNotes();
     } else if (this.props.filterType === 'Notebook'){
@@ -27,7 +26,6 @@ class NoteIndex extends React.Component {
   }
 
   componentWillUnmount(){
-    debugger
     if(!this.props.history.location.pathname === "/search"){
       this.props.clearNotes();
     }

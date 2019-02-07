@@ -5,7 +5,6 @@ import { merge } from 'lodash';
 import { LOGOUT_CURRENT_USER } from "../actions/session_actions";
 
 const notesReducer = (state = {}, action) => {
-  debugger
   Object.freeze(state);
   let newState;
   switch (action.type) {
