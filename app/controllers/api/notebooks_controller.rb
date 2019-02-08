@@ -26,7 +26,7 @@ class Api::NotebooksController < ApplicationController
     if current_user.notebooks.length == 1
       render json: ['You must have at least one notebook'], status: 422
     else
-      @notebook.destroy unless
+      @notebook.destroy
       @notes = @notebook.notes
       render "api/notebooks/show"
     end

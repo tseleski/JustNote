@@ -392,7 +392,7 @@
   color: #7a8083;
   font-weight: 300;
   max-width: 195px;
-  cursor: default;
+  cursor: pointer;
   display: flex;
   align-items: center;
 }
