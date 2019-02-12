@@ -199,3 +199,7 @@
 .tag-remove.hide {
   display: none;
 }
+
+.no-tags {
+  color: #a6a6a6;
+}

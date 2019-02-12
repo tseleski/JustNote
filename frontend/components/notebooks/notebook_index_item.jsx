@@ -27,6 +27,10 @@ class NotebookIndexItem extends React.Component {
     });
   }
 
+  componentWillUnmount(){
+    this.props.clearNotebookErrors();
+  }
+
   openModal() {
     this.props.clearNotebookErrors();
     this.setState({ modalIsOpen: true });
