@@ -8,8 +8,19 @@ class NoteIndexItem extends React.Component {
     super(props);
   }
 
-  componentDidMount(){
-    // this.props.fetchNotebook(this.props.note.notebook_id);
+  renderLink(filterType){
+    switch (filterType) {
+      case 'All':
+        return `/notes/${ this.props.note.id }/edit`;
+      case 'Notebook':
+        return `/notebooks/${this.props.notebook.id}/notes/${this.props.note.id}/edit`;
+      case 'Tag':
+        return `/tags/${this.props.tag.id}/notes/${this.props.note.id}/edit`;
+      case 'Search':
+        return `/search/notes/${this.props.note.id}/edit`;
+      default:
+        break;
+    }
   }
 
   render(){
@@ -19,43 +30,17 @@ class NoteIndexItem extends React.Component {
       }
       return content.substring(0, 80) + "...";
     };
-    if (this.props.filterType === 'All' || 'Search'){
-      return (
-        <Link to={`/notes/${this.props.note.id}/edit`}><div className="single-note">
-          <div className="top">
-            <p className="note-title">{this.props.note.title}</p>
-            <p className="note-content">{limitedContent(this.props.note.plain_text)}</p>
-          </div>
-          <div className="timestamp">
-            <p className="note-updated">{format(this.props.note.updated_at)}</p>
-          </div>
-        </div></Link>
-      )
-    } else if (this.props.filterType === 'Notebook') {
-      return (
-        <Link to={`/notebooks/${this.props.notebook.id}/notes/${this.props.note.id}/edit`}><div className="single-note">
-          <div className="top">
-            <p className="note-title">{this.props.note.title}</p>
-            <p className="note-content">{limitedContent(this.props.note.plain_text)}</p>
-          </div>
-          <div className="timestamp">
-            <p className="note-updated">{format(this.props.note.updated_at)}</p>
-          </div>
-        </div></Link>
-      )
-    } else if (this.props.filterType === 'Tag'){
-      return (
-        <Link to={`/tags/${this.props.tag.id}/notes/${this.props.note.id}/edit`}><div className="single-note">
-          <div className="top">
-            <p className="note-title">{this.props.note.title}</p>
-            <p className="note-content">{limitedContent(this.props.note.plain_text)}</p>
-          </div>
-          <div className="timestamp">
-            <p className="note-updated">{format(this.props.note.updated_at)}</p>
-          </div>
-        </div></Link>
-      )
-    } 
+    return (
+      <Link to={this.renderLink(this.props.filterType)}><div className="single-note">
+        <div className="top">
+          <p className="note-title">{this.props.note.title}</p>
+          <p className="note-content">{limitedContent(this.props.note.plain_text)}</p>
+        </div>
+        <div className="timestamp">
+          <p className="note-updated">{format(this.props.note.updated_at)}</p>
+        </div>
+      </div></Link>
+    )
   }
   
 }

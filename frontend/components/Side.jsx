@@ -101,47 +101,31 @@ class Side extends React.Component {
     )
   }
 
-  render() {
+  renderNewNoteLink(){
     if (this.props.notebookId) {
-      return (
-        <div className="side-nav">
-          <div className="top">
-            {this.renderEmail()}
-            {this.renderSearch()}
-            <div className="new-note">
-              <Link to={`/notebooks/${this.props.notebookId}/notes/new`}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link>
-            </div>
-          </div>
-          {this.renderLinks()}
-        </div>
-      )
+      return `/notebooks/${this.props.notebookId}/notes/new`;
     } else if (this.props.tagId) {
-      return (
-        <div className="side-nav">
-          <div className="top">
-            {this.renderEmail()}
-            {this.renderSearch()}
-            <div className="new-note">
-              <Link to={`/tags/${this.props.tagId}/notes/new`}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link>
-            </div>
-          </div>
-          {this.renderLinks()}
-        </div>
-      )
+      return `/tags/${this.props.tagId}/notes/new`;
+    } else if (this.props.history.location.pathname.match(/search/)){
+      return `/search/notes/new`;
     } else {
-      return (
-        <div className="side-nav">
-          <div className="top">
-            {this.renderEmail()}
-            {this.renderSearch()}
-            <div className="new-note">
-              <Link to={'/notes/new'}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link>
-            </div>
-          </div>
-          {this.renderLinks()}
-        </div>
-      )
+      return '/notes/new';
     }
+  }
+
+  render() {
+    return (
+      <div className="side-nav">
+        <div className="top">
+          {this.renderEmail()}
+          {this.renderSearch()}
+          <div className="new-note">
+            <Link to={this.renderNewNoteLink()}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link>
+          </div>
+        </div>
+        {this.renderLinks()}
+      </div>
+    )
   }
 }
 

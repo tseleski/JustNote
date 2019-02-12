@@ -20,6 +20,7 @@ const App = () => (
     <Switch>
       <AuthRoute exact path="/signup" component={SignupFormContainer} />
       <AuthRoute exact path="/login" component={LoginFormContainer} />
+      <AuthRoute path="/" component={GreetingContainer} />
     </Switch>
     
     <div className="all-content">
@@ -38,7 +39,9 @@ const App = () => (
           <ProtectedRoute path="/tags/:tagId" component={TagFilteredNotesIndexContainer} />
           <ProtectedRoute exact path="/tags/:tagId/notes/:noteId/edit" component={EditNoteContainer} />
           <ProtectedRoute exact path="/tags/:tagId/notes/new" component={CreateNoteContainer} />
-          <ProtectedRoute exact path="/search" component={SearchFilteredNotesIndexContainer} />
+          <ProtectedRoute path="/search" component={SearchFilteredNotesIndexContainer} />
+          <ProtectedRoute exact path="/search/notes/:noteId/edit" component={EditNoteContainer} />
+          <ProtectedRoute exact path="/search/notes/new" component={CreateNoteContainer} />
         </div>
       </div>
     </div>

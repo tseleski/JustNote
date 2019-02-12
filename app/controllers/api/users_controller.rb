@@ -12,7 +12,10 @@ class Api::UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      Notebook.create!({title: 'General', user_id: @user.id})
+      @nb1 = Notebook.create!({title: 'General', user_id: @user.id})
+      @n1 = Note.create!({title: 'My first note', content: "<p>Type here to add to your note's content!</p>", plain_text: "Type here to add to your note's content!", notebook_id: @nb1.id})
+      @t1 = Tag.create!(name: "JustNote", user_id: @user.id)
+      Tagging.create!(note_id: @n1.id, tag_id: @t1.id)
       login(@user)
       render "api/users/show"
     else

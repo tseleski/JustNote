@@ -10,7 +10,7 @@ const mapStateToProps = (state, ownProps) => {
   }
   const allNotes = Object.values(state.entities.notes);
   const sorted_notes = allNotes.sort(sortFunction);
-  const title = "All Notes";
+  const title = "Search Results:";
   return {
     notes: sorted_notes,
     title: title,

@@ -61,6 +61,11 @@ class NoteForm extends React.Component{
           this.props.clearNoteErrors();
           this.props.history.push(`/tags/${this.props.tagId}`);
         });
+      } else if (this.props.history.location.pathname.match(/search/)){
+        this.props.action(this.state).then(() => {
+          this.props.clearNoteErrors();
+          this.props.history.push(`/search`);
+        });
       } else {
         this.props.action(this.state).then(() => {
           this.props.clearNoteErrors();
@@ -99,11 +104,14 @@ class NoteForm extends React.Component{
     e.preventDefault();
     const that = this;
     this.props.deleteNote(this.props.id).then(() => {
-      let newPath = that.props.history.location.pathname.match(/\/notebooks\/[0-9]*/) || "/notes";
+      let newPath = that.props.history.location.pathname.match(/\/notebooks\/[0-9]*/) || 
+        that.props.history.location.pathname.match(/\/tags\/[0-9]*/) ||
+        that.props.history.location.pathname.match(/\/search\//) ||
+        "/notes";
       if (newPath !== "/notes"){
         newPath = newPath[0];
       }
-      that.props.history.push(newPath)
+      that.props.history.push(newPath);
     }).then(that.closeModal);
   }
 

@@ -14,7 +14,6 @@ const mapStateToProps = (state, ownProps) => {
   const tag = state.entities.tags[ownProps.match.params.tagId] || {};
   const tagId = ownProps.match.params.tagId;
   const filteredNotes = sorted_notes.filter(note => {
-
     return note.tag_ids.includes(parseInt(tagId));
   });
   const title = tag.name || '';
