@@ -51,6 +51,7 @@ const Greeting = ({ currentUser, logout, notebookId, tagId }) => {
           <ul className="footer-links">
             <li><a href='https://github.com/tseleski'><i className="fab fa-github"></i>  Github</a></li>
             <li><a href='https://linkedin.com/in/tamar-seleski-bb0a4192/'><i className="fab fa-linkedin"></i>  LinkedIn</a></li>
+            <li><a href='http://tamarseleski.com/'><i className="fas fa-user-alt"></i>  Personal Site</a></li>
           </ul>
 
         </footer>
