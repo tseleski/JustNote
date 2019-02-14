@@ -19,6 +19,11 @@
   width: 1220px;
 }
 
+.splash-page .navbar .navbar-left {
+  display: flex;
+  width: 55%;
+}
+
 .splash-page .logo {
   display: flex;
   align-items: center;
@@ -32,6 +37,30 @@
   line-height: 20px;
   font-weight: bold;
   margin-left: -70px;
+}
+
+.splash-page .personal-links {
+  display: flex;
+  justify-content: space-between;
+  width: 60%;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+  align-items: flex-end;
+  font-weight: 900;
+  padding-bottom: 10px;
+  margin-left: 70px;
+}
+
+.splash-page .personal-links li{
+  /* margin-left: 40px; */
+}
+
+.splash-page .personal-links li:hover {
+  color: #00a82d;
+  transition: color .1s ease-in-out;
 }
 
 .splash-page .content {
@@ -109,7 +138,7 @@
 
 .splash-page .buttons {
   display: flex;
-  align-items: center;
+  align-items: baseline;
 }
 
 .splash-page .buttons li {
@@ -127,6 +156,11 @@
   transition: .1s color 
 }
 
+.splash-page .buttons li .or {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 14px;
+}
+
 .splash-page .buttons .login {
   height: 40px;
   min-width: 120px;
@@ -140,6 +174,10 @@
   padding: 0 10px;
   transition: .3s border;
   font-weight: 600;
+}
+
+.splash-page .buttons .signup {
+  font-family: 'Montserrat', sans-serif;
 }
 
 .splash-page .buttons .signup:hover {

@@ -47,6 +47,8 @@
   background: #333;
   border-radius: 3px;
   padding: 0 32px 0 12px;
+  margin-left: -8px;
+  width: 95%;
 }
 
 .search-container .search-bar {
