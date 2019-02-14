@@ -195,20 +195,17 @@ class NoteForm extends React.Component{
   }
 
   render(){
-      // if (this.props.loading){
-      //   return <Loading />
-      // } else {
     const toolbar = [
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
       [{ 'font': [] }],
       ['bold', 'italic', 'underline', 'strike'],
+      [{ 'color': [] }, { 'background': [] }],
       [{ 'list': 'ordered' }, { 'list': 'bullet' }],
       [{ 'indent': '-1' }, { 'indent': '+1' }],
       [{ 'direction': 'rtl' }],
 
       [{ 'size': ['small', false, 'large', 'huge'] }],
-
-      [{ 'color': [] }, { 'background': [] }],
+      
       [{ 'align': [] }],
 
       ['blockquote', 'code-block'],
