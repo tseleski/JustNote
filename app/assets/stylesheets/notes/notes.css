@@ -221,11 +221,12 @@
   position: relative;
   width: 345px;
   will-change: transform;
-  overflow: hidden auto;
+  /* overflow: hidden auto; */
   border-right: 1px solid rgb(230, 230, 230);
 }
 
 .note-sidebar .fixed-header {
+  border-right: 1px solid rgb(230, 230, 230);
   background: #f8f8f8;
   padding-top: 30px;
   height: 120px;
@@ -262,7 +263,9 @@
 .all-notes {
   display: block;
   will-change: transform;
-  overflow: hidden auto;
+  /* overflow: hidden auto; */
+  overflow: scroll;
+  margin-top: -1px;
 }
 
 .single-note {
@@ -295,6 +298,7 @@
 
 .single-note:hover {
   background: #f2f2f2;
+  border-right: 1px solid rgb(230, 230, 230);
 }
 
 .single-note .selected {
@@ -568,6 +572,10 @@
   text-align: center;
   border-bottom: 1px solid rgb(230, 230, 230);
   border-top: 1px solid rgb(230, 230, 230);
+}
+
+.ql-editor {
+  min-height: 400px;
 }
 
 .ql-editor.ql-blank {
