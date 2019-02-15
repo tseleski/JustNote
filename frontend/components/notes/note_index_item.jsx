@@ -24,6 +24,12 @@ class NoteIndexItem extends React.Component {
   }
 
   render(){
+    let noteTitle;
+    if (this.props.note.title === '' || this.props.note.title === 'Untitled'){
+      noteTitle = 'Untitled';
+    } else {
+      noteTitle = this.props.note.title;
+    }
     const limitedContent = (content) => {
       if (content.split('').length < 80) {
         return content;
@@ -33,7 +39,7 @@ class NoteIndexItem extends React.Component {
     return (
       <Link to={this.renderLink(this.props.filterType)}><div className="single-note">
         <div className="top">
-          <p className="note-title">{this.props.note.title}</p>
+          <p className="note-title">{noteTitle}</p>
           <p className="note-content">{limitedContent(this.props.note.plain_text)}</p>
         </div>
         <div className="timestamp">

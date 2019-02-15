@@ -16,7 +16,7 @@ class Api::NotesController < ApplicationController
     @note.notebook = current_user.notebooks.first unless @note.notebook
     @notebook = @note.notebook
     if @note.save
-      if params[:note][:tag_id]
+      if params[:note][:tag_id] && params[:note][:tag_id] != ""
         Tagging.create!({ note_id: @note.id, tag_id: params[:note][:tag_id]})
       end
       @tags = @note.tags

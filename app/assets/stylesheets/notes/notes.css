@@ -308,7 +308,7 @@
 }
 
 .note-form form {
-  height: 92%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -577,7 +577,7 @@
 }
 
 .ql-editor {
-  min-height: 400px;
+  min-height: 215px;
 }
 
 .ql-editor.ql-blank {

@@ -41,11 +41,34 @@
   margin: 0 auto;
 }
 
+.session-form-or {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  color: #ababab;
+  font-size: 14px;
+}
+
+.session-form-or div {
+  padding-top: 5px;
+}
+
+.session-form-or hr {
+  display: inline-block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ababab;;
+  margin: 1em 0;
+  padding: 0;
+  width: 44%;
+}
+
 .session-form-errors {
   display: flex;
   flex-direction: column;
-  height: 60px;
+  max-height: 50px;
   align-items: middle;
+  font-size: 13px;
 }
 
 .session-form input[type=text]{
@@ -168,8 +191,28 @@
   color: #fff;
 }
 
-.session-form input[type=submit]:hover, .demo:hover{
+.session-form input[type=submit]:hover {
   background-color: #008f26;
+}
+
+.session-form .demo {
+  border: solid 1px #d0d0d0;
+  cursor: pointer;
+  background-color: #ffffff;
+  margin-top: 0;
+  margin-bottom: 5px;
+  border-radius: 7px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif, helvetica, arial, sans-serif;
+  font-style: normal;
+  font-weight: 200;
+  width: 100%;
+  height: 40px;
+  color: #6a6a6a;
+  margin-bottom: 13px;
+}
+
+.demo:hover{
+    background-color: #f8f8f8;
 }
 
 .session-form form {
@@ -185,11 +228,11 @@
   font-weight: bold;
   font-size: 40px;
   margin-top: -40px;
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .top-section .subtitle {
-  margin-bottom: 54px;
+  margin-bottom: 50px;
   font-weight: 300;
 }
 

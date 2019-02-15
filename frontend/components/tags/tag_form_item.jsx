@@ -52,7 +52,7 @@ class TagFormItem extends React.Component {
         <div className="tag-relative">
           <div className="tag-name">{this.props.tag.name}
             <div className="caret-container">
-              <i className="fa fa-caret-down"></i>
+              <i className="fa fa-angle-down"></i>
             </div>
           </div>
         </div>

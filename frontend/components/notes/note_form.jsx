@@ -4,7 +4,6 @@ import Modal from 'react-modal';
 import ReactQuill from 'react-quill';
 import TagForm from '../tags/tag_form';
 import { Link } from 'react-router-dom';
-import Loading from '../loader';
 
 class NoteForm extends React.Component{
   constructor(props){
@@ -17,6 +16,8 @@ class NoteForm extends React.Component{
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.handleEditorChange = this.handleEditorChange.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.autoSave = this.autoSave.bind(this);
     this.closePopup = this.closePopup.bind(this);
   }
 
@@ -42,39 +43,48 @@ class NoteForm extends React.Component{
     }
   }
 
-  componentWillUnmount(){
-    this.props.clearNoteErrors();
-  }
+  // componentWillUnmount(){
+    // this.props.clearNoteErrors();
+  // }
 
   handleSubmit(e){
     e.preventDefault();
-    if (this.props.formType === 'Create'){
-      if (this.props.notebookId) {
-        const note = Object.assign(this.state, { notebook_id: this.props.notebookId});
-        this.props.action(note).then(() => {
-          this.props.clearNoteErrors();
-          this.props.history.push(`/notebooks/${this.props.notebookId}`);
-        });
-      } else if (this.props.tagId){
-        const noteWithTagId = Object.assign(this.state, { tag_id: this.props.tagId });
-        this.props.action(noteWithTagId).then(() => {
-          this.props.clearNoteErrors();
-          this.props.history.push(`/tags/${this.props.tagId}`);
-        });
-      } else if (this.props.history.location.pathname.match(/search/)){
-        this.props.action(this.state).then(() => {
-          this.props.clearNoteErrors();
-          this.props.history.push(`/search`);
-        });
-      } else {
-        this.props.action(this.state).then(() => {
-          this.props.clearNoteErrors();
-          this.props.history.push(`/notes`);
-        });
-      }
-    } else {
+    // if (this.props.formType === 'Create'){
+    //   if (this.props.notebookId) {
+    //     const note = Object.assign(this.state, { notebook_id: this.props.notebookId});
+    //     this.props.action(note).then(() => {
+    //       this.props.clearNoteErrors();
+    //       this.props.history.push(`/notebooks/${this.props.notebookId}`);
+    //     });
+    //   } else if (this.props.tagId){
+    //     const noteWithTagId = Object.assign(this.state, { tag_id: this.props.tagId });
+    //     this.props.action(noteWithTagId).then(() => {
+    //       this.props.clearNoteErrors();
+    //       this.props.history.push(`/tags/${this.props.tagId}`);
+    //     });
+    //   } else if (this.props.history.location.pathname.match(/search/)){
+    //     this.props.action(this.state).then(() => {
+    //       this.props.clearNoteErrors();
+    //       this.props.history.push(`/search`);
+    //     });
+    //   } else {
+    //     this.props.action(this.state).then(() => {
+    //       this.props.clearNoteErrors();
+    //       this.props.history.push(`/notes`);
+    //     });
+    //   }
+    // } else {
       this.props.action(this.state).then(this.props.clearNoteErrors());
-    }
+    // }
+  }
+
+  autoSave(){
+    this.props.action(this.state);
+  }
+
+  handleTitleChange(e){
+    this.setState({ title: e.currentTarget.value });
+    setTimeout(() => this.autoSave(), 1000);
   }
 
   handleEditorChange(content, delta, source, editor) {
@@ -82,6 +92,7 @@ class NoteForm extends React.Component{
       content: content,
       plain_text: editor.getText().trim()
     });
+    setTimeout(() => this.autoSave(), 1000);
   }
 
   update(field){
@@ -195,6 +206,7 @@ class NoteForm extends React.Component{
   }
 
   render(){
+    debugger
     const toolbar = [
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
       [{ 'font': [] }],
@@ -216,9 +228,9 @@ class NoteForm extends React.Component{
       <div className="note-panel">
         {this.renderDelete()}
         <div className="note-form">
-          <form onSubmit={this.handleSubmit}>
+          <form>
             <div className="input-fields">
-              <input className="title-input" type="title" value={this.state.title} onChange={this.update('title')} placeholder="Title"/>
+              <input className="title-input" type="title" value={this.state.title} onChange={this.handleTitleChange} placeholder="Title"/>
               <ReactQuill
                 theme="snow"
                 modules={{ toolbar }}
@@ -229,9 +241,7 @@ class NoteForm extends React.Component{
               >
               </ReactQuill>
             </div>
-            <input type="submit" value="Save"/>
           </form>
-          {this.renderErrors()}
         </div>
         <div className="tag-footer">
           {this.renderTagForm()}

@@ -7,7 +7,8 @@ class Main extends React.Component {
   render(){
     return (
       <Side currentUser={this.props.currentUser} logout={this.props.logout} 
-      notebookId={this.props.notebookId} tagId={this.props.tagId} /> 
+      notebookId={this.props.notebookId} tagId={this.props.tagId}
+      createNote={this.props.createNote} /> 
     )
   }
 } 

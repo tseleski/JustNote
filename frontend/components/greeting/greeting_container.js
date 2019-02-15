@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import Greeting from './greeting';
 import { logout } from '../../actions/session_actions';
+import { createNote } from '../../actions/note_actions';
 
 const mapStateToProps = ({ session, entities: { users }}, ownProps) => {
   // put regex here!!
@@ -26,6 +27,7 @@ const mapStateToProps = ({ session, entities: { users }}, ownProps) => {
 const mapDispatchToProps = dispatch => {
   return {
     logout: () => dispatch(logout()),
+    createNote: note => dispatch(createNote(note)), 
   };
 };
 

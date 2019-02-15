@@ -73,7 +73,11 @@ class SessionForm extends React.Component {
   renderDemo(){
     if (this.props.formType === 'Sign Up') {
       return (
-        <button className="demo" onClick={this.loginAsGuest}>Sign Up As Guest</button>
+        <button className="demo" onClick={this.loginAsGuest}>Sign up as Guest</button>
+      )
+    } else if (this.props.formType === 'Sign In'){
+      return (
+        <button className="demo" onClick={() => this.props.processForm({ email: 'demouser@gmail.com', password: 'demouser' })}>Sign in as Guest</button>
       )
     }
   }
@@ -117,23 +121,38 @@ class SessionForm extends React.Component {
     if (this.props.formType === 'Sign Up') {
       return (
         <>
+          {this.renderDemo()}
+          <div className="session-form-or">
+            <hr/>
+            <div>or</div>
+            <hr />
+          </div>
+          {this.renderErrors()}
           <form onSubmit={this.handleSubmit}>
               <input className="email-input" type="text" placeholder="Email" value={this.state.email} onChange={this.update('email')} />
               <input className="sign-up-password" type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
             <input type="submit" value={this.props.formType} />
           </form>
-          {this.renderDemo()}
         </>
       )
     } else {
       const passwordReveal = this.state.revealedPassword ? "show" : "hide";
       const text = this.state.revealedPassword ? "Sign In" : "Continue";
       return (
-        <form onSubmit={this.handleSubmit}>
-            <input className="email-input" type="text" placeholder="Email address" value={this.state.email} onChange={this.update('email')} />
-            <input  className={`password-input ${passwordReveal}`} type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
-          <input type="submit" value={text} />
-        </form>
+        <>
+          {this.renderDemo()}
+          <div className="session-form-or">
+            <hr />
+            <div>or</div>
+            <hr />
+          </div>
+          {this.renderErrors()}
+          <form onSubmit={this.handleSubmit}>
+              <input className="email-input" type="text" placeholder="Email address" value={this.state.email} onChange={this.update('email')} />
+              <input  className={`password-input ${passwordReveal}`} type="password" placeholder="Password" value={this.state.password} onChange={this.update('password')} />
+            <input type="submit" value={text} />
+          </form>
+        </>
       )
     }
   }
@@ -161,7 +180,6 @@ class SessionForm extends React.Component {
             </Link>
             <p className="subtitle">Remember everything important.</p>
           </div>
-          {this.renderErrors()}
           {this.renderForm()}
           {links}
         </div>

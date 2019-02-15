@@ -10,6 +10,7 @@ class Side extends React.Component {
     this.togglePopup = this.togglePopup.bind(this);
     this.closePopup = this.closePopup.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
+    this.handleNewNote = this.handleNewNote.bind(this);
   }
 
   togglePopup(e){
@@ -31,6 +32,22 @@ class Side extends React.Component {
 
   handleLogout(){
     this.props.logout();
+  }
+
+  handleNewNote(){
+    const that = this;
+    this.props.createNote({title: 'Untitled', content: '', plain_text: '', 
+    notebook_id: this.props.notebookId, tag_id: this.props.tagId, }).then((payload) => {
+      if (this.props.notebookId) {
+        that.props.history.push(`/notebooks/${this.props.notebookId}/notes/${payload.note.id}/edit`);
+      } else if (this.props.tagId) {
+        that.props.history.push(`/tags/${this.props.tagId}/notes/${payload.note.id}/edit`);
+      } else if (that.props.history.location.pathname.match(/search/)) {
+        that.props.history.push(`/search/notes/${payload.note.id}/edit`);
+      } else {
+        that.props.history.push(`/notes/${payload.note.id}/edit`);
+      }
+    });
   }
 
   renderEmail() {
@@ -119,8 +136,9 @@ class Side extends React.Component {
         <div className="top">
           {this.renderEmail()}
           {this.renderSearch()}
-          <div className="new-note">
-            <Link to={this.renderNewNoteLink()}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link>
+          <div className="new-note" onClick={this.handleNewNote}>
+            <img className="new-note-img" src={window.newnoteURL} /><button>New Note</button>
+            {/* <Link to={this.renderNewNoteLink()}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link> */}
           </div>
         </div>
         {this.renderLinks()}

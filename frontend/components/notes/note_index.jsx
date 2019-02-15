@@ -32,13 +32,14 @@ class NoteIndex extends React.Component {
   }
 
   noteCount(){
+    const found = this.props.filterType === 'Search' ? "found" : "";
     if (this.props.notes.length === 1) {
       return (
-        <p className="note-count">{this.props.notes.length} note</p>
+        <p className="note-count">{`${this.props.notes.length} note ${found}`}</p>
       )
     } else {
       return (
-        <p className="note-count">{this.props.notes.length} notes</p>
+        <p className="note-count">{`${this.props.notes.length} notes ${found}`}</p>
       )
     }
   }
