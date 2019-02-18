@@ -53,19 +53,23 @@ class TagForm extends React.Component {
   }
 
   render(){
+    const inputBox = this.props.tags.length > 0 ? (<input type="text"
+      onKeyPress={this.handleKeyPress}
+      onChange={this.update('name')}
+      value={this.state.name} />) : (<input type="text" placeholder="Add Tag"
+        onKeyPress={this.handleKeyPress}
+        onChange={this.update('name')}
+        value={this.state.name} />)
     return (
       <div className="tag-form">
-        <div className="tag-form-list-container">
-          <div className="tag-form-list">
-            {this.renderTags()}
-          </div>
-        </div>
         <div className="tag-input">
           <i className="fa fa-tag" aria-hidden="true"></i>
-          <input type="text" placeholder="Add Tag" 
-          onKeyPress={this.handleKeyPress} 
-          onChange={this.update('name')}
-          value={this.state.name} />
+          <div className="tag-form-list-container">
+            <div className="tag-form-list">
+              {this.renderTags()}
+            </div>
+          </div>
+          {inputBox}
         </div>
       </div>
     )

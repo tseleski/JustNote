@@ -43,39 +43,9 @@ class NoteForm extends React.Component{
     }
   }
 
-  // componentWillUnmount(){
-    // this.props.clearNoteErrors();
-  // }
-
   handleSubmit(e){
     e.preventDefault();
-    // if (this.props.formType === 'Create'){
-    //   if (this.props.notebookId) {
-    //     const note = Object.assign(this.state, { notebook_id: this.props.notebookId});
-    //     this.props.action(note).then(() => {
-    //       this.props.clearNoteErrors();
-    //       this.props.history.push(`/notebooks/${this.props.notebookId}`);
-    //     });
-    //   } else if (this.props.tagId){
-    //     const noteWithTagId = Object.assign(this.state, { tag_id: this.props.tagId });
-    //     this.props.action(noteWithTagId).then(() => {
-    //       this.props.clearNoteErrors();
-    //       this.props.history.push(`/tags/${this.props.tagId}`);
-    //     });
-    //   } else if (this.props.history.location.pathname.match(/search/)){
-    //     this.props.action(this.state).then(() => {
-    //       this.props.clearNoteErrors();
-    //       this.props.history.push(`/search`);
-    //     });
-    //   } else {
-    //     this.props.action(this.state).then(() => {
-    //       this.props.clearNoteErrors();
-    //       this.props.history.push(`/notes`);
-    //     });
-    //   }
-    // } else {
-      this.props.action(this.state).then(this.props.clearNoteErrors());
-    // }
+    this.props.action(this.state).then(this.props.clearNoteErrors());
   }
 
   autoSave(){
@@ -145,7 +115,10 @@ class NoteForm extends React.Component{
           <div className="three-dots" >
             <div onClick={this.toggleDelete} onBlur={this.closePopup} tabIndex="0">
               <div className="dots" >...</div>
-              <div onClick={this.openModal} className={`delete-note ${deleteModal}`}>Delete note</div>
+              <div className={`delete-note ${deleteModal}`}>
+                <div onClick={this.openModal} className="delete-note-item">Delete note</div>
+                <div onClick={() => this.props.createNote(this.state)} className="delete-note-item">Duplicate note</div>
+              </div>
             </div>
             <Modal
               isOpen={this.state.modalIsOpen}
@@ -206,7 +179,6 @@ class NoteForm extends React.Component{
   }
 
   render(){
-    debugger
     const toolbar = [
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
       [{ 'font': [] }],
@@ -222,6 +194,7 @@ class NoteForm extends React.Component{
 
       ['blockquote', 'code-block'],
       [{ 'script': 'sub' }, { 'script': 'super' }],
+      ['link', 'image', 'video'],
       ['clean']
     ];
     return (

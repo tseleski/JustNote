@@ -107,10 +107,15 @@
 }
 
 .tag-form {
+  height: 50px;
   padding: 10px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  width: auto;
+  overflow-x: scroll;
+  overflow-y: visible;
+  margin-bottom: -10px;
 }
 
 .tag-form .caret-container {
@@ -141,6 +146,9 @@
   /* background: transparent;  optional: just make scrollbar invisible */
 }
 
+.tag-form-list-item .tag-relative{
+  position: relative;
+}
 
 .tag-form-list-item .tag-name {
   position: relative;
@@ -173,7 +181,7 @@
   display: block;
   position: absolute;
   bottom: 9px;
-  margin-bottom: 75px;
+  margin-bottom: 36px;
   padding: 8px 0;
   background-color: #fff;
   z-index: 2;

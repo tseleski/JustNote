@@ -327,7 +327,6 @@
 .note-form .input-fields{
   display: flex;
   flex-direction: column;
-  overflow: scroll;
 }
 
 .note-form .title-input {
@@ -342,7 +341,13 @@
   overflow-wrap: break-word;
   padding-top: 20px;
   box-sizing: border-box;
-  height: calc(100vh - 148px);
+  height: calc(100vh - 100px);
+}
+
+.quill {
+  overflow-y: scroll;
+  padding-left: 140px;
+  margin-left: -140px;
 }
 
 .note-form input[type="submit"] {
@@ -443,13 +448,13 @@
   color: #666;
   display: block;
   position: absolute;
-  width: 110px;
+  width: 150px;
   text-align: center;
   right: 0px;
   top: 30px;
   font-size: 14px;
+  padding: 10px 0;
   border: 1px solid rgb(230, 230, 230);
-  padding: 10px 15px;
   background: #fff;
   border-radius: 4px;
   box-shadow: 0 0 0 1px rgba(99, 114, 130, .16), 0 4px 12px rgba(27, 39, 51, .08);
@@ -460,7 +465,11 @@
   display: none;
 }
 
-.delete-note:hover {
+.delete-note-item {
+  padding: 10px 15px;
+}
+
+.delete-note-item:hover {
   background: #f2f2f2;
 }
 
