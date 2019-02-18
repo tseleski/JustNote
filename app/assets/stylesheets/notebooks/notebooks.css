@@ -116,6 +116,16 @@
   padding-left: 20px;
 }
 
+.single-notebook .title {
+  display: flex;
+}
+
+.single-notebook .notebook-note-count {
+  cursor: pointer;
+  margin: 0 5px;
+  color: #b3b3b3;
+}
+
 .fa-caret-right {
   color: #777;
   padding-top: 4px;
@@ -130,6 +140,7 @@
 }
 
 .single-notebook .fa-book {
+  padding-top: 5px;
   color: #313131;
 }
 
@@ -185,7 +196,7 @@
   opacity: 0.40;
 }
 
-.single-notebook .title:hover {
+.single-notebook .title-words:hover {
   text-decoration: underline;
   cursor: pointer;
 }

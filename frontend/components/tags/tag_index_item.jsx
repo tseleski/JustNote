@@ -43,9 +43,11 @@ class TagIndexItem extends React.Component {
       <div className="single-tag-row">
         <div className="single-tag">
           <div className="single-tag-contents">
-            <Link to={`/tags/${this.props.tag.id}`}><div className="tag-name">{this.state.tag.name} ({this.state.tag.note_ids.length})</div></Link>
+            <Link to={`/tags/${this.props.tag.id}`}><div className="tag-name">{this.state.tag.name} 
+              <div className="tag-notes-count">({this.state.tag.note_ids.length})</div>
+              </div></Link>
             <div>
-              <i className="fa fa-caret-down" onClick={this.togglePopup} onBlur={this.closePopup} tabIndex="0">
+              <i className="fas fa-angle-down" onClick={this.togglePopup} onBlur={this.closePopup} tabIndex="0">
                 <div className={`tag-delete ${popup}`} >
                   <div className="tag-delete-row" onClick={this.openModal}>
                     <div>Delete tag...</div>

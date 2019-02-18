@@ -117,6 +117,7 @@ class NotebookIndexItem extends React.Component {
   }
 
   render(){
+    const noteCount = this.state.notes ? this.state.notes.length : 0;
     return (
       <>
         <div className="notebook-index-item">
@@ -129,7 +130,8 @@ class NotebookIndexItem extends React.Component {
               {this.renderCaret()}
               <Link to={`/notebooks/${this.state.id}`}><div className="title">
                 <i className="fa fa-book"></i>
-                {this.state.title}
+                <div className="title-words">{this.state.title}</div>
+                <div className="notebook-note-count">{`(${noteCount})`}</div>
               </div></Link>
             </div>
             <div className="updated">
@@ -166,8 +168,6 @@ class NotebookIndexItem extends React.Component {
                 <button className="continue-btn" onClick={this.handleSubmit}>Continue</button>
               </div>
             </Modal>
-
-            {/* <button onClick={() => props.deleteNotebook(props.notebook.id)}>Delete Notebook</button> */}
           </div>
         </div>
         {this.renderNotes()}

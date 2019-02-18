@@ -25,11 +25,6 @@ class Api::TagsController < ApplicationController
       render "api/tags/show"
     else
       @notes = @tag.notes
-      # if @tag.name == "" 
-      #   render json: ['Tag name cannot be blank'], status: 422
-      # else
-      #   render json: ['This note already has that tag'], status: 422
-      # end
       render "api/tags/show"
     end 
   end
