@@ -504,6 +504,7 @@
   flex-direction: row-reverse;
   justify-content: space-between;
   padding: 5px 15px;
+  margin-left: 10px;
 }
 
 .delete-modal .x-btn {
@@ -528,7 +529,7 @@
 
 .delete-modal .modal-text {
   border-bottom: 1px solid rgb(230, 230, 230);
-  text-indent: 15px;
+  text-indent: 25px;
   padding-top: 25px;
   padding-bottom: 20px;
   font-weight: 300;
