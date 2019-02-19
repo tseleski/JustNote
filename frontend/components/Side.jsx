@@ -6,11 +6,26 @@ import SearchContainer from './search/search_container';
 class Side extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { popup: false, notesSelected: false, notebooksSelected: false, tagsSelected: false };
+    this.state = { popup: false, notesSelected: false, notebooksSelected: false, 
+      tagsSelected: false, notebooks: [], notebooksShow: false };
     this.togglePopup = this.togglePopup.bind(this);
     this.closePopup = this.closePopup.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
     this.handleNewNote = this.handleNewNote.bind(this);
+    this.renderNotebooks = this.renderNotebooks.bind(this);
+    this.toggleNotebooks = this.toggleNotebooks.bind(this);
+  }
+
+  componentDidMount(){
+    this.props.fetchNotebooks().then(result => {
+      this.setState({ notebooks: Object.values(result.notebooks)});
+    });
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.notebooks !== this.props.notebooks) {
+      this.setState({ notebooks: this.props.notebooks });
+    }
   }
 
   togglePopup(e){
@@ -72,10 +87,60 @@ class Side extends React.Component {
     )
   }
 
+  renderCaret(){
+    let caret;
+    if (this.state.notebooksShow){
+      caret = (
+        <svg className="notebooks-show-caret" xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8"><path d="M2 0l4 4-4 4z" fill="#ccc"></path></svg>
+      )
+    } else {
+      caret = (
+        <svg xmlns="http://www.w3.org/2000/svg" width="8" height="8" viewBox="0 0 8 8"><path d="M2 0l4 4-4 4z" fill="#ccc"></path></svg>
+      )
+    }
+
+    return (
+      <div onClick={this.toggleNotebooks}>
+        {caret}
+      </div>
+    )
+  }
+
+  renderNotebooks(){
+    if(this.state.notebooksShow){
+      const notebookList = this.state.notebooks.map(notebook => {
+        return (
+          <div key={notebook.id}>
+            <Link to={`/notebooks/${notebook.id}`}>
+              <div className="side-nav-notebook-list-item">
+                <i className="fa fa-book"></i>
+                <div className="side-nav-notebook-list-item-title">{notebook.title}</div>
+              </div>
+            </Link>
+          </div>
+        )
+      })
+      return (
+        <div className="side-nav-notebook-list">
+          {notebookList}
+        </div>
+      );
+    }
+  }
+
+  toggleNotebooks(e){
+    debugger
+    e.preventDefault();
+    e.stopPropagation();
+    debugger
+    this.setState({ notebooksShow: !this.state.notebooksShow });
+  }
+
   renderLinks() {
     const notesSelected = (!this.props.history.location.pathname.match(/notebooks/) && !this.props.history.location.pathname.match(/tags/) ) ? "selected" : "";
     const notebooksSelected = this.props.history.location.pathname.match(/notebooks/) ? "selected" : "";
     const tagsSelected = this.props.history.location.pathname.match(/tags/) ? "selected" : "";
+    const down = this.state.notebooksShow ? "down" : "";
     return (
       <ul className="links">
         <Link to={'/notes'}>
@@ -94,10 +159,12 @@ class Side extends React.Component {
             this.setState({ notesSelected: false })
             this.setState({ tagsSelected: false })
           }}>
+            {this.renderCaret()}
             <i className="fa fa-book"></i>
             <div>Notebooks</div>
           </li>
         </Link>
+        {this.renderNotebooks()}
         <Link to={'/tags'}>
           <li key="3" className={`${tagsSelected}`} onClick={() => {
             this.setState({ tagsSelected: true })

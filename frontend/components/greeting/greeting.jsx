@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Main from '../Main';
+import Side from '../Side';
 
-const Greeting = ({ currentUser, logout, notebookId, tagId, createNote }) => {
+const Greeting = ({ currentUser, logout, notebookId, tagId, createNote, fetchNotebooks, notebooks }) => {
   if (currentUser) {
     return (
-      <Main currentUser={currentUser} logout={logout} 
-      notebookId={notebookId} tagId={tagId} createNote={createNote} />
+      <Side currentUser={currentUser} logout={logout} 
+      notebookId={notebookId} tagId={tagId} createNote={createNote} 
+      fetchNotebooks={fetchNotebooks} notebooks={notebooks}/>
     )
   } else {
     return (

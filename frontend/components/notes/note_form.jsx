@@ -165,14 +165,12 @@ class NoteForm extends React.Component{
       return (
         <div className="above-form">
           <div className="above-form-left">
-              <div onClick={this.expandNote}>
+              <div onClick={this.expandNote} className="expand-note">
                 {this.renderExpand()}
               </div>
               <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M0 0h20v20H0z"></path><path fill="#CCC" d="M10 18h1V2h-1z"></path></g></svg>
               <Link to={`/notebooks/${this.props.notebook.id}`}><div className="notebook-name">
                 <i className="fa fa-book"></i>
-              {/* <svg xmlns="http://www.w3.org/2000/svg" className="nb-icon" width="14" height="14" viewBox="0 0 14 14"><path fill="#7a8083" d="M3 2v10h7a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H3zM2 1h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2V1zm2 1v10h1V2H4zm2 3v1h4V5H6z"></path></svg> */}
-
                 <div className="notebook-title">{this.props.notebook.title}</div>
               </div></Link>
           </div>

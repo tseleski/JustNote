@@ -174,6 +174,7 @@
   margin-top: 60px;
   font-weight: 400;
   cursor: pointer;
+  overflow-y: scroll;
 }
 
 .links li {
@@ -192,6 +193,14 @@
   margin-left: -10px;
 }
 
+.links .fa-book {
+  margin-left: -13px;
+}
+
+.notebooks-show-caret {
+  transform: rotate(90deg);
+}
+
 .fa {
   margin-right: 10px;
   padding-left: 10px
@@ -204,6 +213,29 @@
 
 .links li.selected {
   background-color: #404040;
+}
+
+.side-nav-notebook-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.side-nav-notebook-list-item {
+  display: flex;
+  padding: 8px;
+}
+
+.side-nav-notebook-list-item .fa-book {
+  margin-left: 30px;
+  filter: invert(80%);
+  margin-top: 2px;
+}
+
+.side-nav-notebook-list-item:hover {
+  background-color: #333;
 }
 
 .note-sidebar {
@@ -402,6 +434,10 @@
   display: flex;
 }
 
+.above-form-left .expand-note {
+  cursor: pointer;
+}
+
 .above-form .notebook-name {
   font-size: 13px;
   color: #7a8083;
@@ -415,10 +451,6 @@
 .notebook-name .fa-book {
   color: #7a8083;
 }
-
-/* .above-form .notebook-name .notebook-title {
-  margin-left: 4px;
-} */
 
 .above-form .notebook-name:hover .notebook-title {
   text-decoration: underline;
