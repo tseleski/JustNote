@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import { format } from 'timeago.js';
 
 
@@ -25,6 +25,10 @@ class NoteIndexItem extends React.Component {
 
   render(){
     let noteTitle;
+    let selected = "unselected";
+    if (this.props.history.location.pathname.match(/\/notes\/([0-9]*)/)){
+      selected = this.props.history.location.pathname.match(/\/notes\/([0-9]*)/)[1] == this.props.note.id ? "selected" : "unselected";
+    }
     if (this.props.note.title === '' || this.props.note.title === 'Untitled'){
       noteTitle = 'Untitled';
     } else {
@@ -37,18 +41,20 @@ class NoteIndexItem extends React.Component {
       return content.substring(0, 80) + "...";
     };
     return (
-      <Link to={this.renderLink(this.props.filterType)}><div className="single-note">
-        <div className="top">
-          <p className="note-title">{noteTitle}</p>
-          <p className="note-content">{limitedContent(this.props.note.plain_text)}</p>
-        </div>
-        <div className="timestamp">
-          <p className="note-updated">{format(this.props.note.updated_at)}</p>
-        </div>
-      </div></Link>
+      <div className="single-note-container">
+        <Link to={this.renderLink(this.props.filterType)}><div className={`single-note ${selected}`}>
+          <div className="top">
+            <p className="note-title">{noteTitle}</p>
+            <p className="note-content">{limitedContent(this.props.note.plain_text)}</p>
+          </div>
+          <div className="timestamp">
+            <p className="note-updated">{format(this.props.note.updated_at)}</p>
+          </div>
+        </div></Link>
+      </div>
     )
   }
   
 }
 
-export default NoteIndexItem;
+export default withRouter(NoteIndexItem);

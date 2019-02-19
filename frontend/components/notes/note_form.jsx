@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 class NoteForm extends React.Component{
   constructor(props){
     super(props);
-    const prevState = { deleteModal: false, modalIsOpen: false, moveModalIsOpen: false, notebooks: [] };
+    const prevState = { deleteModal: false, modalIsOpen: false, moveModalIsOpen: false, notebooks: [], expanded: false };
     this.state = Object.assign(prevState, this.props.note, this.props.notebookId);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -22,6 +22,7 @@ class NoteForm extends React.Component{
     this.handleNotebookChange = this.handleNotebookChange.bind(this);
     this.autoSave = this.autoSave.bind(this);
     this.closePopup = this.closePopup.bind(this);
+    this.expandNote = this.expandNote.bind(this);
   }
 
   componentDidMount() {
@@ -95,6 +96,10 @@ class NoteForm extends React.Component{
     this.setState({ deleteModal: false });
   }
 
+  expandNote(){
+    this.setState({ expanded: !this.state.expanded });
+  }
+
   renderNotebooks(){
     const notebookList = this.state.notebooks.map(notebook => {
       return(
@@ -139,15 +144,38 @@ class NoteForm extends React.Component{
     this.setState({ deleteModal: !this.state.deleteModal });
   }
 
+  renderExpand(){
+    if(this.state.expanded){
+      return <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="_1XQCwpJQ0CorthWG09dmAH"><g fill="none" fill-rule="evenodd"><path d="M0 0h20v20H0z"></path><path 
+        d="M7.408 6.411V4.415a.7.7 0 0 1 1.4 0v3.623a.69.69 0 0 1-.19.572.694.694 0 0 1-.517.201H4.408a.7.7 0 1 1 0-1.398h2.02L2.205 3.196a.7.7 0 1 1 .991-.99L7.408 6.41zm7.162 3.756a.7.7 0 1 1 0 1.398h-2.019l4.243 4.239a.7.7 0 1 1-.991.99l-4.233-4.227v1.996a.7.7 0 0 1-1.4 0v-3.697a.7.7 0 0 1 .7-.699h3.7z" fill="#20C05C"></path></g></svg>
+    } else {
+      return(
+        <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M0 0h20v20H0z"></path><path d="M3.405 4.4v1.997a.7.7 0 0 1-1.4 0V2.774a.69.69 0 0 1 .19-.572A.694.694 0 0 1 2.713 2h3.693a.7.7 0 1 1 0 1.399h-2.02l4.222 4.216a.7.7 0 1 1-.991.991L3.405 4.4zM12.6 17a.7.7 0 1 1 0-1.398h2.019l-4.243-4.239a.7.7 0 1 1 .991-.99L15.6 14.6v-1.996a.7.7 0 0 1 1.4 0V16.3a.7.7 0 0 1-.7.699h-3.7z" fill="#000" opacity=".34"></path></g></svg>
+      )
+    }
+  }
+
+  render(){
+
+  }
+
   renderThreeDots(){
     const deleteModal = this.state.deleteModal ? "show" : "hide";
     if (this.props.formType === 'Edit'){
       return (
         <div className="above-form">
-          <Link to={`/notebooks/${this.props.notebook.id}`}><div className="notebook-name">
-            <i className="fa fa-book"></i>
-            <div className="notebook-title">{this.props.notebook.title}</div>
-          </div></Link>
+          <div className="above-form-left">
+              <div onClick={this.expandNote}>
+                {this.renderExpand()}
+              </div>
+              <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><g fill="none"><path d="M0 0h20v20H0z"></path><path fill="#CCC" d="M10 18h1V2h-1z"></path></g></svg>
+              <Link to={`/notebooks/${this.props.notebook.id}`}><div className="notebook-name">
+                <i className="fa fa-book"></i>
+              {/* <svg xmlns="http://www.w3.org/2000/svg" className="nb-icon" width="14" height="14" viewBox="0 0 14 14"><path fill="#7a8083" d="M3 2v10h7a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1H3zM2 1h8a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2V1zm2 1v10h1V2H4zm2 3v1h4V5H6z"></path></svg> */}
+
+                <div className="notebook-title">{this.props.notebook.title}</div>
+              </div></Link>
+          </div>
           <div className="three-dots" >
             <div onClick={this.toggleDelete} onBlur={this.closePopup} tabIndex="0">
               <div className="dots" >...</div>
@@ -236,6 +264,7 @@ class NoteForm extends React.Component{
   }
 
   render(){
+    const expanded = this.state.expanded ? "full-page" : "";
     const toolbar = [
       [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
       [{ 'font': [] }],
@@ -255,7 +284,7 @@ class NoteForm extends React.Component{
       ['clean']
     ];
     return (
-      <div className="note-panel">
+      <div className={`note-panel ${expanded}`}>
         {this.renderThreeDots()}
         <div className="note-form">
           <form>
