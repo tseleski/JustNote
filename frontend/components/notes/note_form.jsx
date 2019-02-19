@@ -8,15 +8,18 @@ import { Link } from 'react-router-dom';
 class NoteForm extends React.Component{
   constructor(props){
     super(props);
-    const prevState = { deleteModal: false, modalIsOpen: false };
+    const prevState = { deleteModal: false, modalIsOpen: false, moveModalIsOpen: false, notebooks: [] };
     this.state = Object.assign(prevState, this.props.note, this.props.notebookId);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.toggleDelete = this.toggleDelete.bind(this);
     this.openModal = this.openModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
+    this.openMoveModal = this.openMoveModal.bind(this);
+    this.closeMoveModal = this.closeMoveModal.bind(this);
     this.handleEditorChange = this.handleEditorChange.bind(this);
     this.handleTitleChange = this.handleTitleChange.bind(this);
+    this.handleNotebookChange = this.handleNotebookChange.bind(this);
     this.autoSave = this.autoSave.bind(this);
     this.closePopup = this.closePopup.bind(this);
   }
@@ -25,12 +28,12 @@ class NoteForm extends React.Component{
     this.props.clearNoteErrors();
     if(this.props.formType === 'Edit'){
       this.props.fetchNote(this.props.id).then(({ note, notebook }) => {
-        this.setState({ id: note.id, title: note.title, content: note.content});
+        this.setState({ id: note.id, title: note.title, content: note.content, notebook_id: note.notebook_id});
         this.setState({ notebook: notebook });
       });
     }
     this.props.fetchNotebooks().then( ({ notebooks }) => {
-      this.setState({ notebooks: notebooks });
+      this.setState({ notebooks: Object.values(notebooks) });
     });
   }
 
@@ -38,7 +41,7 @@ class NoteForm extends React.Component{
     if (Boolean(prevProps.note.id) && (prevProps.note.id != this.props.id)) {
       this.props.clearNoteErrors();
       this.props.fetchNote(this.props.id).then(({ note }) => {
-        this.setState({ id: note.id, title: note.title, content: note.content, plain_text: note.plain_text });
+        this.setState({ id: note.id, title: note.title, content: note.content, plain_text: note.plain_text, notebook_id: note.notebook_id });
       });
     }
   }
@@ -58,11 +61,13 @@ class NoteForm extends React.Component{
   }
 
   handleEditorChange(content, delta, source, editor) {
-    this.setState({
-      content: content,
-      plain_text: editor.getText().trim()
-    });
-    setTimeout(() => this.autoSave(), 1000);
+    if(this.state.content !== content){
+      this.setState({
+        content: content,
+        plain_text: editor.getText().trim()
+      });
+      setTimeout(() => this.autoSave(), 1000);
+    }
   }
 
   update(field){
@@ -73,12 +78,46 @@ class NoteForm extends React.Component{
     this.setState({ modalIsOpen: true });
   }
 
+  openMoveModal() {
+    this.setState({ moveModalIsOpen: true });
+  }
+
   closeModal() {
     this.setState({ modalIsOpen: false });
   }
 
+  closeMoveModal() {
+    this.setState({ notebook_id: this.props.note.notebook_id });
+    this.setState({ moveModalIsOpen: false });
+  }
+
   closePopup() {
     this.setState({ deleteModal: false });
+  }
+
+  renderNotebooks(){
+    const notebookList = this.state.notebooks.map(notebook => {
+      return(
+        <option className="notebook-dropdown-item" key={notebook.id} value={notebook.id}>{notebook.title}</option>
+      )
+    })
+    return (
+      <select className="notebook-dropdown" onChange={this.update('notebook_id')} value={this.state.notebook_id}>
+        {notebookList}
+      </select>
+    )
+  }
+
+  handleNotebookChange(){
+    if(this.props.note.notebook_id != this.state.notebook_id){
+      this.autoSave();
+    }
+    this.closeMoveModal();
+    if(this.props.history.location.pathname.match(/\/notebooks\/[0-9]*/)){
+      if (this.state.notebook_id != this.props.history.location.pathname.match(/\/notebooks\/([0-9]*)/)[1]){
+        this.props.history.push(this.props.history.location.pathname.match(/\/notebooks\/[0-9]*/)[0])
+      }
+    }
   }
 
   handleDelete(e){
@@ -100,11 +139,8 @@ class NoteForm extends React.Component{
     this.setState({ deleteModal: !this.state.deleteModal });
   }
 
-  renderDelete(){
+  renderThreeDots(){
     const deleteModal = this.state.deleteModal ? "show" : "hide";
-    if(this.state.notebooks){
-      const notebooks = Object.values(this.state.notebooks);
-    }
     if (this.props.formType === 'Edit'){
       return (
         <div className="above-form">
@@ -116,8 +152,9 @@ class NoteForm extends React.Component{
             <div onClick={this.toggleDelete} onBlur={this.closePopup} tabIndex="0">
               <div className="dots" >...</div>
               <div className={`delete-note ${deleteModal}`}>
-                <div onClick={this.openModal} className="delete-note-item">Delete note</div>
+                <div onClick={this.openMoveModal} className="delete-note-item">Move to...</div>
                 <div onClick={() => this.props.createNote(this.state)} className="delete-note-item">Duplicate note</div>
+                <div onClick={this.openModal} className="delete-note-item">Delete note</div>
               </div>
             </div>
             <Modal
@@ -137,6 +174,26 @@ class NoteForm extends React.Component{
               <div className="modal-btns">
                 <button onClick={this.closeModal} className="cancel-btn">Cancel</button>
                 <button onClick={this.handleDelete} className="continue-btn">Continue</button>
+              </div>
+            </Modal>
+            <Modal
+              isOpen={this.state.moveModalIsOpen}
+              onAfterOpen={this.afterOpenModal}
+              onRequestClose={this.closeMoveModal}
+              contentLabel="Modal"
+              className="delete-modal"
+              overlayClassName="modal-overlay"
+              ariaHideApp={false}
+            >
+              <div className="top-row">
+                <button onClick={this.closeMoveModal} className="x-btn">&times;</button>
+                <h2>Move note to...</h2>
+              </div>
+              {this.renderNotebooks()}
+              <div className="modal-text change-notebook">  </div>
+              <div className="modal-btns">
+                <button onClick={this.closeMoveModal} className="cancel-btn">Cancel</button>
+                <button onClick={this.handleNotebookChange} className="continue-btn change-notebook">Move</button>
               </div>
             </Modal>
 
@@ -199,7 +256,7 @@ class NoteForm extends React.Component{
     ];
     return (
       <div className="note-panel">
-        {this.renderDelete()}
+        {this.renderThreeDots()}
         <div className="note-form">
           <form>
             <div className="input-fields">

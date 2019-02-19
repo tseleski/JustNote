@@ -24,14 +24,6 @@
   height: 100vh;
 }
 
-/* .side-nav .email {
-  align-items: center;
-  padding-left: 20px;
-  height: 56px;
-  color: lightgrey;
-  cursor: pointer;
-} */
-
 .side-nav .top{
   height: 150px;
   align-items: flex-start;
@@ -449,7 +441,7 @@
   display: block;
   position: absolute;
   width: 150px;
-  text-align: center;
+  text-align: left;
   right: 0px;
   top: 30px;
   font-size: 14px;
@@ -459,6 +451,7 @@
   border-radius: 4px;
   box-shadow: 0 0 0 1px rgba(99, 114, 130, .16), 0 4px 12px rgba(27, 39, 51, .08);
   cursor: pointer;
+  z-index: 3;
 }
 
 .delete-note.hide {
@@ -466,7 +459,7 @@
 }
 
 .delete-note-item {
-  padding: 10px 15px;
+  padding: 6px 30px 6px 20px;
 }
 
 .delete-note-item:hover {
@@ -572,6 +565,32 @@
 
 .modal-btns .continue-btn:hover {
   background-color: #0e753d;
+}
+
+.notebook-dropdown {
+  width: 50%;
+  margin-left: 50px;
+  padding: 0px 25px;
+  height: 30px;
+  background: none;
+}
+
+
+.notebook-dropdown:focus {
+  outline: none;
+}
+
+.notebook-dropdown-item {
+  padding: 10px 20px;
+}
+
+.notebook-dropdown-item:hover {
+  background-color: #e6e6e6;
+}
+
+.modal-text.change-notebook {
+  height: 2px;
+  padding: 0;
 }
 
 .ql-toolbar.ql-snow {
