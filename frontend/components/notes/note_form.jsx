@@ -8,7 +8,8 @@ import { Link } from 'react-router-dom';
 class NoteForm extends React.Component{
   constructor(props){
     super(props);
-    const prevState = { deleteModal: false, modalIsOpen: false, moveModalIsOpen: false, notebooks: [], expanded: false };
+    const prevState = { deleteModal: false, modalIsOpen: false, moveModalIsOpen: false, 
+      notebooks: [], expanded: false, focus: false };
     this.state = Object.assign(prevState, this.props.note, this.props.notebookId);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
@@ -23,9 +24,11 @@ class NoteForm extends React.Component{
     this.autoSave = this.autoSave.bind(this);
     this.closePopup = this.closePopup.bind(this);
     this.expandNote = this.expandNote.bind(this);
+    this.revealToolbar = this.revealToolbar.bind(this);
   }
 
   componentDidMount() {
+    this.setState({ focus: false });
     this.props.clearNoteErrors();
     if(this.props.formType === 'Edit'){
       this.props.fetchNote(this.props.id).then(({ note, notebook }) => {
@@ -100,6 +103,12 @@ class NoteForm extends React.Component{
     this.setState({ expanded: !this.state.expanded });
   }
 
+  revealToolbar(){
+    debugger
+    this.setState({ focus: true });
+    debugger
+  }
+
   renderNotebooks(){
     const notebookList = this.state.notebooks.map(notebook => {
       return(
@@ -160,6 +169,19 @@ class NoteForm extends React.Component{
   }
 
   renderThreeDots(){
+    let noteTitle;
+    if (this.state.title === '') {
+      noteTitle = 'Untitled';
+    } else {
+      noteTitle = this.state.title;
+    }
+    const limitedContent = (content) => {
+      if (content.split('').length < 20) {
+        return content;
+      }
+      return content.substring(0, 20) + "...";
+    };
+
     const deleteModal = this.state.deleteModal ? "show" : "hide";
     if (this.props.formType === 'Edit'){
       return (
@@ -196,7 +218,7 @@ class NoteForm extends React.Component{
                 <button onClick={this.closeModal} className="x-btn">&times;</button>
                 <h2>Delete Note</h2>
               </div>
-              <div className="modal-text">{this.state.title} will be deleted.</div>
+              <div className="modal-text">{limitedContent(noteTitle)} will be deleted.</div>
               <div className="modal-btns">
                 <button onClick={this.closeModal} className="cancel-btn">Cancel</button>
                 <button onClick={this.handleDelete} className="continue-btn">Continue</button>
@@ -264,7 +286,7 @@ class NoteForm extends React.Component{
   render(){
     const expanded = this.state.expanded ? "full-page" : "";
     const toolbar = [
-      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      [{ 'header': [1, 2, 3, 4, false] }],
       [{ 'font': [] }],
       ['bold', 'italic', 'underline', 'strike'],
       [{ 'color': [] }, { 'background': [] }],
@@ -287,14 +309,19 @@ class NoteForm extends React.Component{
         <div className="note-form">
           <form>
             <div className="input-fields">
-              <input className="title-input" type="title" value={this.state.title} onChange={this.handleTitleChange} placeholder="Title"/>
+              <input className="title-input" type="title" value={this.state.title} 
+                onChange={this.handleTitleChange} placeholder="Title" onFocus={() => {
+                  this.setState({ focus: false })
+                }}/>
               <ReactQuill
+                className={this.state.focus ? "focused" : "blurred"}
                 theme="snow"
                 modules={{ toolbar }}
                 value={this.state.content}
                 ref={editor => { this.editor = editor; }}
                 placeholder={"Start writing here..."}
                 onChange={this.handleEditorChange}
+                onFocus={this.revealToolbar}
               >
               </ReactQuill>
             </div>

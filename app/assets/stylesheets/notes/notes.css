@@ -359,19 +359,26 @@
 .note-form .input-fields{
   display: flex;
   flex-direction: column;
+  position: relative;
 }
 
 .note-form .title-input {
+  width: 100%;
+  overflow: scroll;
+  background: #fff;
   cursor: text;
   font-size: 34px;
   margin-bottom: 15px;
   padding-left: 8px;
   box-sizing: border-box;
+  position: absolute;
+  padding-top: 60px;
+  z-index: 1;
 }
 
 .note-form {
   overflow-wrap: break-word;
-  padding-top: 20px;
+  padding-top: 15px;
   box-sizing: border-box;
   height: calc(100vh - 100px);
 }
@@ -525,6 +532,7 @@
 }
 
 .modal-overlay {
+  z-index: 3;
   position: fixed;
   top: 0;
   left: 0;
@@ -648,19 +656,42 @@
   padding: 0;
 }
 
+.quill {
+  position: relative;
+}
+
 .ql-toolbar.ql-snow {
+  transition: opacity .3s ease-in-out;
+}
+
+.quill.focused .ql-toolbar.ql-snow {
+  position: absolute;
+  opacity: 1;
+  z-index: 2;
+  transition: opacity .3s ease-in-out;
   border: none;
   width: 100%;
-  padding: 10px 0px 10px 0px;
+  padding: 0px 0px 10px 0px;
   font-weight: 100;
   font-size: 11px;
   text-align: center;
   border-bottom: 1px solid rgb(230, 230, 230);
-  border-top: 1px solid rgb(230, 230, 230);
+}
+
+.quill.blurred .ql-toolbar.ql-snow {
+  opacity: 0;
 }
 
 .ql-editor {
-  min-height: 215px;
+  min-height: 350px;
+  padding-top: 125px;
+  margin-left: -5px;
+}
+
+.quill.blurred .ql-editor {
+  min-height: 350px;
+  padding-top: 55px;
+  margin-left: -5px;
 }
 
 .ql-editor.ql-blank {

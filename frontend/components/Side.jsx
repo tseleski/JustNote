@@ -129,10 +129,8 @@ class Side extends React.Component {
   }
 
   toggleNotebooks(e){
-    debugger
     e.preventDefault();
     e.stopPropagation();
-    debugger
     this.setState({ notebooksShow: !this.state.notebooksShow });
   }
 
