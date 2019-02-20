@@ -104,9 +104,7 @@ class NoteForm extends React.Component{
   }
 
   revealToolbar(){
-    debugger
     this.setState({ focus: true });
-    debugger
   }
 
   renderNotebooks(){

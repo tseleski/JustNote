@@ -372,21 +372,18 @@
   padding-left: 8px;
   box-sizing: border-box;
   position: absolute;
-  padding-top: 60px;
+  top: 65px;
   z-index: 1;
 }
 
 .note-form {
   overflow-wrap: break-word;
-  padding-top: 15px;
   box-sizing: border-box;
   height: calc(100vh - 100px);
 }
 
 .quill {
   overflow-y: scroll;
-  padding-left: 140px;
-  margin-left: -140px;
 }
 
 .note-form input[type="submit"] {
@@ -664,18 +661,21 @@
   transition: opacity .3s ease-in-out;
 }
 
-.quill.focused .ql-toolbar.ql-snow {
+.quill.focused .ql-toolbar.ql-snow, .quill.blurred .ql-toolbar.ql-snow {
   position: absolute;
   opacity: 1;
   z-index: 2;
   transition: opacity .3s ease-in-out;
   border: none;
-  width: 85%;
-  padding: 0px 0px 10px 0px;
+  width: 100%;
+  padding: 13px 0px 10px 0px;
   font-weight: 100;
   font-size: 11px;
   text-align: center;
   border-bottom: 1px solid rgb(230, 230, 230);
+  background: #fff;
+  min-height: 73px;
+  max-height: 73px;
 }
 
 .quill.blurred .ql-toolbar.ql-snow {
@@ -684,14 +684,16 @@
 
 .ql-editor {
   min-height: 350px;
-  padding-top: 125px;
+  padding-top: 130px;
   margin-left: -5px;
+  z-index: 0;
 }
 
 .quill.blurred .ql-editor {
   min-height: 350px;
-  padding-top: 55px;
+  padding-top: 130px;
   margin-left: -5px;
+  z-index: 0;
 }
 
 .ql-editor.ql-blank {
@@ -700,6 +702,7 @@
 }
 
 .ql-container.ql-snow {
+  position: relative;
   border: none;
   width: 100%;
 }
