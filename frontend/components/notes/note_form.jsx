@@ -162,10 +162,6 @@ class NoteForm extends React.Component{
     }
   }
 
-  render(){
-
-  }
-
   renderThreeDots(){
     let noteTitle;
     if (this.state.title === '') {
