@@ -19,6 +19,10 @@ Users can easily and securely log in or sign up to access their account.
 
 Users can organize their thoughts into notes that they can create, edit, and delete. They can format their text using rich text formatting.
 
+### Auto-save
+
+As users edit a note, the note automatically saves, without the user having to press any button. Every change is tracked, making for easy and simple use.
+
 ## Notebooks
 
 Users can organize their notes into notebooks. Notebooks can be created, renamed, and deleted. Users can filter notes based on a notebook.
@@ -63,6 +67,10 @@ togglePopup(e) {
 
   ```
 
+## Search
+
+Depending which page a user is currently on, a user can search the notes they are looking at. For example, if the user is currently looking at all the notes in a particular notebook, they can type into the search bar, that searches on each key stroke, to filter their notes.
+
 ## Easy UI
 
 React and Redux create a simple and intuitive user interface. Users can easily navigate to where they want to go.
@@ -77,5 +85,5 @@ React and Redux create a simple and intuitive user interface. Users can easily n
 
 ### Future Features
 
-* Auto-save
-* Search notes
+* Shortcuts to specific notes
+* Users will be able to move notes to the trash. From the trash, users can choose to either restore a note or permanently delete it
