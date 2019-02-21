@@ -684,7 +684,6 @@
   background: #fff;
   min-height: 73px;
   max-height: 73px;
-  overflow: -webkit-paged-y;
 }
 
 .quill.blurred .ql-toolbar.ql-snow {

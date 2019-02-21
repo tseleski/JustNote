@@ -287,7 +287,7 @@ class NoteForm extends React.Component{
     const toolbar = [
       [{ 'header': [1, 2, 3, 4, false] }],
       [{ 'font': [] }],
-      ['bold', 'italic', 'underline', 'strike'],
+      [ 'italic', 'underline', 'strike'],
       [{ 'color': [] }, { 'background': [] }],
       [{ 'list': 'ordered' }, { 'list': 'bullet' }],
       [{ 'indent': '-1' }, { 'indent': '+1' }],
