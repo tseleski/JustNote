@@ -364,6 +364,7 @@
   display: flex;
   flex-direction: column;
   position: relative;
+  height: 100%;
 }
 
 .note-form .title-input {
@@ -387,7 +388,7 @@
 }
 
 .quill {
-  overflow-y: scroll;
+  height: 100%;
 }
 
 .note-form input[type="submit"] {
@@ -670,7 +671,8 @@
 }
 
 .quill.focused .ql-toolbar.ql-snow, .quill.blurred .ql-toolbar.ql-snow {
-  position: absolute;
+  position: sticky;
+  top: 0px;
   opacity: 1;
   z-index: 2;
   transition: opacity .3s ease-in-out;
@@ -686,20 +688,21 @@
   max-height: 73px;
 }
 
+.toolbar-background {
+  position: absolute;
+  background: #fff;
+  width: 100%;
+  min-height: 73px;
+  max-height: 73px;
+  z-index: 1;
+}
+
 .quill.blurred .ql-toolbar.ql-snow {
   opacity: 0;
 }
 
-.ql-editor {
-  min-height: 350px;
-  padding-top: 130px;
-  margin-left: -5px;
-  z-index: 0;
-}
-
-.quill.blurred .ql-editor {
-  min-height: 350px;
-  padding-top: 130px;
+.ql-editor, .quill.blurred .ql-editor {
+  padding-top: 60px;
   margin-left: -5px;
   z-index: 0;
 }
@@ -713,4 +716,5 @@
   position: relative;
   border: none;
   width: 100%;
+  height: calc(100% - 72px);
 }

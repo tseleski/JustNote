@@ -304,6 +304,7 @@ class NoteForm extends React.Component{
         <div className="note-form">
           <form>
             <div className="input-fields">
+            <div className="toolbar-background"></div>
               <input className="title-input" type="title" value={this.state.title} 
                 onChange={this.handleTitleChange} placeholder="Title" onFocus={() => {
                   this.setState({ focus: false }) 
