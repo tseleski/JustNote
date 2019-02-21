@@ -141,7 +141,7 @@ class Side extends React.Component {
     const tagsSelected = this.props.history.location.pathname.match(/tags/) ? "selected" : "";
     const down = this.state.notebooksShow ? "down" : "";
     return (
-      <ul className="links">
+      <ul className="links" onClick={this.props.clearQuery}>
         <Link to={'/notes'}>
           <li key="1" className={`${notesSelected}`} onClick={() => {
               this.setState({ notesSelected: true})

@@ -310,8 +310,8 @@ class NoteForm extends React.Component{
             <div className="input-fields">
               <input className="title-input" type="title" value={this.state.title} 
                 onChange={this.handleTitleChange} placeholder="Title" onFocus={() => {
-                  this.setState({ focus: false })
-                }}/>
+                  this.setState({ focus: false }) 
+                }} tabIndex="1" />
               <ReactQuill
                 className={this.state.focus ? "focused" : "blurred"}
                 theme="snow"
@@ -321,6 +321,7 @@ class NoteForm extends React.Component{
                 placeholder={"Start writing here..."}
                 onChange={this.handleEditorChange}
                 onFocus={this.revealToolbar}
+                tabIndex="2"
               >
               </ReactQuill>
             </div>

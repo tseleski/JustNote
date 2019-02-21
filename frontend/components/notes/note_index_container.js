@@ -10,10 +10,12 @@ const mapStateToProps = state => {
     return dateA > dateB ? -1 : 1;
   }
   const sorted_notes = Object.values(state.entities.notes).sort(sortFunction);
+  const query = state.ui.query;
   return {
     notes: sorted_notes,
     title: 'All Notes',
-    filterType: 'All'
+    filterType: 'All',
+    query: query
   };
 };
 

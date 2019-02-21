@@ -11,7 +11,8 @@ class NoteIndex extends React.Component {
       this.props.clearQuery();
     } else if (this.props.filterType === 'Tag'){
       this.props.fetchTag(this.props.tagId);
-    }
+      this.props.clearQuery();
+    } 
     // else if (this.props.filterType === 'Search') {
     //   this.props.searchNotes(this.props.query);
     // }
@@ -26,7 +27,7 @@ class NoteIndex extends React.Component {
       if (prevProps.tagId !== this.props.tagId) {
         this.props.fetchTag(this.props.tagId);
       }
-    }  
+    } 
   }
 
   componentWillUnmount(){
