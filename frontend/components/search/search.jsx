@@ -58,7 +58,7 @@ class Search extends React.Component {
     const searching = this.props.query.length > 0 ? "searching" : "";
     return (
       <div className="search-container">
-        <input className="search-bar" tabIndex="0" type="text" placeholder="Search all notes..." 
+        <input className="search-bar" tabIndex="0" type="text" placeholder="Search notes..." 
         value={this.props.query} onChange={this.update('query')} />
         <i className={`fa fa-search ${searching}`}></i>
       </div>

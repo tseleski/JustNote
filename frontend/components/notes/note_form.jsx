@@ -321,7 +321,6 @@ class NoteForm extends React.Component{
                 placeholder={"Start writing here..."}
                 onChange={this.handleEditorChange}
                 onFocus={this.revealToolbar}
-                tabIndex="2"
               >
               </ReactQuill>
             </div>
