@@ -1,13 +1,10 @@
 import { connect } from 'react-redux';
 import Greeting from './greeting';
 import { logout } from '../../actions/session_actions';
-import { createNote } from '../../actions/note_actions';
+import { createNote, clearQuery } from '../../actions/note_actions';
 import { fetchNotebooks } from '../../actions/notebook_actions';
 
 const mapStateToProps = ({ session, entities: { users, notebooks }}, ownProps) => {
-  // put regex here!!
-  // for "notebooks/(###)/"
-  // var regex = '/notebooks\/([0-9]*)\//';
   const notebookResult = ownProps.location.pathname.match(/notebooks\/([0-9]*)/);
   let notebookId = notebookResult || "";
   if( notebookId !== ""){
@@ -31,6 +28,7 @@ const mapDispatchToProps = dispatch => {
     logout: () => dispatch(logout()),
     createNote: note => dispatch(createNote(note)), 
     fetchNotebooks: () => dispatch(fetchNotebooks()),
+    clearQuery: () => dispatch(clearQuery()),
   };
 };
 

@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchNotebooks, createNotebook, deleteNotebook, clearNotebookErrors, updateNotebook, fetchNotebook } from '../../actions/notebook_actions';
+import { clearQuery } from '../../actions/note_actions';
 import NotebookIndex from './notebook_index';
 import { logout } from '../../actions/session_actions';
 import { openModal, closeModal } from '../../actions/modal_actions'; 
@@ -25,6 +26,7 @@ const mapDispatchToProps = dispatch => {
     clearNotebookErrors: () => dispatch(clearNotebookErrors()),
     openModal: modal => dispatch(openModal(modal)),
     closeModal: () => dispatch(closeModal()),
+    clearQuery: () => dispatch(clearQuery()),
   };
 };
 

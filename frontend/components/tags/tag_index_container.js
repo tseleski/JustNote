@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchTags, deleteTag, clearTags, createTag } from '../../actions/tag_actions';
+import { clearQuery } from '../../actions/note_actions';
 import TagIndex from './tag_index';
 
 const mapStateToProps = state => {
@@ -20,6 +21,7 @@ const mapDispatchToProps = dispatch => {
     deleteTag: (id) => dispatch(deleteTag(id)),
     clearTags: () => dispatch(clearTags()),
     createTag: tag => dispatch(createTag(tag)),
+    clearQuery: () => dispatch(clearQuery()),
   };
 };
 

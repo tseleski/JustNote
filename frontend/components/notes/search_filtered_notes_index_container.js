@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { createNote, deleteNote, clearNotes, fetcNotes } from '../../actions/note_actions';
+import { createNote, deleteNote, clearNotes, clearQuery, searchNotes } from '../../actions/note_actions';
 import NoteIndex from './note_index';
 
 const mapStateToProps = (state, ownProps) => {
@@ -10,10 +10,17 @@ const mapStateToProps = (state, ownProps) => {
   }
   const allNotes = Object.values(state.entities.notes);
   const sorted_notes = allNotes.sort(sortFunction);
-  const title = "Search Results:";
+  const query = state.ui.query || '';
+  // let subtitle = '';
+  // if (ownProps.match.params.notebookId){
+  //   subtitle = state.entities.notebooks[ownProps.match.params.notebookId].title || '';
+  // } else if (ownProps.match.params.tagId){
+  //   subtitle = state.entities.tags[ownProps.match.params.tagId].name || '';
+  // }
   return {
     notes: sorted_notes,
-    title: title,
+    query: query,
+    title: `Results for "${query}"`,
     filterType: 'Search',
   };
 };
@@ -23,6 +30,8 @@ const mapDispatchToProps = dispatch => {
     createNote: note => dispatch(createNote(note)),
     deleteNote: id => dispatch(deleteNote(id)),
     clearNotes: () => dispatch(clearNotes()),
+    clearQuery: () => dispatch(clearQuery()),
+    searchNotes: query => dispatch(searchNotes(query)),
   };
 };
 

@@ -28,19 +28,23 @@ const App = () => (
           <Modal />
           <ProtectedRoute path="/" component={GreetingContainer} />
           <ProtectedRoute path="/notes" component={NoteIndexContainer} />
-          <ProtectedRoute exact path="/notes/new" component={CreateNoteContainer} />
           <ProtectedRoute exact path="/notes/:noteId/edit" component={EditNoteContainer} />
+          <ProtectedRoute exact path="/new_note/:noteId/edit" component={EditNoteContainer} />
           <ProtectedRoute exact path="/notebooks" component={NotebookIndexContainer} />
           <ProtectedRoute path="/notebooks/:notebookId" component={FilteredNoteIndexContainer} />
           <ProtectedRoute exact path="/notebooks/:notebookId/notes/:noteId/edit" component={EditNoteContainer} />
-          <ProtectedRoute exact path="/notebooks/:notebookId/notes/new" component={CreateNoteContainer} />
           <ProtectedRoute exact path="/tags" component={TagIndexContainer} />
           <ProtectedRoute path="/tags/:tagId" component={TagFilteredNotesIndexContainer} />
           <ProtectedRoute exact path="/tags/:tagId/notes/:noteId/edit" component={EditNoteContainer} />
-          <ProtectedRoute exact path="/tags/:tagId/notes/new" component={CreateNoteContainer} />
-          <ProtectedRoute path="/search" component={SearchFilteredNotesIndexContainer} />
-          <ProtectedRoute exact path="/search/notes/:noteId/edit" component={EditNoteContainer} />
-          <ProtectedRoute exact path="/search/notes/new" component={CreateNoteContainer} />
+          <ProtectedRoute path="/search/all_notes" component={SearchFilteredNotesIndexContainer} />
+          <ProtectedRoute exact path="/search/all_notes/:noteId/edit" component={EditNoteContainer} />
+          <ProtectedRoute path="/search/notebooks/:notebookId" component={SearchFilteredNotesIndexContainer} />
+          <ProtectedRoute exact path="/search/notebooks/:notebookId/notes/:noteId/edit" component={EditNoteContainer} />
+          <ProtectedRoute path="/search/tags/:tagId" component={SearchFilteredNotesIndexContainer} />
+          <ProtectedRoute exact path="/search/tags/:tagId/notes/:noteId/edit" component={EditNoteContainer} />
+          <Switch>
+
+          </Switch>
         </div>
       </div>
     </div>

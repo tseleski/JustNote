@@ -8,9 +8,13 @@ class NoteIndex extends React.Component {
       this.props.fetchNotes();
     } else if (this.props.filterType === 'Notebook'){
       this.props.fetchNotebook(this.props.notebookId);
+      this.props.clearQuery();
     } else if (this.props.filterType === 'Tag'){
       this.props.fetchTag(this.props.tagId);
     }
+    // else if (this.props.filterType === 'Search') {
+    //   this.props.searchNotes(this.props.query);
+    // }
   }
 
   componentDidUpdate(prevProps){

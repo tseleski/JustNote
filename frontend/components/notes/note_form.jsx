@@ -283,6 +283,7 @@ class NoteForm extends React.Component{
 
   render(){
     const expanded = this.state.expanded ? "full-page" : "";
+    const wide = this.props.wideNote === "wide" ? "wide" : "";
     const toolbar = [
       [{ 'header': [1, 2, 3, 4, false] }],
       [{ 'font': [] }],
@@ -302,7 +303,7 @@ class NoteForm extends React.Component{
       ['clean']
     ];
     return (
-      <div className={`note-panel ${expanded}`}>
+      <div className={`note-panel ${expanded} ${wide}`}>
         {this.renderThreeDots()}
         <div className="note-form">
           <form>

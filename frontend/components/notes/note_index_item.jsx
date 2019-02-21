@@ -17,7 +17,13 @@ class NoteIndexItem extends React.Component {
       case 'Tag':
         return `/tags/${this.props.tag.id}/notes/${this.props.note.id}/edit`;
       case 'Search':
-        return `/search/notes/${this.props.note.id}/edit`;
+        if (this.props.match.params.tagId){
+          return `/search/tags/${this.props.match.params.tagId}/notes/${this.props.note.id}/edit`;
+        } else if (this.props.match.params.notebookId){
+          return `/search/notebooks/${this.props.match.params.notebookId}/notes/${this.props.note.id}/edit`;
+        } else {
+          return `/search/all_notes/${this.props.note.id}/edit`;
+        };
       default:
         break;
     }

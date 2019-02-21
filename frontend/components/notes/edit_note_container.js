@@ -23,7 +23,8 @@ class EditNoteForm extends React.Component {
       tags={this.props.tags} removeTagging={this.props.removeTagging}
       startLoadingNote={this.props.startLoadingNote}
       loading={this.props.loading} errors={this.props.errors}
-      clearNoteErrors={this.props.clearNoteErrors} createNote={this.props.createNote}/>
+      clearNoteErrors={this.props.clearNoteErrors} createNote={this.props.createNote}
+      wideNote={this.props.wideNote} />
     );
   }
 }
@@ -38,6 +39,7 @@ const mapStateToProps = (state, ownProps) => {
   const noteTags = note.tag_ids.map(tag_id => {
     return state.entities.tags[tag_id];
   }).filter(tag => tag);
+  const wideNote = ownProps.location.pathname.match(/\/new_note/) ? "wide" : '';
   return {
     note: note,
     formType: 'Edit',
@@ -45,7 +47,8 @@ const mapStateToProps = (state, ownProps) => {
     tagErrors: state.errors.tags,
     tags: noteTags,
     loading: state.ui.loading.noteShowLoading,
-    errors: state.errors.notes
+    errors: state.errors.notes,
+    wideNote: wideNote,
   };
 };
 

@@ -53,16 +53,17 @@ class Side extends React.Component {
     const that = this;
     this.props.createNote({title: 'Untitled', content: '', plain_text: '', 
     notebook_id: this.props.notebookId, tag_id: this.props.tagId, }).then((payload) => {
-      if (this.props.notebookId) {
+      if (that.props.history.location.pathname.match(/search/)) {
+        that.props.history.push(`/new_note/${payload.note.id}/edit`);
+      } else if (this.props.notebookId) {
         that.props.history.push(`/notebooks/${this.props.notebookId}/notes/${payload.note.id}/edit`);
       } else if (this.props.tagId) {
         that.props.history.push(`/tags/${this.props.tagId}/notes/${payload.note.id}/edit`);
-      } else if (that.props.history.location.pathname.match(/search/)) {
-        that.props.history.push(`/search/notes/${payload.note.id}/edit`);
       } else {
         that.props.history.push(`/notes/${payload.note.id}/edit`);
       }
     });
+    this.props.clearQuery();
   }
 
   renderEmail() {
@@ -183,18 +184,6 @@ class Side extends React.Component {
     )
   }
 
-  renderNewNoteLink(){
-    if (this.props.notebookId) {
-      return `/notebooks/${this.props.notebookId}/notes/new`;
-    } else if (this.props.tagId) {
-      return `/tags/${this.props.tagId}/notes/new`;
-    } else if (this.props.history.location.pathname.match(/search/)){
-      return `/search/notes/new`;
-    } else {
-      return '/notes/new';
-    }
-  }
-
   render() {
     return (
       <div className="side-nav">
@@ -203,7 +192,6 @@ class Side extends React.Component {
           {this.renderSearch()}
           <div className="new-note" onClick={this.handleNewNote}>
             <img className="new-note-img" src={window.newnoteURL} /><button>New Note</button>
-            {/* <Link to={this.renderNewNoteLink()}><img className="new-note-img" src={window.newnoteURL} /><button>New Note</button></Link> */}
           </div>
         </div>
         {this.renderLinks()}

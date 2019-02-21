@@ -7,6 +7,8 @@ export const RECEIVE_NOTE_ERRORS = 'RECEIVE_NOTE_ERRORS';
 export const CLEAR_NOTE_ERRORS = 'CLEAR_NOTE_ERRORS';
 export const START_LOADING_ALL_NOTES = 'START_LOADING_ALL_NOTES';
 export const START_LOADING_NOTE = 'START_LOADING_NOTE';
+export const RECEIVE_QUERY = 'RECEIVE_QUERY';
+export const CLEAR_QUERY = 'CLEAR_QUERY';
 
 
 export const receiveNotes = (notes) => {
@@ -58,6 +60,19 @@ export const startLoadingAllNotes = () => ({
 export const startLoadingNote = () => ({
   type: START_LOADING_NOTE
 });
+
+export const receiveQuery = (query) => {
+  return {
+    type: RECEIVE_QUERY,
+    query
+  };
+};
+
+export const clearQuery = () => {
+  return {
+    type: CLEAR_QUERY,
+  };
+};
 
 export const fetchNotes = () => dispatch => {
   return NoteAPIUtil.fetchNotes().then(

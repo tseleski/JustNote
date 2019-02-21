@@ -17,6 +17,7 @@ class NotebookIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchNotebooks();
+    this.props.clearQuery();
   }
 
   openModal() {

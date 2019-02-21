@@ -4,40 +4,67 @@ import { withRouter } from 'react-router-dom';
 class Search extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { query: '' };
+    this.state = { query: this.props.query };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.renderPushLink = this.renderPushLink.bind(this);
   }
 
-  update(field) {
-    return (e) => this.setState({ [field]: e.target.value });
+  update(e) {
+    return (e) => {
+      this.setState({ 'query': e.target.value }, () => this.handleKeyPress(e));
+    };
   }
 
   handleKeyPress(e) {
-    if (e.key === 'Enter' && this.state.query.length > 0) {
+    this.props.receiveQuery(this.state.query);
+    if (this.state.query.length === 0) {
+      if(this.props.notebookId){
+        this.props.history.push(`/notebooks/${this.props.notebookId}`);
+      } else if (this.props.tagId){
+        this.props.history.push(`/tags/${this.props.tagId}`);
+      } else {
+        this.props.history.push("/notes");
+      }
+    }
+    if (this.state.query.length > 0) {
       this.handleSubmit(e);
     }
   }
 
+  handleChange(e){
+    this.update('query');
+    this.handleKeyPress(e);
+  }
+
   handleSubmit(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    this.props.search(this.state.query.toLowerCase()).then(() => {
-      this.props.history.push("/search");
+    this.props.search({query: this.state.query.toLowerCase(), notebook_id: this.props.notebookId, tag_id: this.props.tagId}).then(() => {
+      this.props.history.push(this.renderPushLink());
     });
   }
 
+  renderPushLink(){
+    if(this.props.notebookId){
+      return `/search/notebooks/${this.props.notebookId}`;
+    } else if (this.props.tagId) {
+      return `/search/tags/${this.props.tagId}`;
+    } else {
+      return "/search/all_notes";
+    }
+  }
+
   render(){
+    const searching = this.props.query.length > 0 ? "searching" : "";
     return (
       <div className="search-container">
         <input className="search-bar" type="text" placeholder="Search all notes..." 
-        value={this.state.query} onChange={this.update('query')}
-        onKeyPress={this.handleKeyPress} />
-        <i className="fa fa-search"></i>
+        value={this.props.query} onChange={this.update('query')} />
+        <i className={`fa fa-search ${searching}`}></i>
       </div>
     )
   }
 
 }
 
-export default withRouter(Search);
+export default (Search);

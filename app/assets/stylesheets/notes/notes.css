@@ -62,6 +62,10 @@
   top: 6px;
 }
 
+.search-container .fa-search.searching {
+  color:  #00a82d;
+} 
+
 .email {
   position: relative;
   color: #666;
@@ -460,6 +464,10 @@
   text-decoration: underline;
 }
 
+.note-panel.wide {
+  width: calc(100% - 241px);
+}
+
 .note-panel.full-page {
   background: #fff;
   position: absolute;
@@ -676,6 +684,7 @@
   background: #fff;
   min-height: 73px;
   max-height: 73px;
+  overflow: -webkit-paged-y;
 }
 
 .quill.blurred .ql-toolbar.ql-snow {

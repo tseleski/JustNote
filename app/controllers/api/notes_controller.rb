@@ -44,11 +44,27 @@ class Api::NotesController < ApplicationController
   end
 
   def search
-    @query = params[:query]
-    @notes = current_user.notes.select do |note|
-      title = note.title.downcase
-      plain_text = note.plain_text.downcase
-      (title.include?(@query) || plain_text.include?(@query))
+    @query = params[:query][:query]
+    @notebook = Notebook.find(params[:query][:notebook_id]) unless params[:query][:notebook_id] == ""
+    @tag = Tag.find(params[:query][:tag_id]) unless params[:query][:tag_id] == ""
+    if @notebook
+      @notes = @notebook.notes.select do |note|
+        title = note.title.downcase
+        plain_text = note.plain_text.downcase
+        (title.include?(@query) || plain_text.include?(@query))
+      end
+    elsif @tag
+      @notes = @tag.notes.select do |note|
+        title = note.title.downcase
+        plain_text = note.plain_text.downcase
+        (title.include?(@query) || plain_text.include?(@query))
+      end 
+    else
+      @notes = current_user.notes.select do |note|
+        title = note.title.downcase
+        plain_text = note.plain_text.downcase
+        (title.include?(@query) || plain_text.include?(@query))
+      end
     end
 
     render "api/notes/index"

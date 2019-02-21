@@ -16,6 +16,7 @@ class TagIndex extends React.Component {
 
   componentDidMount() {
     this.props.clearTags();
+    this.props.clearQuery();
     this.props.fetchTags().then(
       () => this.setState({ fetchedTags: true })
     );
