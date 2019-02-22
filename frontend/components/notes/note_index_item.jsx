@@ -46,11 +46,17 @@ class NoteIndexItem extends React.Component {
       }
       return content.substring(0, 80) + "...";
     };
+    const limitedTitle = (title) => {
+      if (title.split('').length < 30) {
+        return title;
+      }
+      return title.substring(0, 30) + "...";
+    };
     return (
       <div className="single-note-container">
         <Link to={this.renderLink(this.props.filterType)}><div className={`single-note ${selected}`}>
           <div className="top">
-            <p className="note-title">{noteTitle}</p>
+            <p className="note-title">{limitedTitle(noteTitle)}</p>
             <p className="note-content">{limitedContent(this.props.note.plain_text)}</p>
           </div>
           <div className="timestamp">
