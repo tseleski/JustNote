@@ -150,6 +150,10 @@
   margin-bottom: -10px;
 }
 
+.tag-form::-webkit-scrollbar { 
+    display: none; 
+}
+
 .tag-form .caret-container {
   margin-right: -7px;
 }
