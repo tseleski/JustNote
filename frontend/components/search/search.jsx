@@ -1,5 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
+import debounce from 'lodash/debounce';
 
 class Search extends React.Component {
   constructor(props) {
