@@ -22,13 +22,10 @@ class NotebookIndexItem extends React.Component {
   }
 
   componentDidMount(){
+    this.props.clearNotebookErrors();
     this.props.fetchNotebook(this.props.notebook.id).then(() => {
       this.setState({ notes: this.props.notes });
     });
-  }
-
-  componentWillUnmount(){
-    this.props.clearNotebookErrors();
   }
 
   openModal() {
