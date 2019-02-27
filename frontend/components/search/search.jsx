@@ -8,18 +8,19 @@ class Search extends React.Component {
     this.state = { query: this.props.query };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
-    this.handleChange = this.handleChange.bind(this);
     this.renderPushLink = this.renderPushLink.bind(this);
   }
 
-  update(e) {
+  update() {
     return (e) => {
-      this.setState({ 'query': e.target.value }, () => this.handleKeyPress(e));
+      this.props.receiveQuery(e.target.value);
+      this.setState({ 'query': e.target.value }, debounce(() => {
+        this.handleKeyPress();
+      }, 1000));
     };
   }
 
-  handleKeyPress(e) {
-    this.props.receiveQuery(this.state.query);
+  handleKeyPress() {
     if (this.state.query.length === 0) {
       if(this.props.notebookId){
         this.props.history.push(`/notebooks/${this.props.notebookId}`);
@@ -30,16 +31,11 @@ class Search extends React.Component {
       }
     }
     if (this.state.query.length > 0) {
-      this.handleSubmit(e);
+      this.handleSubmit();
     }
   }
 
-  handleChange(e){
-    this.update('query');
-    this.handleKeyPress(e);
-  }
-
-  handleSubmit(e) {
+  handleSubmit() {
     this.props.search({query: this.state.query.toLowerCase(), notebook_id: this.props.notebookId, tag_id: this.props.tagId}).then(() => {
       this.props.history.push(this.renderPushLink());
     });

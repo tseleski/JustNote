@@ -4,6 +4,7 @@ import Modal from 'react-modal';
 import ReactQuill from 'react-quill';
 import TagForm from '../tags/tag_form';
 import { Link } from 'react-router-dom';
+import debounce from 'lodash/debounce';
 
 class NoteForm extends React.Component{
   constructor(props){
@@ -45,7 +46,8 @@ class NoteForm extends React.Component{
     if (Boolean(prevProps.note.id) && (prevProps.note.id != this.props.id)) {
       this.props.clearNoteErrors();
       this.props.fetchNote(this.props.id).then(({ note }) => {
-        this.setState({ id: note.id, title: note.title, content: note.content, plain_text: note.plain_text, notebook_id: note.notebook_id });
+        this.setState({ id: note.id, title: note.title, content: note.content, 
+          plain_text: note.plain_text, notebook_id: note.notebook_id });
       });
     }
   }
@@ -60,8 +62,9 @@ class NoteForm extends React.Component{
   }
 
   handleTitleChange(e){
-    this.setState({ title: e.currentTarget.value });
-    setTimeout(() => this.autoSave(), 1000);
+    this.setState({ title: e.currentTarget.value }, debounce(() => {
+      this.autoSave();
+    }, 1000));
   }
 
   handleEditorChange(content, delta, source, editor) {
@@ -70,7 +73,7 @@ class NoteForm extends React.Component{
         content: content,
         plain_text: editor.getText().trim()
       });
-      setTimeout(() => this.autoSave(), 1000);
+      setTimeout(() => this.autoSave(), 1500);
     }
   }
 
