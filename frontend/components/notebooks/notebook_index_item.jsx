@@ -113,11 +113,22 @@ class NotebookIndexItem extends React.Component {
     )
   }
 
+  allowDrop(e) {
+    e.preventDefault();
+  }
+
+  // drop(e) {
+  //   e.preventDefault();
+  //   const data = e.dataTransfer.getData("note");
+  //   debugger
+  //   // e.target.appendChild(document.getElementById(data));
+  // }
+
   render(){
     const noteCount = this.state.notes ? this.state.notes.length : 0;
     return (
       <>
-        <div className="notebook-index-item">
+        <div className="notebook-index-item" onDrop={this.drop} onDragOver={this.allowDrop}>
           <div className="single-notebook" onClick={() => {
             if (this.state.popup){
               this.setState({ popup: false })
