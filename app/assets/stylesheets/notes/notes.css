@@ -285,6 +285,7 @@
 }
 
 .second-column {
+  overflow: scroll;
   display: flex;
   flex-direction: column;
   width: 345px;
