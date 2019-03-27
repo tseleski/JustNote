@@ -156,7 +156,7 @@ class NoteForm extends React.Component{
 
   renderExpand(){
     if(this.state.expanded){
-      return <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="_1XQCwpJQ0CorthWG09dmAH"><g fill="none" fill-rule="evenodd"><path d="M0 0h20v20H0z"></path><path 
+      return <svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="_1XQCwpJQ0CorthWG09dmAH"><g fill="none" fillRule="evenodd"><path d="M0 0h20v20H0z"></path><path 
         d="M7.408 6.411V4.415a.7.7 0 0 1 1.4 0v3.623a.69.69 0 0 1-.19.572.694.694 0 0 1-.517.201H4.408a.7.7 0 1 1 0-1.398h2.02L2.205 3.196a.7.7 0 1 1 .991-.99L7.408 6.41zm7.162 3.756a.7.7 0 1 1 0 1.398h-2.019l4.243 4.239a.7.7 0 1 1-.991.99l-4.233-4.227v1.996a.7.7 0 0 1-1.4 0v-3.697a.7.7 0 0 1 .7-.699h3.7z" fill="#20C05C"></path></g></svg>
     } else {
       return(
@@ -286,7 +286,7 @@ class NoteForm extends React.Component{
     const toolbar = [
       [{ 'header': [1, 2, 3, 4, false] }],
       [{ 'font': [] }],
-      [ 'italic', 'underline', 'strike'],
+      [ 'bold', 'italic', 'underline', 'strike'],
       [{ 'color': [] }, { 'background': [] }],
       [{ 'list': 'ordered' }, { 'list': 'bullet' }],
       [{ 'indent': '-1' }, { 'indent': '+1' }],
