@@ -1,6 +1,4 @@
-# JustNote
-
-[JustNote Live!](https://just-note.herokuapp.com) 
+# JustNote 
 
 JustNote is a single-page clone of [Evernote](https://evernote.com/), a web application used to create and edit rich text formatted notes to help you stay on top of all the many parts of your life!
 
